@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jike-leisong.github.io/</id>
     <title>itme.ink</title>
-    <updated>2019-06-17T15:15:32.457Z</updated>
+    <updated>2019-06-18T15:53:39.303Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jike-leisong.github.io/"/>
     <link rel="self" href="https://jike-leisong.github.io//atom.xml"/>
@@ -11,52 +11,1779 @@
     <icon>https://jike-leisong.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, itme.ink</rights>
     <entry>
-        <title type="html"><![CDATA[线程池的分类及使用场景]]></title>
-        <id>https://jike-leisong.github.io//post/线程池的分类及使用场景</id>
-        <link href="https://jike-leisong.github.io//post/线程池的分类及使用场景">
+        <title type="html"><![CDATA[分库分表]]></title>
+        <id>https://jike-leisong.github.io//post/fen-ku-fen-biao</id>
+        <link href="https://jike-leisong.github.io//post/fen-ku-fen-biao">
         </link>
-        <updated>2017-11-21T08:15:20.000Z</updated>
-        <content type="html"><![CDATA[<h4 id="newcachedthreadpool">newCachedThreadPool：</h4>
+        <updated>2019-06-18T15:50:58.000Z</updated>
+        <content type="html"><![CDATA[<h4 id="垂直拆表大表拆小表">垂直拆表（大表拆小表）</h4>
+<p><strong>优缺点：</strong></p>
+<ul>
+<li>
+<p>优点：</p>
+<ol>
+<li>拆分后业务清晰（专库专用按业务拆分）</li>
+<li>实现动静分离、冷热数据分离设计体现。（eg：冷库-发布说说信息 热-说说点赞评论）</li>
+<li>数据维护简单、按业务不同放到不同的机器上</li>
+</ol>
+</li>
+<li>
+<p>缺点：</p>
+<ol>
+<li>如果单表的数据量大、写读压力大</li>
+<li>受某种业务来决定、或者被限制。也就是说一个业务往往会影响到数据库的瓶颈（性能问题）</li>
+<li>部分业务无法关联join，只能通过java程序接口去调用，提供了开发复杂度。（商品、订单信息、会员信息）</li>
+</ol>
+</li>
+</ul>
+<h4 id="水平拆表">水平拆表</h4>
+<p><strong>优缺点：</strong></p>
+<ul>
+<li>
+<p>优点：</p>
+<ol>
+<li>单库（表）的数据保持在一定的数量（减少），有助于性能提高。</li>
+<li>提高了系统的稳定性和负载能力。</li>
+<li>切分表的结构相同，程序改造较少。</li>
+</ol>
+</li>
+<li>
+<p>缺点：</p>
+<ol>
+<li>数据的扩容有难度、维护量大。</li>
+<li>拆分规则很难抽象出来。</li>
+<li>分片事务的一致性问题。</li>
+<li>部分业务无法关联join，只能通过java程序接口去调用。</li>
+</ol>
+</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Eureka Dubbo]]></title>
+        <id>https://jike-leisong.github.io//post/eureka-dubbo</id>
+        <link href="https://jike-leisong.github.io//post/eureka-dubbo">
+        </link>
+        <updated>2019-06-18T15:38:08.000Z</updated>
+        <content type="html"><![CDATA[<p>1、Eureka的高可用方案 上面的例子中，Eureka只有一个8761的注册中心，那么如何避免单点问题呢？</p>
 <blockquote>
-<p>底层：返回ThreadPoolExecutor实例，corePoolSize为0；maximumPoolSize为Integer.MAX_VALUE；keepAliveTime为60L；unit为TimeUnit.SECONDS；workQueue为SynchronousQueue(同步队列)
-通俗：当有新任务到来，则插入到SynchronousQueue中，由于SynchronousQueue是同步队列，因此会在池中寻找可用线程来执行，若有可以线程则执行，若没有可用线程则创建一个线程来执行该任务；若池中线程空闲时间超过指定大小，则该线程会被销毁。
-适用：执行很多短期异步的小程序或者负载较轻的服务器</p>
+<p>我们采用集群的方式来解决。比如现在有三台机器：Server1、Server2和Server3.在高可用方案中，三台机器两两注册。比如S1要向S2、S3分别进行注册，目前他无法实现注册的传递性。这样以来，如果Server1宕机，我们还可以继续从Server2和3中获取服务。</p>
 </blockquote>
-<h4 id="newfixedthreadpool">newFixedThreadPool：</h4>
+<p>2、为什么不用zookeeper做注册中心 在使用dubbo时，一般都结合zk（作为注册中心）来使用。那为什么SpringCloud中使用Eureka，而不是zk呢？</p>
 <blockquote>
-<p>底层：返回ThreadPoolExecutor实例，接收参数为所设定线程数量nThread，corePoolSize为nThread，maximumPoolSize为nThread；keepAliveTime为0L(不限时)；unit为：TimeUnit.MILLISECONDS；WorkQueue为：new LinkedBlockingQueue<Runnable>() 无解阻塞队列
-通俗：创建可容纳固定数量线程的池子，每隔线程的存活时间是无限的，当池子满了就不在添加线程了；如果池中的所有线程均在繁忙状态，对于新任务会进入阻塞队列中(无界的阻塞队列)
-适用：执行长期的任务，性能好很多</p>
+<p>在CAP理论中，zk更看重C和P，即一致性和分区容错性。但Eureka更在意的是A和P，A为高可用。zk中有master和follower区别，当进入选举模式时，就无法正常对外提供服务。但Eureka中，集群是对等的，地位是相同的，虽不能保证一致性，但至少可以提供注册服务。根据不同的业务场景，各有取舍。</p>
 </blockquote>
-<h4 id="newsinglethreadexecutor">newSingleThreadExecutor:</h4>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[FeignClient两个相同的name导致问题]]></title>
+        <id>https://jike-leisong.github.io//post/feignclient-liang-ge-xiang-tong-de-name-dao-zhi-wen-ti</id>
+        <link href="https://jike-leisong.github.io//post/feignclient-liang-ge-xiang-tong-de-name-dao-zhi-wen-ti">
+        </link>
+        <updated>2019-06-18T15:35:53.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>记一次 feign 坑之旅。</strong></p>
+<p><strong>1、问题描述</strong>
+feign上传文件报错：</p>
+<pre><code>feign.codec.EncodeException: Could not write request: no suitable HttpMessageConverter found for request type \[org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile ]and content type \[multipart/form-data]
+...
+</code></pre>
+<p>上传文件代码：</p>
+<pre><code>@FeignClient(value = &quot;xxxxxxxxx&quot;, configuration = IUploadService.MultipartSupportConfig.class)
+public interface IUploadService {
+
+    /**
+     * 文件上传
+     */
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST, value = &quot;/upload&quot;, produces = {MediaType.APPLICATION_JSON_UTF8_VALUE}, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    UploadResp upload(@RequestPart(&quot;file&quot;) MultipartFile file);
+
+    @Configuration
+    class MultipartSupportConfig {
+        @Autowired
+        private ObjectFactory&lt;HttpMessageConverters&gt; messageConverters;
+
+        @Bean
+        public Encoder feignFormEncoder() {
+            return new SpringFormEncoder(new SpringEncoder(messageConverters));
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = &quot;/upObj&quot;)
+    UploadResp upObj(@RequestBody Map bt, @RequestParam(&quot;ext&quot;) String ext);
+}
+</code></pre>
+<p><strong>2、分析问题</strong></p>
 <blockquote>
-<p>底层：FinalizableDelegatedExecutorService包装的ThreadPoolExecutor实例，corePoolSize为1；maximumPoolSize为1；keepAliveTime为0L；unit为：TimeUnit.MILLISECONDS；workQueue为：new LinkedBlockingQueue<Runnable>() 无解阻塞队列
-通俗：创建只有一个线程的线程池，且线程的存活时间是无限的；当该线程正繁忙时，对于新任务会进入阻塞队列中(无界的阻塞队列)
-适用：一个任务一个任务执行的场景</p>
+<p>由于项目中有多个feign的value值为 xxxxxxxxx ，造成configration不起作用。</p>
 </blockquote>
-<h4 id="newscheduledthreadpool">NewScheduledThreadPool:</h4>
+<p><strong>解决方案</strong></p>
 <blockquote>
-<p>底层：创建ScheduledThreadPoolExecutor实例，corePoolSize为传递来的参数，maximumPoolSize为Integer.MAX_VALUE；keepAliveTime为0；unit为：TimeUnit.NANOSECONDS；workQueue为：new DelayedWorkQueue() 一个按超时时间升序排序的队列
-通俗：创建一个固定大小的线程池，线程池内线程存活时间无限制，线程池可以支持定时及周期性任务执行，如果所有线程均处于繁忙状态，对于新任务会进入DelayedWorkQueue队列中，这是一种按照超时时间排序的队列结构
-适用：周期性执行任务的场景</p>
+<p>a.项目中不存在其他value值相同的feign。
+b.将feign名称改为 http://xxxxxxxxx
+c.将configuration打上注解component（测试未生效）</p>
 </blockquote>
-<h4 id="线程池任务执行流程">线程池任务执行流程：</h4>
+<p>注：大致可以确定为，由于feign的value相同，而造成的bug。已经有人提出该bug，<a href="https://github.com/spring-cloud/spring-cloud-netflix/issues/1211">链接内容</a>。</p>
+<p>引用：<a href="https://blog.csdn.net/yxwb1253587469/article/details/81560665">spring cloud 两个feignclient 名称相同时的问题 </a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Java开发岗面试知识点解析]]></title>
+        <id>https://jike-leisong.github.io//post/java-kai-fa-gang-mian-shi-zhi-shi-dian-jie-xi</id>
+        <link href="https://jike-leisong.github.io//post/java-kai-fa-gang-mian-shi-zhi-shi-dian-jie-xi">
+        </link>
+        <updated>2019-06-18T15:33:28.000Z</updated>
+        <content type="html"><![CDATA[<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img//java-001.jpg" alt=""></p>
 <blockquote>
-<p>当线程池小于corePoolSize时，新提交任务将创建一个新线程执行任务，即使此时线程池中存在空闲线程。
-当线程池达到corePoolSize时，新提交任务将被放入workQueue中，等待线程池中任务调度执行
-当workQueue已满，且maximumPoolSize&gt;corePoolSize时，新提交任务会创建新线程执行任务
-当提交任务数超过maximumPoolSize时，新提交任务由RejectedExecutionHandler处理
-当线程池中超过corePoolSize线程，空闲时间达到keepAliveTime时，关闭空闲线程
-当设置allowCoreThreadTimeOut(true)时，线程池中corePoolSize线程空闲时间达到keepAliveTime也将关闭</p>
+<p>天之道，损有余而补不足，是故虚胜实，不足胜有余。</p>
 </blockquote>
-<p><strong>备注：</strong></p>
+<p>本文作者在一年之内参加过多场面试，应聘岗位均为 Java 开发方向。在不断的面试中，分类总结了 Java 开发岗位面试中的一些知识点。</p>
+<p><strong>主要包括以下几个部分：</strong></p>
+<ol>
+<li>Java 基础知识点</li>
+<li>Java 常见集合</li>
+<li>高并发编程（JUC 包）</li>
+<li>JVM 内存管理</li>
+<li>Java 8 知识点</li>
+<li>网络协议相关</li>
+<li>数据库相关</li>
+<li>MVC 框架相关</li>
+<li>大数据相关</li>
+<li>Linux 命令相关</li>
+</ol>
+<p>面试，是大家从学校走向社会的第一步。</p>
+<p>互联网公司的校园招聘，从形式上说，面试一般分为 2-3 轮技术面试 +1 轮 HR 面试。但是一些公司确实是没有 HR 面试的，直接就是三轮技术面。</p>
+<p>技术面试中，面试官一般会先就你所应聘的岗位进行相关知识的考察，也叫基础知识和业务逻辑面试。只要你回答的不是特别差，面试官通常会说：“咱们写个代码吧”，这个时候就开始了算法面试。</p>
+<p>也就是说，一轮技术面试 = 基础知识和业务逻辑面试 + 算法面试。</p>
+<p>在本篇文章中，我们主要从技术面试聊起。技术面试包括：业务逻辑和基础知识面试。</p>
+<p>首先是业务逻辑面试 ，也就是讲项目。</p>
+<p>面试官会对你简历上写的若干个项目其中之一拿出来和你聊聊。在期间，会针对你所做的东西进行深度挖掘。</p>
+<p>包括：为什么要这么做？优缺点分析，假如重新让你做一次，你打算怎么做？ 等等。这个环节主要考察我们对自己做过的项目（实习项目或者校内项目）是否有一个清晰的认识。</p>
+<p>关于业务逻辑面试的准备，建议在平时多多思考总结，对项目的数据来源、整体运行框架都应该熟悉掌握。</p>
+<p>比如说你在某公司实习过程中，就可以进行总结，而不必等到快离职的时候慌慌张张的去总结该项目。</p>
+<p>接下来是基础知识面试。</p>
+<p>Java 开发属于后台开发方向，有人说后台开发很坑，因为需要学习的东西太多了。没错，这个岗位就是需要学习好多东西。包括：本语言（Java/C++/PHP）基础、数据库、网络协议、Linux 系统、计算机原理甚至前端相关知识都可以考察你，而且，并不超纲 。</p>
+<p>有时候，你报的是后台开发岗，并且熟悉的是 Java 语言，但是面试官却是 C++ 开发方向的，就是这么无奈~</p>
+<p>好了，闲话少说，让我们开始分类讲解常见面试知识点。</p>
+<p><strong>（一） Java 基础知识点</strong></p>
+<p>1）面向对象的特性有哪些？</p>
 <blockquote>
-<p>一般如果线程池任务队列采用<strong>LinkedBlockingQueue</strong>队列的话，那么不会拒绝任何任务（因为队列大小没有限制），这种情况下，ThreadPoolExecutor最多仅会按照最小线程数来创建线程，也就是说线程池大小被忽略了。</p>
+<p>答：封装、继承和多态。</p>
+</blockquote>
+<p>2）Java 中覆盖和重载是什么意思？</p>
+<blockquote>
+<p>解析：覆盖和重载是比较重要的基础知识点，并且容易混淆，所以面试中常见。
+答：覆盖（Override）是指子类对父类方法的一种重写，只能比父类抛出更少的异常，访问权限不能比父类的小。</p>
 </blockquote>
 <blockquote>
-<p>如果线程池任务队列采用ArrayBlockingQueue队列的话，那么ThreadPoolExecutor将会采取一个非常负责的算法，比如假定线程池的最小线程数为4，最大为8所用的ArrayBlockingQueue最大为10。随着任务到达并被放到队列中，线程池中最多运行4个线程（即最小线程数）。即使队列完全填满，也就是说有10个处于等待状态的任务，ThreadPoolExecutor也只会利用4个线程。如果队列已满，而又有新任务进来，此时才会启动一个新线程，这里不会因为队列已满而拒接该任务，相反会启动一个新线程。新线程会运行队列中的第一个任务，为新来的任务腾出空间。</p>
+<p>被覆盖的方法不能是 private 的，否则只是在子类中重新定义了一个方法；重载（Overload）表示同一个类中可以有多个名称相同的方法，但这些方法的参数列表各不相同。</p>
 </blockquote>
-<p>这个算法背后的理念是：该池大部分时间仅使用核心线程（4个），即使有适量的任务在队列中等待运行。这时线程池就可以用作节流阀。如果挤压的请求变得非常多，这时该池就会尝试运行更多的线程来清理；这时第二个节流阀—最大线程数就起作用了。</p>
+<p>面试官： 那么构成重载的条件有哪些？</p>
+<blockquote>
+<p>答：参数类型不同、参数个数不同、参数顺序不同。</p>
+</blockquote>
+<p>面试官： 函数的返回值不同可以构成重载吗？为什么？</p>
+<blockquote>
+<p>答：不可以，因为 Java 中调用函数并不需要强制赋值。举例如下：</p>
+</blockquote>
+<p>如下两个方法：</p>
+<pre><code class="language-java">　　　　void f(){}
+　　　　int f(){ return 1;}
+</code></pre>
+<p>只要编译器可以根据语境明确判断出语义，比如在 int x = f();中，那么的确可以据此区分重载方法。不过， 有时你并不关心方法的返回值，你想要的是方法调用的其他效果 （这常被称为 “为了副作用而调用”），这时你可能会调用方法而忽略其返回值，所以如果像下面的调用：</p>
+<pre><code class="language-java">　　　　fun();
+</code></pre>
+<p>此时 Java 如何才能判断调用的是哪一个 f() 呢？别人如何理解这种代码呢？所以，根据方法返回值来区分重载方法是行不通的。</p>
+<p>3）抽象类和接口的区别有哪些？</p>
+<blockquote>
+<p>答：
+抽象类中可以没有抽象方法；接口中的方法必须是抽象方法；
+抽象类中可以有普通的成员变量；接口中的变量必须是 static final 类型的，必须被初始化 , 接口中只有常量，没有变量。
+抽象类只能单继承，接口可以继承多个父接口；
+Java8 中接口中会有 default 方法，即方法可以被实现。</p>
+</blockquote>
+<p>面试官：抽象类和接口如何选择？</p>
+<blockquote>
+<p>答：
+如果要创建不带任何方法定义和成员变量的基类，那么就应该选择接口而不是抽象类。
+如果知道某个类应该是基类，那么第一个选择的应该是让它成为一个接口，只有在必须要有方法定义和成员变量的时候，才应该选择抽象类。因为抽象类中允许存在一个或多个被具体实现的方法，只要方法没有被全部实现该类就仍是抽象类。</p>
+</blockquote>
+<p>4）Java 和 C++ 的区别：</p>
+<p>解析：虽然我们不太懂 C++，但是就是会这么问，尤其是三面（总监级别）面试中。</p>
+<blockquote>
+<p>答：
+都是面向对象的语言，都支持封装、继承和多态；
+指针：Java 不提供指针来直接访问内存，程序更加安全；
+继承： Java 的类是单继承的，C++ 支持多重继承； Java 通过一个类实现多个接口来实现 C++ 中的多重继承； Java 中类不可以多继承，但是！！！接口可以多继承；
+内存： Java 有自动内存管理机制，不需要程序员手动释放无用内存。</p>
+</blockquote>
+<p>5）Java 中的值传递和引用传递</p>
+<p>解析：这类题目，面试官会手写一个例子，让你说出函数执行结果，详细举例请查阅我的博客：Java 值传递和引用传递基础分析。</p>
+<blockquote>
+<p>答：值传递是指对象被值传递，意味着传递了对象的一个副本，即使副本被改变，也不会影响源对象。引用传递是指对象被引用传递，意味着传递的并不是实际的对象，而是对象的引用。</p>
+</blockquote>
+<p>因此，外部对引用对象的改变会反映到所有的对象上。</p>
+<p>6）JDK 中常用的包有哪些？</p>
+<blockquote>
+<p>答：java.lang、java.util、http://java.io、http://java.net、java.sql。</p>
+</blockquote>
+<p>7）JDK，JRE 和 JVM 的联系和区别：</p>
+<blockquote>
+<p>答：JDK 是 java 开发工具包，是 java 开发环境的核心组件，并提供编译、调试和运行一个 java 程序所需要的所有工具，可执行文件和二进制文件，是一个平台特定的软件。</p>
+</blockquote>
+<p>JRE 是 java 运行时环境，是 JVM 的实施实现，提供了运行 java 程序的平台。JRE 包含了 JVM，但是不包含 java 编译器 / 调试器之类的开发工具。</p>
+<p>JVM 是 java 虚拟机，当我们运行一个程序时，JVM 负责将字节码转换为特定机器代码，JVM 提供了内存管理 / 垃圾回收和安全机制等。</p>
+<p>这种独立于硬件和操作系统，正是 java 程序可以一次编写多处执行的原因。</p>
+<p>区别：</p>
+<p>JDK 用于开发，JRE 用于运行 java 程序；
+JDK 和 JRE 中都包含 JVM；
+JVM 是 java 编程语言的核心并且具有平台独立性。
+Others：限于篇幅，面试中 Java 基础知识点还有：反射、泛型、注解等。</p>
+<p>小结：本节主要阐述了 Java 基础知识点，这些问题主要是一面面试官在考察，难度不大，适当复习下，应该没什么问题。</p>
+<p><strong>（二）Java 中常见集合</strong></p>
+<p>集合这方面的考察相当多，这部分是面试中必考的知识点。</p>
+<p>1）说说常见的集合有哪些吧？</p>
+<blockquote>
+<p>答：Map 接口和 Collection 接口是所有集合框架的父接口：</p>
+</blockquote>
+<p>Collection 接口的子接口包括：Set 接口和 List 接口；
+Map 接口的实现类主要有：HashMap、TreeMap、Hashtable、ConcurrentHashMap 以及 Properties 等；
+Set 接口的实现类主要有：HashSet、TreeSet、LinkedHashSet 等；
+List 接口的实现类主要有：ArrayList、LinkedList、Stack 以及 Vector 等。</p>
+<p>（2）HashMap 和 Hashtable 的区别有哪些？（必问）</p>
+<blockquote>
+<p>答：
+HashMap 没有考虑同步，是线程不安全的；Hashtable 使用了 synchronized 关键字，是线程安全的；
+前者允许 null 作为 Key；后者不允许 null 作为 Key。</p>
+</blockquote>
+<p>3）HashMap 的底层实现你知道吗？</p>
+<blockquote>
+<p>答：在 Java8 之前，其底层实现是数组 + 链表实现，Java8 使用了数组 + 链表 + 红黑树实现。此时你可以简单的在纸上画图分析：</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/java-002.jpg" alt=""></p>
+<p>4）ConcurrentHashMap 和 Hashtable 的区别？ （必问）</p>
+<blockquote>
+<p>答：ConcurrentHashMap 结合了 HashMap 和 HashTable 二者的优势。HashMap 没有考虑同步，hashtable 考虑了同步的问题。但是 hashtable 在每次同步执行时都要锁住整个结构。 ConcurrentHashMap 锁的方式是稍微细粒度的。 ConcurrentHashMap 将 hash 表分为 16 个桶（默认值），诸如 get,put,remove 等常用操作只锁当前需要用到的桶。</p>
+</blockquote>
+<p>面试官：ConcurrentHashMap 的具体实现知道吗？</p>
+<blockquote>
+<p>答：
+该类包含两个静态内部类 HashEntry 和 Segment；前者用来封装映射表的键值对，后者用来充当锁的角色；
+Segment 是一种可重入的锁 ReentrantLock，每个 Segment 守护一个 HashEntry 数组里得元素，当对 HashEntry 数组的数据进行修改时，必须首先获得对应的 Segment 锁。</p>
+</blockquote>
+<p>5）HashMap 的长度为什么是 2 的幂次方？</p>
+<blockquote>
+<p>答：
+通过将 Key 的 hash 值与 length-1 进行 &amp; 运算，实现了当前 Key 的定位，2 的幂次方可以减少冲突（碰撞）的次数，提高 HashMap 查询效率；
+如果 length 为 2 的次幂 则 length-1 转化为二进制必定是 11111……的形式，在于 h 的二进制与操作效率会非常的快，而且空间不浪费；
+如果 length 不是 2 的次幂，比如 length 为 15，则 length-1 为 14，对应的二进制为 1110，在于 h 与操作，最后一位都为 0，而 0001，0011，0101，1001，1011，0111，1101 这几个位置永远都不能存放元素了，空间浪费相当大。
+更糟的是这种情况中，数组可以使用的位置比数组长度小了很多，这意味着进一步增加了碰撞的几率，减慢了查询的效率！这样就会造成空间的浪费。</p>
+</blockquote>
+<p>6）List 和 Set 的区别是啥？</p>
+<blockquote>
+<p>答：List 元素是有序的，可以重复；Set 元素是无序的，不可以重复。</p>
+</blockquote>
+<p>7）List、Set 和 Map 的初始容量和加载因子</p>
+<blockquote>
+<p>答：
+<strong>1. List</strong></p>
+</blockquote>
+<blockquote>
+<p>ArrayList 的初始容量是 10；加载因子为 0.5； 扩容增量：原容量的 0.5 倍 +1；一次扩容后长度为 16。
+Vector 初始容量为 10，加载因子是 1。扩容增量：原容量的 1 倍，如 Vector 的容量为 10，一次扩容后是容量为 20。</p>
+</blockquote>
+<blockquote>
+<p><strong>2. Set</strong></p>
+</blockquote>
+<blockquote>
+<p>HashSet，初始容量为 16，加载因子为 0.75； 扩容增量：原容量的 1 倍； 如 HashSet 的容量为 16，一次扩容后容量为 32</p>
+</blockquote>
+<blockquote>
+<p><strong>3. Map</strong></p>
+</blockquote>
+<blockquote>
+<p>HashMap，初始容量 16，加载因子为 0.75； 扩容增量：原容量的 1 倍； 如 HashMap 的容量为 16，一次扩容后容量为 32</p>
+</blockquote>
+<p>8）Comparable 接口和 Comparator 接口有什么区别？</p>
+<blockquote>
+<p>答：
+前者简单，但是如果需要重新定义比较类型时，需要修改源代码。
+后者不需要修改源代码，自定义一个比较器，实现自定义的比较方法。
+具体解析参考我的博客：Java 集合框架—Set</p>
+</blockquote>
+<p>9）Java 集合的快速失败机制 “fail-fast”</p>
+<blockquote>
+<p>答：它是 java 集合的一种错误检测机制，当多个线程对集合进行结构上的改变的操作时，有可能会产生 fail-fast 机制。</p>
+</blockquote>
+<p>例如 ：假设存在两个线程（线程 1、线程 2），线程 1 通过 Iterator 在遍历集合 A 中的元素，在某个时候线程 2 修改了集合 A 的结构（是结构上面的修改，而不是简单的修改集合元素的内容），那么这个时候程序就会抛出 ConcurrentModificationException 异常，从而产生 fail-fast 机制。</p>
+<p>原因： 迭代器在遍历时直接访问集合中的内容，并且在遍历过程中使用一个 modCount 变量。集合在被遍历期间如果内容发生变化，就会改变 modCount 的值。</p>
+<p>每当迭代器使用 hashNext()/next() 遍历下一个元素之前，都会检测 modCount 变量是否为 expectedmodCount 值，是的话就返回遍历；否则抛出异常，终止遍历。</p>
+<blockquote>
+<p>解决办法：
+在遍历过程中，所有涉及到改变 modCount 值得地方全部加上 synchronized；
+使用 CopyOnWriteArrayList 来替换 ArrayList。
+小结：本小节是 Java 中关于集合的考察，是 Java 岗位面试中必考的知识点，除了应该掌握以上的问题，包括各个集合的底层实现也建议各位同学阅读，加深理解。</p>
+</blockquote>
+<p><strong>（三）高并发编程-JUC 包</strong></p>
+<p>在 Java 5.0 提供了 java.util.concurrent（简称 JUC ）包，在此包中增加了在并发编程中很常用的实用工具类，用于定义类似于线程的自定义子系统，包括线程池、异步 IO 和轻量级任务框架。
+1）多线程和单线程的区别和联系：</p>
+<blockquote>
+<p>答：
+在单核 CPU 中，将 CPU 分为很小的时间片，在每一时刻只能有一个线程在执行，是一种微观上轮流占用 CPU 的机制。
+多线程会存在线程上下文切换，会导致程序执行速度变慢，即采用一个拥有两个线程的进程执行所需要的时间比一个线程的进程执行两次所需要的时间要多一些。
+结论：即采用多线程不会提高程序的执行速度，反而会降低速度，但是对于用户来说，可以减少用户的响应时间。</p>
+</blockquote>
+<p>2）如何指定多个线程的执行顺序？</p>
+<p>解析：面试官会给你举个例子，如何让 10 个线程按照顺序打印 0123456789？（写代码实现）</p>
+<blockquote>
+<p>答：
+设定一个 orderNum，每个线程执行结束之后，更新 orderNum，指明下一个要执行的线程。并且唤醒所有的等待线程。
+在每一个线程的开始，要 while 判断 orderNum 是否等于自己的要求值！！不是，则 wait，是则执行本线程。</p>
+</blockquote>
+<p>3）线程和进程的区别：（必考）</p>
+<blockquote>
+<p>答：
+进程是一个 “执行中的程序”，是系统进行资源分配和调度的一个独立单位；
+线程是进程的一个实体，一个进程中拥有多个线程，线程之间共享地址空间和其它资源（所以通信和同步等操作线程比进程更加容易）；
+线程上下文的切换比进程上下文切换要快很多。
+（1）进程切换时，涉及到当前进程的 CPU 环境的保存和新被调度运行进程的 CPU 环境的设置。
+（2）线程切换仅需要保存和设置少量的寄存器内容，不涉及存储管理方面的操作。</p>
+</blockquote>
+<p>4）多线程产生死锁的 4 个必要条件？</p>
+<blockquote>
+<p>答：
+互斥条件：一个资源每次只能被一个线程使用；
+请求与保持条件：一个线程因请求资源而阻塞时，对已获得的资源保持不放；
+不剥夺条件：进程已经获得的资源，在未使用完之前，不能强行剥夺；
+循环等待条件：若干线程之间形成一种头尾相接的循环等待资源关系。</p>
+</blockquote>
+<p>面试官：如何避免死锁？（经常接着问这个问题哦~）</p>
+<p>答：指定获取锁的顺序，举例如下：</p>
+<blockquote>
+<p>比如某个线程只有获得 A 锁和 B 锁才能对某资源进行操作，在多线程条件下，如何避免死锁？
+获得锁的顺序是一定的，比如规定，只有获得 A 锁的线程才有资格获取 B 锁，按顺序获取锁就可以避免死锁！！！</p>
+</blockquote>
+<p>5）sleep( ) 和 wait( n)、wait( ) 的区别：</p>
+<blockquote>
+<p>答：
+sleep 方法：是 Thread 类的静态方法，当前线程将睡眠 n 毫秒，线程进入阻塞状态。当睡眠时间到了，会解除阻塞，进行可运行状态，等待 CPU 的到来。睡眠不释放锁（如果有的话）；
+wait 方法：是 Object 的方法，必须与 synchronized 关键字一起使用，线程进入阻塞状态，当 notify 或者 notifyall 被调用后，会解除阻塞。但是，只有重新占用互斥锁之后才会进入可运行状态。睡眠时，释放互斥锁。</p>
+</blockquote>
+<p>6）synchronized 关键字：</p>
+<blockquote>
+<p>答：底层实现：
+进入时，执行 monitorenter，将计数器 +1，释放锁 monitorexit 时，计数器-1；
+当一个线程判断到计数器为 0 时，则当前锁空闲，可以占用；反之，当前线程进入等待状态。
+含义：（monitor 机制）</p>
+</blockquote>
+<blockquote>
+<p>Synchronized 是在加锁，加对象锁。对象锁是一种重量锁（monitor），synchronized 的锁机制会根据线程竞争情况在运行时会有偏向锁（单一线程）、轻量锁（多个线程访问 synchronized 区域）、对象锁（重量锁，多个线程存在竞争的情况）、自旋锁等。</p>
+</blockquote>
+<p>该关键字是一个几种锁的封装。</p>
+<p>7）volatile 关键字</p>
+<blockquote>
+<p>答：该关键字可以保证可见性不保证原子性。
+功能：
+主内存和工作内存，直接与主内存产生交互，进行读写操作，保证可见性；
+禁止 JVM 进行的指令重排序。
+解析：关于指令重排序的问题，可以查阅 DCL 双检锁失效相关资料。</p>
+</blockquote>
+<p>8）ThreadLocal（线程局部变量）关键字：</p>
+<blockquote>
+<p>答：当使用 ThreadLocal 维护变量时，其为每个使用该变量的线程提供独立的变量副本，所以每一个线程都可以独立的改变自己的副本，而不会影响其他线程对应的副本。</p>
+</blockquote>
+<p>ThreadLocal 内部实现机制：</p>
+<blockquote>
+<p>每个线程内部都会维护一个类似 HashMap 的对象，称为 ThreadLocalMap，里边会包含若干了 Entry（K-V 键值对），相应的线程被称为这些 Entry 的属主线程；
+Entry 的 Key 是一个 ThreadLocal 实例，Value 是一个线程特有对象。Entry 的作用即是：为其属主线程建立起一个 ThreadLocal 实例与一个线程特有对象之间的对应关系；
+Entry 对 Key 的引用是弱引用；Entry 对 Value 的引用是强引用。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/java-003.jpg" alt=""></p>
+<p>9）Atomic 关键字：</p>
+<blockquote>
+<p>答：可以使基本数据类型以原子的方式实现自增自减等操作。参考我的博客：concurrent.atomic 包下的类 AtomicInteger 的使用。</p>
+</blockquote>
+<p>10）线程池有了解吗？（必考）</p>
+<blockquote>
+<p>答：java.util.concurrent.ThreadPoolExecutor 类就是一个线程池。客户端调用 ThreadPoolExecutor.submit(Runnable task) 提交任务，线程池内部维护的工作者线程的数量就是该线程池的线程池大小，有 3 种形态：</p>
+</blockquote>
+<p>当前线程池大小 ：表示线程池中实际工作者线程的数量；
+最大线程池大小 （maxinumPoolSize）：表示线程池中允许存在的工作者线程的数量上限；
+核心线程大小 （corePoolSize ）：表示一个不大于最大线程池大小的工作者线程数量上限。
+如果运行的线程少于 corePoolSize，则 Executor 始终首选添加新的线程，而不进行排队；
+如果运行的线程等于或者多于 corePoolSize，则 Executor 始终首选将请求加入队列，而不是添加新线程；
+如果无法将请求加入队列，即队列已经满了，则创建新的线程，除非创建此线程超出 maxinumPoolSize， 在这种情况下，任务将被拒绝。
+小结：本小节内容涉及到 Java 中多线程编程，线程安全等知识，是面试中的重点和难点。</p>
+<p><strong>（四）JVM 内存管理</strong></p>
+<p>既然是 Java 开发面试，那么对 JVM 的考察当然也是必须的，面试官一般会问你对 JVM 有了解吗？</p>
+<p>我通常都会把我所了解的都说一遍，包括：JVM 内存划分、JVM 垃圾回收的含义，有哪些 GC 算法，年轻代和老年代各自的特点统统阐述一遍。</p>
+<p>1）JVM 内存划分：</p>
+<blockquote>
+<p>方法区（线程共享）：常量、静态变量、JIT(即时编译器) 编译后的代码也都在方法区；
+堆内存（线程共享）：垃圾回收的主要场所；
+程序计数器： 当前线程执行的字节码的位置指示器；
+虚拟机栈（栈内存）：保存局部变量、基本数据类型变量以及堆内存中某个对象的引用变量；
+本地方法栈 ：为 JVM 提供使用 native 方法的服务。</p>
+</blockquote>
+<p>2）类似-Xms、-Xmn 这些参数的含义：</p>
+<blockquote>
+<p>答：
+堆内存分配：
+JVM 初始分配的内存由-Xms 指定，默认是物理内存的 1/64；
+JVM 最大分配的内存由-Xmx 指定，默认是物理内存的 1/4；
+默认空余堆内存小于 40% 时，JVM 就会增大堆直到-Xmx 的最大限制；空余堆内存大于 70% 时，JVM 会减少堆直到 -Xms 的最小限制；
+因此服务器一般设置-Xms、-Xmx 相等以避免在每次 GC 后调整堆的大小。对象的堆内存由称为垃圾回收器的自动内存管理系统回收。
+非堆内存分配：</p>
+</blockquote>
+<p>JVM 使用-XX:PermSize 设置非堆内存初始值，默认是物理内存的 1/64；
+由 XX:MaxPermSize 设置最大非堆内存的大小，默认是物理内存的 1/4；
+-Xmn2G：设置年轻代大小为 2G；
+-XX:SurvivorRatio，设置年轻代中 Eden 区与 Survivor 区的比值。</p>
+<p>3）垃圾回收算法有哪些？</p>
+<blockquote>
+<p>答：
+**引用计数 ：**原理是此对象有一个引用，即增加一个计数，删除一个引用则减少一个计数。垃圾回收时，只用收集计数为 0 的对象。此算法最致命的是无法处理循环引用的问题；
+标记-清除 ：此算法执行分两阶段。第一阶段从引用根节点开始标记所有被引用的对象，第二阶段遍历整个堆，把未标记的对象清除；
+此算法需要暂停整个应用，同时，会产生内存碎片；</p>
+</blockquote>
+<blockquote>
+<p><strong>复制算法 ：</strong>
+此算法把内存空间划为两个相等的区域，每次只使用其中一个区域。垃圾回收时，遍历当前使用区域，把正在使用中的对象复制到另外一个区域中；
+此算法每次只处理正在使用中的对象，因此复制成本比较小，同时复制过去以后还能进行相应的内存整理，不会出现 “碎片” 问题。当然，此算法的缺点也是很明显的，就是需要两倍内存空间；</p>
+</blockquote>
+<blockquote>
+<p><strong>标记-整理 ：</strong>
+此算法结合了 “标记-清除” 和 “复制” 两个算法的优点。也是分两阶段，第一阶段从根节点开始标记所有被引用对象，第二阶段遍历整个堆，把清除未标记对象并且把存活对象 “压缩” 到堆的其中一块，按顺序排放。
+此算法避免了 “标记-清除” 的碎片问题，同时也避免了 “复制” 算法的空间问题。</p>
+</blockquote>
+<p>4）root 搜索算法中，哪些可以作为 root？</p>
+<blockquote>
+<p>答：
+被启动类（bootstrap 加载器）加载的类和创建的对象；
+JavaStack 中的引用的对象 (栈内存中引用的对象)；
+方法区中静态引用指向的对象；
+方法区中常量引用指向的对象；
+Native 方法中 JNI 引用的对象。</p>
+</blockquote>
+<p>5）GC 什么时候开始？</p>
+<blockquote>
+<p>答：GC 经常发生的区域是堆区，堆区还可以细分为新生代、老年代，新生代还分为一个 Eden 区和两个 Survivor 区。</p>
+</blockquote>
+<blockquote>
+<p>对象优先在 Eden 中分配，当 Eden 中没有足够空间时，虚拟机将发生一次 Minor GC，因为 Java 大多数对象都是朝生夕灭，所以 Minor GC 非常频繁，而且速度也很快；
+Full GC，发生在老年代的 GC，当老年代没有足够的空间时即发生 Full GC，发生 Full GC 一般都会有一次 Minor GC。
+大对象直接进入老年代，如很长的字符串数组，虚拟机提供一个；XX:PretenureSizeThreadhold 参数，令大于这个参数值的对象直接在老年代中分配，避免在 Eden 区和两个 Survivor 区发生大量的内存拷贝；</p>
+</blockquote>
+<blockquote>
+<p>发生 Minor GC 时，虚拟机会检测之前每次晋升到老年代的平均大小是否大于老年代的剩余空间大小，如果大于，则进行一次 Full GC，如果小于，则查看 HandlePromotionFailure 设置是否允许担保失败，如果允许，那只会进行一次 Minor GC，如果不允许，则改为进行一次 Full GC。</p>
+</blockquote>
+<p>6）内存泄漏和内存溢出</p>
+<blockquote>
+<p>答：
+概念：</p>
+</blockquote>
+<blockquote>
+<p>内存溢出指的是内存不够用了；
+内存泄漏是指对象可达，但是没用了。即本该被 GC 回收的对象并没有被回收；
+内存泄露是导致内存溢出的原因之一；内存泄露积累起来将导致内存溢出。
+内存泄漏的原因分析：</p>
+</blockquote>
+<blockquote>
+<p>长生命周期的对象引用短生命周期的对象；
+没有将无用对象置为 null。
+小结：本小节涉及到 JVM 虚拟机，包括对内存的管理等知识，相对较深。除了以上问题，面试官会继续问你一些比较深的问题，可能也是为了看看你的极限在哪里吧。
+比如：内存调优、内存管理，是否遇到过内存泄漏的实际案例、是否真正关心过内存等。由于本人实际项目经验不足，这些深层次问题并没有接触过，各位有需要可以上网查阅。</p>
+</blockquote>
+<p><strong>（五）Java 8 相关知识点</strong></p>
+<p>关于 Java8 中新知识点，面试官会让你说说 Java8 你了解多少，下边主要阐述我所了解，并且在面试中回答的 Java8 新增知识点。</p>
+<blockquote>
+<p>1）HashMap 的底层实现有变化：HashMap 是数组 + 链表 + 红黑树（JDK1.8 增加了红黑树部分）实现。</p>
+</blockquote>
+<blockquote>
+<p>2）JVM 内存管理方面，由元空间代替了永久代。</p>
+</blockquote>
+<blockquote>
+<p>区别：
+元空间并不在虚拟机中，而是使用本地内存；
+默认情况下，元空间的大小仅受本地内存限制；
+也可以通过-XX：MetaspaceSize 指定元空间大小。</p>
+</blockquote>
+<blockquote>
+<p>3）Lambda 表达式（也称为闭包），允许我们将函数当成参数传递给某个方法，或者把代码本身当做数据处理。</p>
+</blockquote>
+<blockquote>
+<p>4）函数式接口：指的是只有一个函数的接口，java.lang.Runnable 和 java.util.concurrent.Callable 就是函数式接口的例子；java8 提供了一个特殊的注解 @Functionallnterface 来标明该接口是一个函数式接口。</p>
+</blockquote>
+<blockquote>
+<p>5）引入重复注解：Java 8 中使用 @Repeatable 注解定义重复注解。</p>
+</blockquote>
+<blockquote>
+<p>6）接口中可以实现方法 default 方法。</p>
+</blockquote>
+<blockquote>
+<p>7） 注解的使用场景拓宽： 注解几乎可以使用在任何元素上：局部变量、接口类型、超类和接口实现类，甚至可以用在函数的异常定义上。</p>
+</blockquote>
+<blockquote>
+<p>8） 新的包 java.time 包</p>
+</blockquote>
+<blockquote>
+<p>包含了所有关于日期、时间、时区、持续时间和时钟操作的类；
+这些类都是不可变的、线程安全的。</p>
+</blockquote>
+<p>小结：Java8 的一些新特性，面试官一般情况下不要求你有多么精通，主要是看看你有没有一些了解。</p>
+<p><strong>（六）网络协议相关</strong></p>
+<p>网络协议方面，考察最多的包括服务器和客户端在三次握手、四次挥手过程中的状态变化；还有网络拥塞控制，及其解决办法等。</p>
+<blockquote>
+<p><strong>1）三次握手、四次挥手示意图：</strong></p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/java-004.jpg" alt=""></p>
+<blockquote>
+<p>总共有四种状态：主动建立连接、主动断开连接、被动建立连和被动断开连接</p>
+</blockquote>
+<blockquote>
+<p>两两组合还是 4 种组合：</p>
+</blockquote>
+<blockquote>
+<p>主动建立连接、主动断开连接会经历的状态：
+SYNC_SENT——ESTABLISHED—-FIN_WAIT_1—-FIN_WAIT_2—-TIME_WAIT
+主动建立连接、被动断开连接会经历的状态：
+SYNC_SENT——ESTABLISHED—-CLOSE_WAIT—-LAST_ACK
+被动建立连接、主动断开连接会经历的状态：
+LISTEN—-SYN_RCVD—-ESTABLISHED—-FIN_WAIT_1—-FIN_WAIT_2—-TIME_WAIT
+被动建立连接、被动断开连接会经历的状态：
+LISTEN—-SYN_RCVD—-ESTABLISHED—-CLOSE_WAIT—-LAST_ACK</p>
+</blockquote>
+<blockquote>
+<p><strong>2）滑动窗口机制</strong></p>
+</blockquote>
+<blockquote>
+<p>由发送方和接收方在三次握手阶段，互相将自己的最大可接收的数据量告诉对方。也就是自己的数据接收缓冲池的大小。这样对方可以根据已发送的数据量来计算是否可以接着发送。</p>
+</blockquote>
+<blockquote>
+<p>在处理过程中，当接收缓冲池的大小发生变化时，要给对方发送更新窗口大小的通知。</p>
+</blockquote>
+<blockquote>
+<p><strong>3）拥塞避免机制</strong></p>
+</blockquote>
+<blockquote>
+<p>拥塞：对资源的需求超过了可用的资源。若网络中许多资源同时供应不足，网络的性能就要明显变坏，整个网络的吞吐量随之负荷的增大而下降。</p>
+</blockquote>
+<blockquote>
+<p>拥塞控制：防止过多的数据注入到网络中，使得网络中的路由器或链路不致过载。</p>
+</blockquote>
+<blockquote>
+<p>拥塞控制方法：</p>
+</blockquote>
+<blockquote>
+<p>慢开始 + 拥塞避免；
+快重传 + 快恢复。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/java-005.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/java-006.jpg" alt=""></p>
+<blockquote>
+<p><strong>4）浏览器中输入：“www.xxx.com” 之后都发生了什么？请详细阐述。</strong></p>
+</blockquote>
+<p>解析：经典的网络协议问题。</p>
+<blockquote>
+<p>答：
+由域名→IP 地址
+寻找 IP 地址的过程依次经过了浏览器缓存、系统缓存、hosts 文件、路由器缓存、 递归搜索根域名服务器。
+建立 TCP/IP 连接（三次握手具体过程）
+由浏览器发送一个 HTTP 请求
+经过路由器的转发，通过服务器的防火墙，该 HTTP 请求到达了服务器
+服务器处理该 HTTP 请求，返回一个 HTML 文件
+浏览器解析该 HTML 文件，并且显示在浏览器端
+这里需要注意：
+HTTP 协议是一种基于 TCP/IP 的应用层协议，进行 HTTP 数据请求必须先建立 TCP/IP 连接
+可以这样理解：HTTP 是轿车，提供了封装或者显示数据的具体形式；Socket 是发动机，提供了网络通信的能力。
+两个计算机之间的交流无非是两个端口之间的数据通信 , 具体的数据会以什么样的形式展现是以不同的应用层协议来定义的。</p>
+</blockquote>
+<blockquote>
+<p><strong>5）常见 HTTP 状态码</strong></p>
+</blockquote>
+<blockquote>
+<p>1xx（临时响应）
+2xx（成功）
+3xx（重定向）：表示要完成请求需要进一步操作
+4xx（错误）：表示请求可能出错，妨碍了服务器的处理
+5xx（服务器错误）：表示服务器在尝试处理请求时发生内部错误
+常见状态码：
+200（成功）
+304（未修改）：自从上次请求后，请求的网页未修改过。服务器返回此响应时，不会返回网页内容
+401（未授权）：请求要求身份验证
+403（禁止）：服务器拒绝请求
+404（未找到）：服务器找不到请求的网页</p>
+</blockquote>
+<blockquote>
+<p><strong>6）TCP 和 UDP 的区别：</strong></p>
+</blockquote>
+<blockquote>
+<p>答：
+回答发送数据前是否存在建立连接的过程；
+ＴＣＰ过确认机制，丢包可以重发，保证数据的正确性；ＵＤＰ不保证正确性，只是单纯的负责发送数据包；
+UDP 是面向报文的。发送方的 UDP 对应用程序交下来的报文，在添加首部后就向下交付给 IP 层。既不拆分，也不合并，而是保留这些报文的边界，因 此，应用程序需要选择合适的报文大小；
+UDP 的头部，只有 8 个字节，相对于 TCP 头部的 20 个字节信息包的额外开销很小。
+限于篇幅，更多网络协议相关知识，请参阅我的博客：TCP/IP 协议面试常问知识点，倾心总结</p>
+</blockquote>
+<p>小结：必须熟练掌握 TCP 和 UDP 的区别、三次握手和四次挥手的状态切换，必考。</p>
+<p><strong>（七）数据库知识点</strong></p>
+<p>既然是后端开发，那么与数据库相关的知识点也是必不可少的。</p>
+<p>1）MySQL 和 MongoDB 的区别有哪些？如何选择？</p>
+<p>2）MongoDB 的优缺点有哪些？</p>
+<p>（ps 本人对这一块不是很熟悉，就不附上参考答案了，请各位小伙伴自行学习哈~）</p>
+<p>3）听说过事务吗？（必考）</p>
+<blockquote>
+<p>答：作为单个逻辑工作单元执行的一系列操作，满足四大特性：
+原子性（Atomicity）：事务作为一个整体被执行 ，要么全部执行，要么全部不执行；
+一致性（Consistency）：保证数据库状态从一个一致状态转变为另一个一致状态；
+隔离性（Isolation）：多个事务并发执行时，一个事务的执行不应影响其他事务的执行；
+持久性（Durability）：一个事务一旦提交，对数据库的修改应该永久保存。</p>
+</blockquote>
+<p>4）事务的并发问题有哪几种？</p>
+<blockquote>
+<p>答：丢失更新、脏读、不可重复读以及幻读。</p>
+</blockquote>
+<p>5）数据库中的锁有哪几种？</p>
+<blockquote>
+<p>答：独占锁、排他锁以及更新锁。</p>
+</blockquote>
+<p>6）事务的隔离级别有哪几种？</p>
+<blockquote>
+<p>答：读未提交、读已提交、可重复读和序列化。</p>
+</blockquote>
+<p>扩展问题：MySQL 事务默认隔离级别是哪个？</p>
+<blockquote>
+<p>答：可重复读。</p>
+</blockquote>
+<p>解析：关于问题（4）（5）（6）的详细解答，请参阅我的博客：数据库并发机制和事务的隔离级别详解</p>
+<p>（ps，关于数据库事务方面的深层次考察还有分布式事务即两段提交和三段提交等，限于本人水平，请各位自行学习）</p>
+<p>7）数据库的索引有什么作用？（必考） 底层数据结构是什么，为什么使用这种数据结构？</p>
+<blockquote>
+<p>答：
+索引 是对数据库表中一列或多列的值进行排序的一种结构，使用索引可快速访问数据库表中的特定信息；
+底层数据结构是 B+ 树；
+使用 B+ 树的原因：查找速度快、效率高，在查找的过程中，每次都能抛弃掉一部分节点，减少遍历个数。（ 此时，你应该在白纸上画出什么是 B+ 树 ）
+扩展问题：聚簇索引和非聚簇索引的区别？</p>
+</blockquote>
+<p>8）MyISAM 和 InnoDB 的区别有哪些？</p>
+<blockquote>
+<p>答：
+MyISAM 不支持事务，InnoDB 是事务类型的存储引擎；
+MyISAM 只支持表级锁，BDB 支持页级锁和表级锁，默认为页级锁；而 InnoDB 支持行级锁和表级锁，默认为行级锁；
+MyISAM 引擎不支持外键，InnoDB 支持外键；
+MyISAM 引擎的表在大量高并发的读写下会经常出现表损坏的情况；
+对于 count( ) 查询来说 MyISAM 更有优势；
+InnoDB 是为处理巨大数据量时的最大性能设计，它的 CPU 效率可能是任何其它基于磁盘的关系数据库引擎所不能匹敌的；
+MyISAM 支持全文索引（FULLTEXT），InnoDB 不支持；
+MyISAM 引擎的表的查询、更新、插入的效率要比 InnoDB 高。
+最主要的区别是：MyISAM 表不支持事务、不支持行级锁、不支持外键。 InnoDB 表支持事务、支持行级锁、支持外键。（可直接回答这个）</p>
+</blockquote>
+<p>9）数据库中 Where、group by、having 关键字：</p>
+<blockquote>
+<p>答： 关键字作用：
+where 子句用来筛选 from 子句中指定的操作所产生的的行；
+group by 子句用来分组 where 子句的输出；
+having 子句用来从分组的结果中筛选行；
+having 和 where 的区别：</p>
+</blockquote>
+<blockquote>
+<p>语法类似，where 搜索条件在进行分组操作之前应用；having 搜索条件在进行分组操作之后应用；
+having 可以包含聚合函数 sum、avg、max 等；
+having 子句限制的是组，而不是行。
+当同时含有 where 子句、group by 子句 、having 子句及聚集函数时，执行顺序如下：</p>
+</blockquote>
+<blockquote>
+<p>执行 where 子句查找符合条件的数据；
+使用 group by 子句对数据进行分组；对 group by 子句形成的组运行聚集函数计算每一组的值；最后用 having 子句去掉不符合条件的组。</p>
+</blockquote>
+<p>10）还有一些问题，如 MySQL 和 SQL Server 用法上的区别、limit 关键字的使用等问题。</p>
+<p>小结：数据库方面还是事务机制、隔离级别比较重要，当然了数据库索引是必考的问题。偶尔也会给你几个表，让你现场写 SQL 语句，主要考察 group by 和 having 等关键字。</p>
+<p><strong>（八）MVC 框架相关知识点</strong></p>
+<p>我在项目中使用的框架有 Spring MVC 和 MyBatis，所以在简历上只写了这两种框架，面试官主要针对这两种框架进行提问。以下问题供小伙伴们参考。</p>
+<p>JavaWeb 开发经典的 3 层框架：Web 层、Service 层（业务逻辑层）和 Dao 层（数据访问层）</p>
+<p>Web 层：包含 JSP 和 Servlet 等与 Web 相关的内容；
+业务层：只关心业务逻辑；
+数据层：封装了对数据库的访问细节。
+Spring 知识点</p>
+<p>1）Spring 的 IOC 和 AOP 有了解吗？</p>
+<blockquote>
+<p>答：
+IOC：控制反转，（解耦合）将对象间的依赖关系交给 Spring 容器，使用配置文件来创建所依赖的对象，由主动创建对象改为了被动方式；
+AOP：面向切面编程，将功能代码从业务逻辑代码中分离出来。</p>
+</blockquote>
+<p>2）AOP 的实现方式有哪几种？如何选择？（必考）</p>
+<blockquote>
+<p>答：JDK 动态代理实现和 cglib 实现。
+选择：
+如果目标对象实现了接口，默认情况下会采用 JDK 的动态代理实现 AOP，也可以强制使用 cglib 实现 AOP；
+如果目标对象没有实现接口，必须采用 cglib 库，Spring 会自动在 JDK 动态代理和 cglib 之间转换。</p>
+</blockquote>
+<p>扩展：JDK 动态代理如何实现？（加分点）</p>
+<blockquote>
+<p>答：JDK 动态代理，只能对实现了接口的类生成代理，而不是针对类，该目标类型实现的接口都将被代理。原理是通过在运行期间创建一个接口的实现类来完成对目标对象的代理。</p>
+</blockquote>
+<blockquote>
+<p>定义一个实现接口 InvocationHandler 的类；
+通过构造函数，注入被代理类；
+实现 invoke（ Object proxy, Method method, Object[] args）方法；
+在主函数中获得被代理类的类加载器；
+使用 Proxy.newProxyInstance( ) 产生一个代理对象；
+通过代理对象调用各种方法。</p>
+</blockquote>
+<p>解析：关于 IOC 和 AOP 的详细阐述，请各位参阅我的博客：Spring 核心 AOP（面向切面编程）总结，Spring 框架学习—控制反转（IOC）</p>
+<p>3）Spring MVC 的核心控制器是什么？消息处理流程有哪些？</p>
+<blockquote>
+<p>答：核心控制器为 DispatcherServlet。消息流程如下：</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/1.jpg" alt=""></p>
+<p>4）其他问题包括：重定向和转发的区别、动态代理和静态代理的区别等。</p>
+<p>Mybatis 知识点</p>
+<p>关于 MyBatis 主要考察占位符#和 $ 的区别，区别如下：</p>
+<blockquote>
+<p>符号将传入的数据都当做一个字符串，会对自动传入的数据加一个双引号；
+$ 符号将传入的数据直接显示生成 SQL 中；
+符号存在预编译的过程，，对问号赋值，防止 SQL 注入；
+$ 符号是直译的方式，一般用在 order by ${列名}语句中；
+能用#号就不要用 $ 符号。
+小结：限于作者水平，MVC 框架方面了解不是太多，实战能力欠缺。面试官偶尔问框架底层实现原理等都知之甚少，有能力的小伙伴可以多加学习。</p>
+</blockquote>
+<p><strong>（九）大数据相关知识点</strong></p>
+<p>大数据相关是因为我的简历上写了 KafKa 相关项目，所以面试官会进行提问 KafKa 相关知识点，我也进行了一些简单概念总结，深层次的实现原理因为并没有特别多的实战经验，所以并不了解。
+以下概念总结供小伙伴参考。</p>
+<p>1）KafKa 基本特性：</p>
+<blockquote>
+<p>答：快速持久化、支持批量读写消息、支持消息分区，提高了并发能力、支持在线增加分区、支持为每个分区创建多个副本。</p>
+</blockquote>
+<p>扩展：为什么可以实现快速持久化？</p>
+<blockquote>
+<p>答：KafKa 将消息保存在磁盘中，并且读写磁盘的方式是顺序读写，避免了随机读写磁盘（寻道时间过长）导致的性能瓶颈；磁盘的顺序读写速度超过内存随机读写。</p>
+</blockquote>
+<p>2）核心概念：</p>
+<blockquote>
+<p>答：
+生产者（Producer）： 生产消息，并且按照一定的规则推送到 Topic 的分区中。
+消费者（Consumer）： 从 Topic 中拉去消息，并且进行消费。
+主题（Topic）： 用于存储消息的逻辑概念，是一个消息集合。
+分区（partition）：
+每个 Topic 可以划分为多个分区，每个消息在分区中都会有一个唯一编号 offset
+kafka 通过 offset 保证消息在分区中的顺序
+同一 Topic 的不同分区可以分配在不同的 Broker 上
+partition 以文件的形式存储在文件系统中。</p>
+</blockquote>
+<p>副本（replica）：</p>
+<blockquote>
+<p>KafKa 对消息进行了冗余备份，每个分区有多个副本，每个副本中包含的消息是 “一样” 的。
+每个副本中都会选举出一个 Leader 副本，其余为 Follower 副本，Follower 副本仅仅将数据从 Leader 副本拉去到本地，然后同步到自己的 Log 中。
+消费者组（Consumer Group）： 每个 consumer 都属于一个 consumer group，每条消息只能被 consumer group 中的一个 Consumer 消费，但可以被多个 consumer group 消费。</p>
+</blockquote>
+<p>Broker：</p>
+<blockquote>
+<p>一个单独的 server 就是一个 Broker；
+主要工作：接收生产者发过来的消息，分配 offset，并且保存到磁盘中；</p>
+</blockquote>
+<p>Cluster&amp;Controller：</p>
+<blockquote>
+<p>多个 Broker 可以组成一个 Cluster，每个集群选举一个 Broker 来作为 Controller，充当指挥中心
+Controller 负责管理分区的状态，管理每个分区的副本状态，监听 ZooKeeper 中数据的变化等工作</p>
+</blockquote>
+<p>保留策略和日志压缩：</p>
+<blockquote>
+<p>不管消费者是否已经消费了消息，KafKa 都会一直保存这些消息（持久化到磁盘）；
+通过保留策略，定时删除陈旧的消息；
+日志压缩，只保留最新的 Key-Value 对。</p>
+</blockquote>
+<p>关于副本机制：（加分点）</p>
+<p>ISR 集合 ：表示当前 “可用” 且消息量与 Leader 相差不多的副本集合。满足条件如下：</p>
+<blockquote>
+<p>副本所在节点必须维持着与 ZooKeeper 的连接；
+副本最后一条信息的 offset 与 Leader 副本的最后一条消息的 offset 之间的差值不能超过指定的阈值。</p>
+</blockquote>
+<p>HW&amp;LEO：</p>
+<blockquote>
+<p>HW 标记了一个特殊的 offset，当消费者处理消息的时候，只能拉取到 HW 之前的消息；
+HW 也是由 Leader 副本管理的；
+LEO（Log End Offset）是所有副本都会有的一个 offset 标记。</p>
+</blockquote>
+<p>ISR、HW 和 LEO 的工作配合：</p>
+<blockquote>
+<p>producer 向此分区中推送消息；
+Leader 副本将消息追加到 Log 中，并且递增其 LEO；
+Follower 副本从 Leader 副本中拉取消息进行同步；
+Follower 副本将消息更新到本地 Log 中，并且递增其 LEO；
+当 ISR 集合中的所有副本都完成了对 offset 的消息同步，Leader 副本会递增其 HW
+KafKa 的容灾机制： 通过分区的副本 Leader 副本和 Follower 副本来提高容灾能力。</p>
+</blockquote>
+<p>小结：请小伙伴根据自己的简历自行准备学习大数据相关知识点。</p>
+<p><strong>（十）Linux 常见命令</strong></p>
+<p>作者对这一方面不是很精通，知识点来源于网络总结以及面试官的提问，仅供小伙伴参考。
+1）grep、sed 以及 awk 命令</p>
+<blockquote>
+<p>解析：awk 命令如果可以掌握，是面试中的一个 加分点。</p>
+</blockquote>
+<p>2）文件和目录：</p>
+<blockquote>
+<p>pwd 显示当前目录
+ls 显示当前目录下的文件和目录：</p>
+</blockquote>
+<blockquote>
+<p>ls -F 可以区分文件和目录；
+ls -a 可以把隐藏文件和普通文件一起显示出来；
+ls -R 可以递归显示子目录中的文件和目录；
+ls -l 显示长列表；
+ls -l test 过滤器，查看某个特定文件信息。可以只查看 test 文件的信息。</p>
+</blockquote>
+<p>3）处理文件方面的命令有：touch、cp、 In、mv、rm、</p>
+<p>4）处理目录方面的命令：mkdir</p>
+<p>5）查看文件内容：file、cat、more、less、tail、head</p>
+<p>6）监测程序命令：ps、top</p>
+<blockquote>
+<p>eg. 找出进程名中包括 java 的所有进程：ps -ef | grep java</p>
+</blockquote>
+<blockquote>
+<p>top 命令 实时监测进程</p>
+</blockquote>
+<blockquote>
+<p>top 命令输出的第一部分：显示系统的概括。</p>
+</blockquote>
+<blockquote>
+<p>第一行显示了当前时间、系统的运行时间、登录的用户数和系统的平均负载（平均负载有 3 个值：最近 1min 5min 15min）；
+第二行显示了进程的概要信息，有多少进程处于运行、休眠、停止或者僵化状态；
+第三行是 CPU 的概要信息；
+第四行是系统内存的状态。</p>
+</blockquote>
+<p>7）ps 和 top 命令的区别：</p>
+<blockquote>
+<p>ps 看到的是命令执行瞬间的进程信息 , 而 top 可以持续的监视；
+ps 只是查看进程 , 而 top 还可以监视系统性能 , 如平均负载 ,cpu 和内存的消耗；
+另外 top 还可以操作进程 , 如改变优先级 (命令 r) 和关闭进程 (命令 k)；
+ps 主要是查看进程的，关注点在于查看需要查看的进程；
+top 主要看 cpu, 内存使用情况，及占用资源最多的进程由高到低排序，关注点在于资源占用情况。</p>
+</blockquote>
+<p>8） 压缩数据</p>
+<blockquote>
+<p>tar -xvf 文件名；
+tar -zxvf 文件名；
+tar -cvzf 文件名。</p>
+</blockquote>
+<p>9）结束进程：kill PID 或者 kill all</p>
+<p>至此，从十个不同的方面阐述了 Java 开发面试岗位中所涉及到的重要知识点。加上我上次发布的 关于算法面试的 chat，我大概将最近一年的时间内的面试笔试经验给大家做了总结分享。</p>
+<p>结束语</p>
+<p>这是一篇很长的文章，然而，再长的文章也道不尽我这一年中面试笔试的所有经历。找工作是一场持久战，坚持到最后的才是胜利者。</p>
+<p>对于各位志在投身 Java 开发岗位的小伙伴们来说，本文所提到的知识点绝对是面试中的重点，希望各位可以有效掌握。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[常用设计模式]]></title>
+        <id>https://jike-leisong.github.io//post/she-ji-mo-shi</id>
+        <link href="https://jike-leisong.github.io//post/she-ji-mo-shi">
+        </link>
+        <updated>2019-06-18T01:48:29.000Z</updated>
+        <content type="html"><![CDATA[<h3 id=""></h3>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[java线程池与五种常用线程池策略使用与解析]]></title>
+        <id>https://jike-leisong.github.io//post/java线程池与五种常用线程池策略使用与解析</id>
+        <link href="https://jike-leisong.github.io//post/java线程池与五种常用线程池策略使用与解析">
+        </link>
+        <updated>2019-06-05T08:15:20.000Z</updated>
+        <content type="html"><![CDATA[<h4 id="一线程池">一.线程池</h4>
+<p>关于为什么要使用线程池久不赘述了，首先看一下java中作为线程池Executor底层实现类的ThredPoolExecutor的构造函数</p>
+<pre><code class="language-java">public ThreadPoolExecutor(int corePoolSize,
+                              int maximumPoolSize,
+                              long keepAliveTime,
+                              TimeUnit unit,
+                              BlockingQueue&lt;Runnable&gt; workQueue,
+                              ThreadFactory threadFactory,
+                              RejectedExecutionHandler handler) {
+       ...
+    }
+</code></pre>
+<p>其中各个参数含义如下：</p>
+<p><strong>corePoolSize</strong> - 池中所保存的线程数，包括空闲线程。需要注意的是在初创建线程池时线程不会立即启动，直到有任务提交才开始启动线程并逐渐时线程数目达到corePoolSize。若想一开始就创建所有核心线程需调用prestartAllCoreThreads方法。</p>
+<p><strong>maximumPoolSize</strong> - 池中允许的最大线程数。需要注意的是当核心线程满且阻塞队列也满时才会判断当前线程数是否小于最大线程数，并决定是否创建新线程。</p>
+<p><strong>keepAliveTime</strong> -  当线程数大于核心时，多于的空闲线程最多存活时间</p>
+<p><strong>unit</strong> -  keepAliveTime 参数的时间单位。</p>
+<p><strong>workQueue</strong> - 当线程数目超过核心线程数时用于保存任务的队列。主要有3种类型的BlockingQueue可供选择：无界队列，有界队列和同步移交。将在下文中详细阐述。从参数中可以看到，此队列仅保存实现Runnable接口的任务。</p>
+<p><strong>threadFactory</strong> - 执行程序创建新线程时使用的工厂。</p>
+<p><strong>handler</strong> - 阻塞队列已满且线程数达到最大值时所采取的饱和策略。java默认提供了4种饱和策略的实现方式：中止、抛弃、抛弃最旧的、调用者运行。将在下文中详细阐述。</p>
+<h4 id="二可选择的阻塞队列blockingqueue详解">二.可选择的阻塞队列BlockingQueue详解</h4>
+<p>首先看一下新任务进入时线程池的执行策略：
+如果运行的线程少于corePoolSize，则 Executor始终首选添加新的线程，而不进行排队。（如果当前运行的线程小于corePoolSize，则任务根本不会存入queue中，而是直接运行）
+如果运行的线程大于等于 corePoolSize，则 Executor始终首选将请求加入队列，而不添加新的线程。
+如果无法将请求加入队列，则创建新的线程，除非创建此线程超出 maximumPoolSize，在这种情况下，任务将被拒绝。
+主要有3种类型的BlockingQueue：</p>
+<p><strong>2.1 无界队列</strong>
+队列大小无限制，常用的为无界的LinkedBlockingQueue，使用该队列做为阻塞队列时要尤其当心，当任务耗时较长时可能会导致大量新任务在队列中堆积最终导致OOM。最近工作中就遇到因为采用LinkedBlockingQueue作为阻塞队列，部分任务耗时80s＋且不停有新任务进来，导致cpu和内存飙升服务器挂掉。</p>
+<p><strong>2.2 有界队列</strong>
+常用的有两类，一类是遵循FIFO原则的队列如ArrayBlockingQueue与有界的LinkedBlockingQueue，另一类是优先级队列如PriorityBlockingQueue。PriorityBlockingQueue中的优先级由任务的Comparator决定。
+使用有界队列时队列大小需和线程池大小互相配合，线程池较小有界队列较大时可减少内存消耗，降低cpu使用率和上下文切换，但是可能会限制系统吞吐量。</p>
+<p><strong>2.3 同步移交</strong>
+如果不希望任务在队列中等待而是希望将任务直接移交给工作线程，可使用SynchronousQueue作为等待队列。SynchronousQueue不是一个真正的队列，而是一种线程之间移交的机制。要将一个元素放入SynchronousQueue中，必须有另一个线程正在等待接收这个元素。只有在使用无界线程池或者有饱和策略时才建议使用该队列。</p>
+<p><strong>2.4 几种BlockingQueue的具体实现原理</strong>
+关于上述几种BlockingQueue的具体实现原理与分析将在下篇博文中详细阐述。</p>
+<h4 id="三可选择的饱和策略rejectedexecutionhandler详解">三.可选择的饱和策略RejectedExecutionHandler详解</h4>
+<p>JDK主要提供了4种饱和策略供选择。4种策略都做为静态内部类在ThreadPoolExcutor中进行实现。</p>
+<p><strong>3.1 AbortPolicy中止策略</strong>
+该策略是默认饱和策略。</p>
+<pre><code class="language-java">  public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+            throw new RejectedExecutionException(&quot;Task &quot; + r.toString() +
+                                                 &quot; rejected from &quot; +
+                                                 e.toString());
+        }
+</code></pre>
+<p>使用该策略时在饱和时会抛出RejectedExecutionException（继承自RuntimeException），调用者可捕获该异常自行处理.</p>
+<p><strong>3.2 DiscardPolicy抛弃策略</strong></p>
+<pre><code class="language-java"> public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+        }
+</code></pre>
+<p><strong>3.3 DiscardOldestPolicy抛弃旧任务策略</strong></p>
+<pre><code class="language-java">public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+            if (!e.isShutdown()) {
+                e.getQueue().poll();
+                e.execute(r);
+            }
+        }
+</code></pre>
+<p>如代码，先将阻塞队列中的头元素出队抛弃，再尝试提交任务。如果此时阻塞队列使用PriorityBlockingQueue优先级队列，将会导致优先级最高的任务被抛弃，因此不建议将该种策略配合优先级队列使用。</p>
+<p><strong>3.4 CallerRunsPolicy调用者运行</strong></p>
+<pre><code class="language-java">public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+            if (!e.isShutdown()) {
+                r.run();
+            }
+        }
+</code></pre>
+<p>既不抛弃任务也不抛出异常，直接运行任务的run方法，换言之将任务回退给调用者来直接运行。使用该策略时线程池饱和后将由调用线程池的主线程自己来执行任务，因此在执行任务的这段时间里主线程无法再提交新任务，从而使线程池中工作线程有时间将正在处理的任务处理完成。</p>
+<h4 id="四java提供的四种常用线程池解析">四.java提供的四种常用线程池解析</h4>
+<p><font color="red">在JDK帮助文档中，有如此一段话：</font></p>
+<pre><code>    强烈建议程序员使用较为方便的Executors工厂方法Executors.newCachedThreadPool()（无界线程池，可以进行自动线程回收）、Executors.newFixedThreadPool(int)（固定大小线程池）Executors.newSingleThreadExecutor()（单个后台线程）它们均为大多数使用场景预定义了设置。
+</code></pre>
+<p><strong>4.1 newCachedThreadPool</strong></p>
+<pre><code class="language-java">public static ExecutorService newCachedThreadPool() {
+        return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+                                      60L, TimeUnit.SECONDS,
+                                      new SynchronousQueue&lt;Runnable&gt;());
+    }
+</code></pre>
+<p>在newCachedThreadPool中如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。
+初看该构造函数时我有这样的疑惑：核心线程池为0，那按照前面所讲的线程池策略新任务来临时无法进入核心线程池，只能进入 SynchronousQueue中进行等待，而SynchronousQueue的大小为1，那岂不是第一个任务到达时只能等待在队列中，直到第二个任务到达发现无法进入队列才能创建第一个线程？
+这个问题的答案在上面讲SynchronousQueue时其实已经给出了，要将一个元素放入SynchronousQueue中，必须有另一个线程正在等待接收这个元素。因此即便SynchronousQueue一开始为空且大小为1，第一个任务也无法放入其中，因为没有线程在等待从SynchronousQueue中取走元素。因此第一个任务到达时便会创建一个新线程执行该任务。
+这里引申出一个小技巧：有时我们可能希望线程池在没有任务的情况下销毁所有的线程，既设置线程池核心大小为0，但又不想使用SynchronousQueue而是想使用有界的等待队列。显然，不进行任何特殊设置的话这样的用法会发生奇怪的行为：直到等待队列被填满才会有新线程被创建，任务才开始执行。这并不是我们希望看到的，此时可通过allowCoreThreadTimeOut使等待队列中的元素出队被调用执行，详细原理和使用将会在后续博客中阐述。</p>
+<p><strong>4.2 newFixedThreadPool</strong></p>
+<p>创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。</p>
+<pre><code class="language-java">public static ExecutorService newFixedThreadPool(int nThreads) {
+        return new ThreadPoolExecutor(nThreads, nThreads,
+                                      0L, TimeUnit.MILLISECONDS,
+                                      new LinkedBlockingQueue&lt;Runnable&gt;());
+    }
+</code></pre>
+<p>看代码一目了然了，使用固定大小的线程池并使用无限大的队列</p>
+<p><strong>4.3 newScheduledThreadPool</strong>
+创建一个定长线程池，支持定时及周期性任务执行。</p>
+<pre><code class="language-java">public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize) {
+        return new ScheduledThreadPoolExecutor(corePoolSize);
+    }
+</code></pre>
+<p>在来看看ScheduledThreadPoolExecutor（）的构造函数</p>
+<pre><code class="language-java">public ScheduledThreadPoolExecutor(int corePoolSize) {
+        super(corePoolSize, Integer.MAX_VALUE, 0, NANOSECONDS,
+              new DelayedWorkQueue());
+    }
+</code></pre>
+<p>ScheduledThreadPoolExecutor的父类即ThreadPoolExecutor，因此这里各参数含义和上面一样。值得关心的是DelayedWorkQueue这个阻塞对列，在上面没有介绍，它作为静态内部类就在ScheduledThreadPoolExecutor中进行了实现。具体分析讲会在后续博客中给出，在这里只进行简单说明：DelayedWorkQueue是一个无界队列，它能按一定的顺序对工作队列中的元素进行排列。因此这里设置的最大线程数 Integer.MAX_VALUE没有任何意义。关于ScheduledThreadPoolExecutor的具体使用将会在后续quartz的周期性任务实现原理中进行进一步分析。</p>
+<p><strong>4.4 newSingleThreadExecutor</strong></p>
+<p>创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。</p>
+<pre><code class="language-java">public static ScheduledExecutorService newSingleThreadScheduledExecutor() {
+        return new DelegatedScheduledExecutorService
+            (new ScheduledThreadPoolExecutor(1));
+    }
+</code></pre>
+<p>首先new了一个线程数目为1的ScheduledThreadPoolExecutor，再把该对象传入DelegatedScheduledExecutorService中，看看DelegatedScheduledExecutorService的实现代码：</p>
+<pre><code class="language-java">DelegatedScheduledExecutorService(ScheduledExecutorService executor) {
+            super(executor);
+            e = executor;
+        }
+</code></pre>
+<p>在看看它的父类</p>
+<pre><code class="language-java">DelegatedExecutorService(ExecutorService executor) { e = executor; }
+</code></pre>
+<p>其实就是使用装饰模式增强了ScheduledExecutorService（1）的功能，不仅确保只有一个线程顺序执行任务，也保证线程意外终止后会重新创建一个线程继续执行任务。具体实现原理会在后续博客中讲解。</p>
+<p><strong>4.5 newWorkStealingPool</strong>
+创建一个拥有多个任务队列（以便减少连接数）的线程池。</p>
+<p>这是jdk1.8中新增加的一种线程池实现，先看一下它的无参实现</p>
+<pre><code class="language-java">public static ExecutorService newWorkStealingPool() {
+        return new ForkJoinPool
+            (Runtime.getRuntime().availableProcessors(),
+             ForkJoinPool.defaultForkJoinWorkerThreadFactory,
+             null, true);
+    }
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[如何保证消息队列的可靠性传输]]></title>
+        <id>https://jike-leisong.github.io//post/如何保证消息队列的可靠性传输</id>
+        <link href="https://jike-leisong.github.io//post/如何保证消息队列的可靠性传输">
+        </link>
+        <updated>2019-04-16T08:13:20.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>面试题</strong></p>
+<p>如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？</p>
+<p><strong>面试官心理分析</strong></p>
+<p>这个是肯定的，用 MQ 有个基本原则，就是数据不能多一条，也不能少一条，不能多，就是前面说的重复消费和幂等性问题。不能少，就是说这数据别搞丢了。那这个问题你必须得考虑一下。</p>
+<p>如果说你这个是用 MQ 来传递非常核心的消息，比如说计费、扣费的一些消息，那必须确保这个 MQ 传递过程中绝对不会把计费消息给弄丢。</p>
+<p><strong>面试题剖析</strong></p>
+<p>数据的丢失问题，可能出现在生产者、MQ、消费者中，咱们从 RabbitMQ 和 Kafka 分别来分析一下吧。</p>
+<p><strong>RabbitMQ</strong></p>
+<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190416161544.png" alt=""></p>
+<p><strong>生产者弄丢了数据</strong></p>
+<p>生产者将数据发送到 RabbitMQ 的时候，可能数据就在半路给搞丢了，因为网络问题啥的，都有可能。</p>
+<p>此时可以选择用 RabbitMQ 提供的事务功能，就是生产者发送数据之前开启 RabbitMQ 事务channel.txSelect，然后发送消息，如果消息没有成功被 RabbitMQ 接收到，那么生产者会收到异常报错，此时就可以回滚事务channel.txRollback，然后重试发送消息；如果收到了消息，那么可以提交事务channel.txCommit。</p>
+<pre><code class="language-java">// 开启事务
+channel.txSelect
+try {
+    // 这里发送消息
+} catch (Exception e) {
+    channel.txRollback
+
+    // 这里再次重发这条消息
+}
+
+// 提交事务
+channel.txCommit
+</code></pre>
+<p>但是问题是，RabbitMQ 事务机制（同步）一搞，基本上 <strong>吞吐量会下来，因为太耗性能。</strong></p>
+<p>所以一般来说，如果你要确保说写 RabbitMQ 的消息别丢，可以开启 confirm 模式，在生产者那里设置开启 confirm 模式之后，你每次写的消息都会分配一个唯一的 id，然后如果写入了 RabbitMQ 中，RabbitMQ 会给你回传一个 ack 消息，告诉你说这个消息 ok 了。如果 RabbitMQ 没能处理这个消息，会回调你的一个 nack 接口，告诉你这个消息接收失败，你可以重试。而且你可以结合这个机制自己在内存里维护每个消息 id 的状态，如果超过一定时间还没接收到这个消息的回调，那么你可以重发。</p>
+<p>事务机制和 cnofirm 机制最大的不同在于，<strong>事务机制是同步的</strong>，你提交一个事务之后会 <strong>阻塞</strong> 在那儿，但是 confirm 机制是异步的，你发送个消息之后就可以发送下一个消息，然后那个消息 RabbitMQ 接收了之后会异步回调你的一个接口通知你这个消息接收到了。</p>
+<p>所以一般在生产者这块 <strong>避免数据丢失</strong>，都是用 confirm 机制的。</p>
+<p><strong>RabbitMQ 弄丢了数据</strong></p>
+<p>就是 RabbitMQ 自己弄丢了数据，这个你必须 <strong>开启RabbitMQ 的持久化</strong>，就是消息写入之后会持久化到磁盘，哪怕是 RabbitMQ 自己挂了，<strong>恢复之后会自动读取之前存储的数据</strong>，一般数据不会丢。除非极其罕见的是，RabbitMQ 还没持久化，自己就挂了，<strong>可能导致少量数据丢失</strong>，但是这个概率较小。</p>
+<p>设置持久化有 <strong>两个步骤：</strong></p>
+<ul>
+<li>创建 queue 的时候将其设置为持久化
+这样就可以保证 RabbitMQ 持久化 queue 的元数据，但是它是不会持久化 queue 里的数据的。</li>
+<li>第二个是发送消息的时候将消息的 deliveryMode 设置为 2
+就是将消息设置为持久化的，此时 RabbitMQ 就会将消息持久化到磁盘上去。</li>
+</ul>
+<p>必须要同时设置这两个持久化才行，RabbitMQ 哪怕是挂了，再次重启，也会从磁盘上重启恢复 queue，恢复这个 queue 里的数据。</p>
+<p>注意，哪怕是你给 RabbitMQ 开启了持久化机制，也有一种可能，就是这个消息写到了 RabbitMQ 中，但是还没来得及持久化到磁盘上，结果不巧，此时 RabbitMQ 挂了，就会导致内存里的一点点数据丢失。</p>
+<p>所以，持久化可以跟生产者那边的 confirm 机制配合起来，只有消息被持久化到磁盘之后，才会通知生产者 ack 了，所以哪怕是在持久化到磁盘之前，RabbitMQ 挂了，数据丢了，生产者收不到 ack，你也是可以自己重发的。</p>
+<p><strong>消费端弄丢了数据</strong></p>
+<p>RabbitMQ 如果丢失了数据，主要是因为你消费的时候，<strong>刚消费到，还没处理，结果进程挂了</strong>，比如重启了，那么就尴尬了，RabbitMQ 认为你都消费了，这数据就丢了。</p>
+<p>这个时候得用 RabbitMQ 提供的 ack 机制，简单来说，就是你必须关闭 RabbitMQ 的自动 ack，可以通过一个 api 来调用就行，然后每次你自己代码里确保处理完的时候，再在程序里 ack 一把。这样的话，如果你还没处理完，不就没有 ack 了？那 RabbitMQ 就认为你还没处理完，这个时候 RabbitMQ 会把这个消费分配给别的 consumer 去处理，消息是不会丢的。</p>
+<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190416162021.png" alt=""></p>
+<p><strong>Kafka</strong></p>
+<p><strong>消费端弄丢了数据</strong></p>
+<p>唯一可能导致消费者弄丢数据的情况，就是说，你消费到了这个消息，然后消费者那边 <strong>自动提交了 offset</strong>，让 Kafka 以为你已经消费好了这个消息，但其实你才刚准备处理这个消息，你还没处理，你自己就挂了，此时这条消息就丢咯。</p>
+<p>这不是跟 RabbitMQ 差不多吗，大家都知道 Kafka 会自动提交 offset，那么只要 <strong>关闭自动提交offset</strong>，在处理完之后自己手动提交 offset，就可以保证数据不会丢。但是此时确实还是 <strong>可能会有重复消费</strong>，比如你刚处理完，还没提交 offset，结果自己挂了，此时肯定会重复消费一次，自己保证幂等性就好了。</p>
+<p>生产环境碰到的一个问题，就是说我们的 Kafka 消费者消费到了数据之后是写到一个内存的 queue 里先缓冲一下，结果有的时候，你刚把消息写入内存 queue，然后消费者会自动提交 offset。然后此时我们重启了系统，就会导致内存 queue 里还没来得及处理的数据就丢失了。</p>
+<p><strong>Kafka 弄丢了数据</strong></p>
+<p>这块比较常见的一个场景，就是 Kafka 某个 broker 宕机，然后重新选举 partition 的 leader。大家想想，要是此时其他的 follower 刚好还有些数据没有同步，结果此时 leader 挂了，然后选举某个 follower 成 leader 之后，不就少了一些数据？这就丢了一些数据啊。</p>
+<p>生产环境也遇到过，我们也是，之前 Kafka 的 leader 机器宕机了，将 follower 切换为 leader 之后，就会发现说这个数据就丢了。</p>
+<p>所以此时一般是要求起码设置如下 4 个参数：</p>
+<ul>
+<li>给 topic 设置 replication.factor 参数：这个值必须大于 1，要求每个 partition 必须有至少 2 个副本。</li>
+<li>在 Kafka 服务端设置 min.insync.replicas 参数：这个值必须大于 1，这个是要求一个 leader 至少感知到有至少一个 follower 还跟自己保持联系，没掉队，这样才能确保 leader 挂了还有一个 follower 吧。</li>
+<li>在 producer 端设置 acks=all：这个是要求每条数据，必须是 <strong>写入所有 replica 之后</strong>，才能认为是写成功了。</li>
+<li>在 producer 端设置 retries=MAX（很大很大很大的一个值，无限次重试的意思）：<strong>这个是要求一旦写入失败，就无限重试</strong>，卡在这里了。
+我们生产环境就是按照上述要求配置的，这样配置之后，至少在 Kafka broker 端就可以保证在 leader 所在 broker 发生故障，进行 leader 切换时，数据不会丢失。</li>
+</ul>
+<p><strong>生产者会不会弄丢数据？</strong></p>
+<p>如果按照上述的思路设置了 acks=all，一定不会丢，要求是，你的 leader 接收到消息，所有的 follower 都同步到了消息之后，才认为本次写成功了。如果没满足这个条件，生产者会自动不断的重试，重试无限次。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Sql Demo]]></title>
+        <id>https://jike-leisong.github.io//post/Sql Demo</id>
+        <link href="https://jike-leisong.github.io//post/Sql Demo">
+        </link>
+        <updated>2019-04-11T03:08:00.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>年龄大，记性不好，便于查询，故简单记录常用于此。</strong></p>
+<ul>
+<li>sql 模版</li>
+</ul>
+<pre><code class="language-sql">&lt;sql id=&quot;querySql&quot;&gt;
+    &lt;if test=&quot;meterNoList.size() &gt; 0&quot;  &gt;
+        AND t1.meter_no IN
+        &lt;foreach collection=&quot;meterNoList&quot; index=&quot;index&quot; item=&quot;item&quot; open=&quot;(&quot; separator=&quot;,&quot; close=&quot;)&quot;&gt;
+            #{item}
+        &lt;/foreach&gt;
+    &lt;/if&gt;
+    &lt;if test=&quot;startTime != null and startTime !='' and endTime != null and endTime !=''&quot; &gt;
+        AND
+        DATE_FORMAT(t1.read_time,'%Y-%m-%d') between DATE_FORMAT(#{startTime},'%Y-%m-%d') AND DATE_FORMAT(#{endTime},'%Y-%m-%d')
+    &lt;/if&gt;
+&lt;/sql&gt;
+</code></pre>
+<ul>
+<li>choose-when</li>
+</ul>
+<pre><code class="language-sql">SELECT
+    SUM( useQuantity) AS useQuantity,
+    date,
+    SUM( fees ) AS fees,
+    SUM(lastMonthPercent) AS lastMonthPercent,
+    SUM(samePeriodPercent) AS samePeriodPercent     
+    FROM
+
+&lt;choose&gt;
+    &lt;when test=&quot;is == 2&quot;&gt;
+        (   
+        SELECT
+            SUM( t1.use_quantity ) AS useQuantity,
+            DATE_FORMAT(t1.read_time,'%Y-%m') AS date,
+            SUM( t1.fees ) AS fees,
+            '-' AS lastMonthPercent,
+            '-' AS samePeriodPercent  
+        FROM
+            steam_meter_reading_day t1 
+        WHERE
+            t1.read_time BETWEEN DATE_ADD( curdate( ), INTERVAL - DAY ( curdate( ) ) + 1 DAY ) 
+            AND date_sub( curdate( ), INTERVAL 1 DAY )
+    
+        UNION
+    &lt;otherwise&gt;
+        
+    &lt;/otherwise&gt;
+&lt;/choose&gt;
+</code></pre>
+<ul>
+<li>批量更新</li>
+</ul>
+<pre><code class="language-sql">update t_customer  
+&lt;trim prefix=&quot;set&quot; suffixOverrides=&quot;,&quot;&gt;  
+    
+    &lt;trim prefix=&quot;c_name =case&quot; suffix=&quot;end,&quot;&gt;  
+        &lt;foreach collection=&quot;list&quot; item=&quot;cus&quot;&gt;  
+            &lt;if test=&quot;cus.name!=null&quot;&gt;  
+                when id=#{cus.id} then #{cus.name}  
+            &lt;/if&gt;  
+        &lt;/foreach&gt;  
+    &lt;/trim&gt;  
+            &lt;/trim&gt;  
+&lt;/trim&gt;  
+&lt;where&gt;  
+    &lt;foreach collection=&quot;list&quot; separator=&quot;or&quot; item=&quot;cus&quot;&gt;  
+        id = #{cus.id}  
+    &lt;/foreach&gt;  
+&lt;/where&gt;  
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[分布式架构知识体系]]></title>
+        <id>https://jike-leisong.github.io//post/分布式架构知识体系</id>
+        <link href="https://jike-leisong.github.io//post/分布式架构知识体系">
+        </link>
+        <updated>2019-02-24T08:55:20.000Z</updated>
+        <content type="html"><![CDATA[<h4 id="font-color289c601问题font"><font color="#289C60">1.问题</font></h4>
+<blockquote>
+<p>何为分布式何为微服务？
+为什么需要分布式？
+分布式核心理论基础，节点、网络、时间、顺序，一致性？
+分布式是系统有哪些设计模式？
+分布式有哪些类型？
+如何实现分布式？</p>
+</blockquote>
+<h4 id="font-color289c602-关键词font"><font color="#289C60">2. 关键词</font></h4>
+<blockquote>
+<p>节点，时间，一致性，CAP，ACID，BASE，P2P，机器伸缩，网络变更，负载均衡，限流，鉴权，服务发现，服务编排，降级，熔断，幂等，分库分表，分片分区，自动运维，容错处理，全栈监控，故障恢复，性能调优</p>
+</blockquote>
+<h4 id="font-color289c603-全文概要font"><font color="#289C60">3. 全文概要</font></h4>
+<blockquote>
+<p>随着移动互联网的发展智能终端的普及，计算机系统早就从单机独立工作过渡到多机器协作工作。计算机以集群的方式存在，按照分布式理论的指导构建出庞大复杂的应用服务，也已经深入人心。</p>
+</blockquote>
+<blockquote>
+<p>本文力求从分布式基础理论，架构设计模式，工程应用，部署运维，业界方案这几大方面，介绍基于MSA(微服务架构)的分布式的知识体系大纲。从而对SOA到MSA进化有个立体的认识，从概念上和工具应用上更近一步了解微服务分布式的本质，身临其境的感受如何搭建全套微服务架构的过程。</p>
+</blockquote>
+<h4 id="font-color289c604-基础理论font"><font color="#289C60">4. 基础理论</font></h4>
+<h5 id="font-color289c6041-soa到msa的进化font"><font color="#289C60">4.1 SOA到MSA的进化</font></h5>
+<ul>
+<li><font color="#289C60">SOA面向服务架构</font></li>
+</ul>
+<p>由于业务发展到一定层度后，需要对服务进行解耦，进而把一个单一的大系统按逻辑拆分成不同的子系统，通过服务接口来通讯，面向服务的设计模式，最终需要总线集成服务，而且大部分时候还共享数据库，出现单点故障的时候会导致总线层面的故障，更进一步可能会把数据库拖垮，所以才有了更加独立的设计方案的出现。</p>
+<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224170111.png" alt=""></p>
+<ul>
+<li><font color="#289C60">MSA微服务架构</font></li>
+</ul>
+<p>微服务是真正意义上的独立服务，从服务入口到数据持久层，逻辑上都是独立隔离的，无需服务总线来接入，但同时增加了整个分布式系统的搭建和管理难度，需要对服务进行编排和管理，所以伴随着微服务的兴起，微服务生态的整套技术栈也需要无缝接入，才能支撑起微服务的治理理念。</p>
+<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224170824.png" alt=""></p>
+<h5 id="font-color289c6042-节点与网络font"><font color="#289C60">4.2 节点与网络</font></h5>
+<p><font color="#289C60">节点</font></p>
+<blockquote>
+<p>传统的节点也就是一台单体的物理机，所有的服务都揉进去包括服务和数据库；随着虚拟化的发展，单台物理机往往可以分成多台虚拟机，实现资源利用的最大化，节点的概念也变成单台虚拟机上面服务；近几年容器技术逐渐成熟后，服务已经彻底容器化，也就是节点只是轻量级的容器服务。总体来说，节点就是能提供单位服务的逻辑计算资源的集合。</p>
+</blockquote>
+<p><font color="#289C60">网络</font></p>
+<blockquote>
+<p>分布式架构的根基就是网络，不管是局域网还是公网，没有网络就无法把计算机联合在一起工作，但是网络也带来了一系列的问题。网络消息的传播有先后,消息丢失和延迟是经常发生的事情，我们定义了三种网络工作模式：</p>
+</blockquote>
+<p><font color="#289C60">同步网络</font></p>
+<ul>
+<li>节点同步执行</li>
+<li>消息延迟有限</li>
+<li>高效全局锁</li>
+</ul>
+<p><font color="#289C60">半同步网络</font></p>
+<ul>
+<li>锁范围放宽</li>
+</ul>
+<p><font color="#289C60">异步网络</font></p>
+<ul>
+<li>节点独立执行</li>
+<li>消息延迟无上限</li>
+<li>无全局锁</li>
+<li>部分算法不可行</li>
+</ul>
+<p><font color="#289C60">常用网络传输层有两大协议的特点简介：</font></p>
+<p><font color="#289C60">TCP协议</font></p>
+<ul>
+<li>首先tcp尽管其他可以更快</li>
+<li>tcp解决重复和乱序问题</li>
+</ul>
+<p><font color="#289C60">UDP协议</font></p>
+<ul>
+<li>常量数据流</li>
+<li>丢包不致命</li>
+</ul>
+<h5 id="font-color289c6043-时间与顺序font"><font color="#289C60">4.3 时间与顺序</font></h5>
+<p><font color="#289C60">时间</font></p>
+<p>慢速物理时空中，时间独自在流淌着，对于串行的事务来说，很简单的就是跟着时间的脚步走就可以，先来后到的发生。而后我们发明了时钟来刻画以往发生的时间点，时钟让这个世界尽然有序。但是对于分布式世界来说，跟时间打交道着实是一件痛苦的事情。</p>
+<p>分布式世界里面，我们要协调不同节点之间的先来后到关系，但是不同节点本身承认的时间又各执己见，于是我们创造了网络时间协议（NTP）试图来解决不同节点之间的标准时间，但是NTP本身表现并不如人意，所以我们又构造除了逻辑时钟，最后改进为向量时钟：</p>
+<pre><code>NTP的一些缺点，无法完全满足分布式下并发任务的协调问题
+</code></pre>
+<ul>
+<li>节点间时间不同步</li>
+<li>硬件时钟漂移</li>
+<li>线程可能休眠</li>
+<li>操作系统休眠</li>
+<li>硬件休眠</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224175443.png" alt=""></p>
+<p><font color="#289C60">逻辑时钟</font></p>
+<ul>
+<li>定义事件先来后到</li>
+<li>t’ = max(t, t_msg + 1)</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224175754.png" alt=""></p>
+<p><font color="#289C60">向量时钟</font></p>
+<ul>
+<li>t_i’ = max(t_i, t_msg_i)</li>
+</ul>
+<p><font color="#289C60">原子钟</font></p>
+<p><font color="#289C60">顺序</font></p>
+<p>有了衡量时间的工具，解决顺序问题自然就是水到渠成了。因为整个分布式的理论基础就是如何协商不同节点的一致性问题，而顺序则是一致性理论的基本概念，所以前文我们才需要花时间介绍衡量时间的刻度和工具。</p>
+<h5 id="font-color289c6044-一致性理论font"><font color="#289C60">4.4 一致性理论</font></h5>
+<p>说到一致性理论，我们必须看一张关于一致性强弱对系统建设影响的对比图：</p>
+<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224175849.png" alt=""></p>
+<p>该图对比了不同一致性算法下的事务，性能，错误，延迟的平衡。</p>
+<p><font color="#289C60">强一致性ACID</font></p>
+<p>单机环境下我们对传统关系型数据库有苛刻的要求，由于存在网络的延迟和消息丢失，ACID便是保证事务的原则，这四大原则甚至我们都不需要解释出来就耳熟能详了：</p>
+<ul>
+<li>Atomicity：原子性，一个事务中的所有操作，要么全部完成，要么全部不完成，不会结束在中间某个环节。</li>
+<li>Consistency：一致性，在事务开始之前和事务结束以后，数据库的完整性没有被破坏。</li>
+<li>Isolation：隔离性，数据库允许多个并发事务同时对其数据进行读写和修改的能力，隔离性可以防止多个事务并发执行时由于交叉执行而导致数据的不一致。</li>
+<li>Durabilit：事务处理结束后，对数据的修改就是永久的，即便系统故障也不会丢失。</li>
+</ul>
+<p><font color="#289C60">分布式一致性CAP</font></p>
+<p>分布式环境下，我们无法保证网络的正常连接和信息的传送，于是发展出了CAP/FLP/DLS这三个重要的理论：</p>
+<ul>
+<li>CAP:分布式计算系统不可能同时确保一致性（Consistency）、可用性（Availablity）和分区容忍性（Partition）。</li>
+<li>FLP：在异步环境中，如果节点间的网络延迟没有上限，只要有一个恶意的节点存在，就没有算法能在有限的时间内达成共识。</li>
+<li>DLS:
+（1）在一个部分同步网络的模型（也就是说：网络延时有界限但是我们并不知道在哪里）下运行的协议可以容忍1/3任意（换句话说，拜占庭）错误；
+（2）在一个异步模型中的确定性的协议（没有网络延时上限）不能容错（不过这个论文没有提起随机化算法可以容忍1/3的错误）；
+（3）同步模型中的协议（网络延时可以保证小于已知d时间）可以，令人吃惊的，达到100%容错，虽然对1/2的节点出错可以发生的情况有所限制</li>
+</ul>
+<p><font color="#289C60">弱一致性BASE</font></p>
+<p>多数情况下，其实我们也并非一定要求强一致性，部分业务可以容忍一定程度的延迟一致，所以为了兼顾效率，发展出来了最终一致性理论BASE，BASE是指基本可用（Basically Available）、软状态（ Soft State）、最终一致性（ Eventual Consistency）</p>
+<ul>
+<li>基本可用(Basically Available)</li>
+</ul>
+<blockquote>
+<p>基本可用是指分布式系统在出现故障的时候，允许损失部分可用性，即保证核心可用。</p>
+</blockquote>
+<ul>
+<li>软状态(Soft State)</li>
+</ul>
+<blockquote>
+<p>软状态是指允许系统存在中间状态，而该中间状态不会影响系统整体可用性。分布式存储中一般一份数据至少会有三个副本，允许不同节点间副本同步的延时就是软状态的体现。</p>
+</blockquote>
+<ul>
+<li>最终一致性(Eventual Consistency)</li>
+</ul>
+<blockquote>
+<p>最终一致性是指系统中的所有数据副本经过一定时间后，最终能够达到一致的状态。弱一致性和强一致性相反，最终一致性是弱一致性的一种特殊情况。</p>
+</blockquote>
+<p><font color="#289C60">一致性算法</font></p>
+<p>分布式架构的核心就在一致性的实现和妥协，那么如何设计一套算法来保证不同节点之间的通信和数据达到无限趋向一致性，就非常重要了。保证不同节点在充满不确定性网络环境下能达成相同副本的一致性是非常困难的，业界对该课题也做了大量的研究。</p>
+<p>首先我们要了解一致性的大前提原则(CALM):</p>
+<p>CALM原则的全称是 Consistency and Logical Monotonicity ，主要描述的是分布式系统中单调逻辑与一致性的关系，它的内容如下，参考consistency as logical monotonicity</p>
+<ul>
+<li>在分布式系统中，单调的逻辑都能保证 “最终一致性”，这个过程中不需要依赖中心节点的调度</li>
+<li>任意分布式系统，如果所有的非单调逻辑都有中心节点调度，那么这个分布式系统就可以实现最终“一致性”</li>
+</ul>
+<p>然后再关注分布式系统的数据结构CRDT(Conflict-Free Replicated Data Types)：</p>
+<p>我们了解到分布式一些规律原则之后，就要着手考虑如何来实现解决方案，一致性算法的前提是数据结构，或者说一切算法的根基都是数据结构，设计良好的数据结构加上精妙的算法可以高效的解决现实的问题。经过前人不断的探索，我们得知分布式系统被广泛采用的数据结构CRDT。</p>
+<pre><code>参考《谈谈CRDT》,A comprehensive study of Convergent and Commutative Replicated Data Types
+</code></pre>
+<ul>
+<li>基于状态(state-based)：即将各个节点之间的CRDT数据直接进行合并，所有节点都能最终合并到同一个状态，数据合并的顺序不会影响到最终的结果。</li>
+<li>基于操作(operation-based)：将每一次对数据的操作通知给其他节点。只要节点知道了对数据的所有操作（收到操作的顺序可以是任意的），就能合并到同一个状态。</li>
+</ul>
+<p>了解数据结构后，我们需要来关注一下分布式系统的一些重要的协议HATs(Highly Available Transactions)，ZAB(Zookeeper Atomic Broadcast)：</p>
+<pre><code>参考《高可用事务》，《ZAB协议分析》
+</code></pre>
+<p>最后要学习的是业界主流的一致性算法：</p>
+<p>说实话具体的算法我也还没完全搞懂，一致性算法是分布式系统最核心本质的内容，这部分的发展也会影响架构的革新，不同场景的应用也催生不同的算法</p>
+<ul>
+<li>Paxos：《优雅的Paxos算法》</li>
+<li>Raft ：《Raft 一致性算法》</li>
+<li>Gossip：《Gossip Visualization》\</li>
+</ul>
+<p>这一节我们说完分布式系统里面核心理论基础，如何达成不同节点之间的数据一致性，下面我们将会讲到目前都有哪些主流的分布式系统。</p>
+<h4 id="font-color289c605-场景分类font"><font color="#289C60">5. 场景分类</font></h4>
+<p><font color="#289C60">5.1 文件系统</font></p>
+<p>单台计算机的存储始终有上限，随着网络的出现，多台计算机协作存储文件的方案也相继被提出来。最早的分布式文件系统其实也称为网络文件系统，第一个文件服务器在1970年代被发展出来。在1976年迪吉多公司设计出File Access Listener（FAL），而现代分布式文件系统则出自赫赫有名的Google的论文，《The Google File System》奠定了分布式文件系统的基础。现代主流分布式文件系统参考《分布式文件系统对比》,下面列举几个常用的文件系统</p>
+<ul>
+<li>HDFS</li>
+<li>FastDFS</li>
+<li>Ceph</li>
+<li>mooseFS</li>
+</ul>
+<p><font color="#289C60">5.2 数据库</font></p>
+<p>数据库当然也是属于文件系统，主数据增加了事务，检索，擦除等高级特性，所以复杂度又增加了，既要考虑数据一致性也得保证足够的性能。传统关系型数据库为了兼顾事务和性能的特性，在分布式方面的发展有限，非关系型数据库摆脱了事务的强一致性束缚，达到了最终一致性的效果，从而有了飞跃的发展，NoSql(Not Only Sql)也产生了多个架构的数据库类型，包括KV，列式存储，文档类型等。</p>
+<ul>
+<li>列式存储：Hbase</li>
+<li>文档存储：Elasticsearch，MongoDB</li>
+<li>KV类型：Redis</li>
+<li>关系型：Spanner</li>
+</ul>
+<p><font color="#289C60">5.3 计算</font></p>
+<p>分布式计算系统构建在分布式存储的基础上，充分发挥分布式系统的数据冗余灾备，多副本高效获取数据的特性，进而并行计算，把原本需要长时间计算的任务拆分成多个任务并行处理，从而提高了计算效率。分布式计算系统在场景上分为离线计算，实时计算和流式计算。</p>
+<ul>
+<li>离线：Hadoop</li>
+<li>实时：Spark</li>
+<li>流式：Storm，Flink/Blink</li>
+</ul>
+<p><font color="#289C60">5.4 缓存</font></p>
+<p>缓存作为提升性能的利器无处不在，小到CPU缓存架构，大道分布式应用存储。分布式缓存系统提供了热点数据的随机访问机制，大大了提升了访问时间，但是带来的问题是如何保证数据的一致性，引入分布式锁来解决这个问题，主流的分布式存储系统基本就是Redis了</p>
+<ul>
+<li>持久化：Redis</li>
+<li>非持久化：Memcache</li>
+</ul>
+<p><font color="#289C60">5.5 消息</font></p>
+<p>分布式消息队列系统是消除异步带来一系列的复杂步骤的一大利器，多线程高并发场景先我们常常要谨慎的去设计业务代码，来保证多线程并发情况下不出现资源竞争导致的死锁问题。而消息队列以一种延迟消费的模式将异步任务都存到队列，然后再逐个消化。</p>
+<ul>
+<li>Kafka</li>
+<li>RabbitMQ</li>
+<li>RocketMQ</li>
+<li>ActiveMQ</li>
+</ul>
+<p><font color="#289C60">5.6 监控</font></p>
+<p>分布式系统从单机到集群的形态发展，复杂度也大大提高，所以对整个系统的监控也是必不可少。</p>
+<ul>
+<li>Zookeeper</li>
+</ul>
+<p><font color="#289C60">5.7 应用</font></p>
+<p>分布式系统的核心模块就是在应用如何处理业务逻辑，应用直接的调用依赖于特定的协议来通信，有基于RPC协议的也有基于通用的HTTP协议。</p>
+<ul>
+<li>HSF</li>
+<li>Dubble</li>
+</ul>
+<p><font color="#289C60">5.8 日志</font></p>
+<p>错误对应分布式系统是家常便饭，而且我们设计系统的时候本身就需要把容错作为普遍存在的现象来考虑。那么当出现故障的时候，快速恢复和排查故障就显得非常重要了。分布式日志采集存储和检索则可以给我提供有力的工具来定位请求链路中出现问题的环节。</p>
+<ul>
+<li>日志采集：flume</li>
+<li>日志存储：ElasticSearch/Solr，SLS</li>
+<li>日志定位：Zipkin</li>
+</ul>
+<p><font color="#289C60">5.9 账本</font></p>
+<p>前文我们提到所谓分布式系统，是迫于单机的性能有限，而堆硬件却又无法无休止的增加，单机堆硬件最终也会遇到性能增长曲线的瓶颈。于是我们才采用了多台计算机来干同样的活，但是这样的分布式系统始终需要中心化的节点来监控或者调度系统的资源，即使该中心节点也可能是多节点组成。而区块链则是真正的去中心化分布式系统，系统里面才有P2P网络协议各自通信，没有真正意义的中心节点，彼此按照区块链节点的算力，权益等机制来协调新区块的产生。</p>
+<ul>
+<li>比特币</li>
+<li>以太坊</li>
+</ul>
+<h4 id="font-color289c606-设计模式font"><font color="#289C60">6. 设计模式</font></h4>
+<p>上节我们列举了不同场景下不同分布式系统架构扮演的角色和实现的功能，本节我们更进一步归纳分布式系统设计的时候是如何考虑架构设计的，不同设计方案直接的区别和侧重点，不同场景需要选择合作设计模式，来减少试错的成本，设计分布式系统需要考虑以下的问题。</p>
+<p><font color="#289C60">6.1 可用性</font></p>
+<p>可用性是系统运行和工作的时间比例，通常以正常运行时间的百分比来衡量。它可能受系统错误，基础架构问题，恶意攻击和系统负载的影响。分布式系统通常为用户提供服务级别协议（SLA），因此应用程序必须设计为最大化可用性。</p>
+<ul>
+<li>健康检查：系统实现全链路功能检查，外部工具定期通过公开端点访问系统</li>
+<li>负载均衡：使用队列起到削峰作用，作为请求和服务之间的缓冲区，以平滑间歇性的重负载</li>
+<li>节流：限制应用级别、租户或整个服务所消耗资源的范围</li>
+</ul>
+<p><font color="#289C60">6.2 数据管理</font></p>
+<p>数据管理是分布式系统的关键要素，并影响大多数质量的属性。由于性能，可扩展性或可用性等原因，数据通常托管在不同位置和多个服务器上，这可能带来一系列挑战。例如，必须维护数据一致性，并且通常需要跨不同位置同步数据。</p>
+<ul>
+<li>缓存：根据需要将数据从数据存储层加载到缓存</li>
+<li>CQRS(Command Query Responsibility Segregation)：命令查询职责分离</li>
+<li>事件溯源：仅使用追加方式记录域中完整的系列事件</li>
+<li>索引表：在经常查询引用的字段上创建索引</li>
+<li>物化视图：生成一个或多个数据预填充视图</li>
+<li>拆分：将数据拆分为水平的分区或分片</li>
+</ul>
+<p><font color="#289C60">6.3 设计与实现</font></p>
+<p>良好的设计包括诸如组件设计和部署的一致性，简化管理和开发的可维护性，以及允许组件和子系统用于其他应用程序和其他方案的可重用性等因素。在设计和实施阶段做出的决策对分布式系统和服务质量和总体拥有成本产生巨大影响。</p>
+<ul>
+<li>代理：反向代理</li>
+<li>适配器：在现代应用程序和遗留系统之间实现适配器层</li>
+<li>前后端分离：后端服务提供接口供前端应用程序调用</li>
+<li>计算资源整合：将多个相关任务或操作合并到一个计算单元中</li>
+<li>配置分离：将配置信息从应用程序部署包中移出到配置中心</li>
+<li>网关聚合：使用网关将多个单独的请求聚合到一个请求中</li>
+<li>网关卸载：将共享或专用服务功能卸载到网关代理</li>
+<li>网关路由：使用单个端点将请求路由到多个服务</li>
+<li>领导人选举：通过选择一个实例作为负责管理其他实例管理员，协调分布式系统的云</li>
+<li>管道和过滤器：将复杂的任务分解为一系列可以重复使用的单独组件</li>
+<li>边车：将应用的监控组件部署到单独的进程或容器中，以提供隔离和封装</li>
+<li>静态内容托管：将静态内容部署到CDN，加速访问效率</li>
+</ul>
+<p><font color="#289C60">6.4 消息</font></p>
+<p>分布式系统需要一个连接组件和服务的消息传递中间件，理想情况是以松散耦合的方式，以便最大限度地提高可伸缩性。异步消息传递被广泛使用，并提供许多好处，但也带来了诸如消息排序，幂等性等挑战</p>
+<ul>
+<li>竞争消费者：多线程并发消费</li>
+<li>优先级队列： 消息队列分优先级，优先级高的先被消费</li>
+</ul>
+<p><font color="#289C60">6.5 管理与监控</font></p>
+<p>分布式系统在远程数据中心中运行，无法完全控制基础结构，这使管理和监视比单机部署更困难。应用必须公开运行时信息，管理员可以使用这些信息来管理和监视系统，以及支持不断变化的业务需求和自定义，而无需停止或重新部署应用。</p>
+<p><font color="#289C60">6.6 性能与扩展</font></p>
+<p>性能表示系统在给定时间间隔内执行任何操作的响应性，而可伸缩性是系统处理负载增加而不影响性能或容易增加可用资源的能力。分布式系统通常会遇到变化的负载和活动高峰，特别是在多租户场景中，几乎是不可能预测的。相反，应用应该能够在限制范围内扩展以满足需求高峰，并在需求减少时进行扩展。可伸缩性不仅涉及计算实例，还涉及其他元素，如数据存储，消息队列等。</p>
+<p><font color="#289C60">6.7 弹性</font></p>
+<p>弹性是指系统能够优雅地处理故障并从故障中恢复。分布式系统通常是多租户，使用共享平台服务，竞争资源和带宽，通过Internet进行通信，以及在商用硬件上运行，意味着出现瞬态和更永久性故障的可能性增加。为了保持弹性，必须快速有效地检测故障并进行恢复。</p>
+<ul>
+<li>隔离：将应用程序的元素隔离到池中，以便在其中一个失败时，其他元素将继续运行。</li>
+<li>断路器：处理连接到远程服务或资源时可能需要不同时间修复的故障。</li>
+<li>补偿交易：撤消一系列步骤执行的工作，这些步骤共同定义最终一致的操作</li>
+<li>健康检查：系统实现全链路功能检查，外部工具定期通过公开端点访问系统</li>
+<li>重试：通过透明地重试先前失败的操作，使应用程序在尝试连接到服务或网络资源时处理预期的临时故障</li>
+</ul>
+<p><font color="#289C60">6.8 安全</font></p>
+<p>安全性是系统能够防止在设计使用之外的恶意或意外行为，并防止泄露或丢失信息。分布式系统在受信任的本地边界之外的Internet上运行，通常向公众开放，并且可以为不受信任的用户提供服务。必须以保护应用程序免受恶意攻击，限制仅允许对已批准用户的访问，并保护敏感数据。</p>
+<ul>
+<li>联合身份：将身份验证委派给外部身份提供商</li>
+<li>看门人： 通过使用专用主机实例来保护应用程序和服务，该实例充当客户端与应用程序或服务之间的代理，验证和清理请求，并在它们之间传递请求和数据</li>
+<li>代客钥匙：使用为客户端提供对特定资源或服务的受限直接访问的令牌或密钥。</li>
+</ul>
+<h4 id="font-color289c607-工程应用font"><font color="#289C60">7. 工程应用</font></h4>
+<p>前文我们介绍了分布式系统的核心理论，面临的一些难题和解决问题的折中思路，罗列了现有主流分布式系统的分类，而且归纳了建设分布式系统的一些方法论，那么接下来我们将从工程角度来介绍真刀真枪搭建分布式系统包含的内容和步骤。</p>
+<p><font color="#289C60">7.1 资源调度</font></p>
+<p>巧妇难为无米之炊，我们一切的软件系统都是构建在硬件服务器的基础上，从最开始的物理机直接部署软件系统，到虚拟机的应用，最后到了资源上云容器化，硬件资源的使用也开始了集约化的管理。本节从对比的是传统运维角色对应的职责范围，在devops环境下，开发运维一体化，我们要实现的也是资源的灵活高效使用。</p>
+<p><font color="#289C60">弹性伸缩</font></p>
+<p>过去软件系统随着用户量增加需要增加机器资源的话，传统的方式就是找运维申请机器，然后部署好软件服务接入集群，整个过程依赖的是运维人员的人肉经验，效率低下而且容易出错。微服务分布式则无需人肉增加物理机器，在容器化技术的支撑下，我们只需要申请云资源，然后执行容器脚本即可。</p>
+<ul>
+<li>应用扩容
+用户激增需要对服务进行扩展，包括自动化扩容，峰值过后的自动缩容</li>
+<li>机器下线
+对于过时应用，进行应用下线，云平台收回容器宿主资源</li>
+<li>机器置换
+对于故障机器，可供置换容器宿主资源，服务自动启动，无缝切换</li>
+</ul>
+<p><font color="#289C60">网络管理</font></p>
+<p>有了计算资源后，另外最重要的就是网络资源了。在现有的云化背景下，我们几乎不会直接接触到物理的带宽资源，而是直接的由云平台统一管理带宽资源，我们需要的是对网络资源的最大化应用和有效的管理。</p>
+<ul>
+<li>域名申请
+应用申请配套域名资源的申请，多套域名映射规则的规范</li>
+<li>域名变更
+域名变更统一平台管理</li>
+<li>负载管理
+多机应用的访问策略设定</li>
+<li>安全外联
+基础访问鉴权，拦截非法请求</li>
+<li>统一接入
+提供统一接入的权限申请平台，提供统一的登录管理</li>
+</ul>
+<p><font color="#289C60">故障快照</font></p>
+<p>在系统故障的时候我们第一要务是系统恢复，同时保留案发现场也是非常重要的，资源调度平台则需要有统一的机制保存好故障现场。</p>
+<p><font color="#289C60">现场保留</font></p>
+<p>内存分布，线程数等资源现象的保存，如JavaDump钩子接入</p>
+<p><font color="#289C60">调试接入</font></p>
+<p>采用字节码技术无需入侵业务代码，可以供生产环境现场日志打点调试</p>
+<p>7.2 <font color="#289C60">流量调度</font></p>
+<p>在我们建设好分布式系统后，最先受到考验的关口就是网关了，进而我们需要关注好系统流量的情况，也就是如何对流量的管理，我们追求的是在系统可容纳的流量上限内，把资源留给最优质的流量使用，而把非法恶意的流量挡在门外，这样节省成本的同时确保系统不会被冲击崩溃。</p>
+<p><font color="#289C60">负载均衡</font></p>
+<p>负载均衡是我们对服务如何消化流量的通用设计，通常分为物理层的底层协议分流的硬负载均衡和软件层的软负载。负载均衡解决方案已经是业界成熟的方案，我们通常会针对特定业务在不同环境进行优化，常用有如下的负载均衡解决方案</p>
+<ul>
+<li>交换机</li>
+<li>F5</li>
+<li>LVS/ALI-LVS</li>
+<li>Nginx/Tengine</li>
+<li>VIPServer/ConfigServer</li>
+</ul>
+<p><font color="#289C60">网关设计</font></p>
+<p>负载均衡首当其冲的就是网关，因为中心化集群流量最先打到的地方就是网关了，如果网关扛不住压力的话，那么整个系统将不可用。</p>
+<ul>
+<li>高性能
+网关设计第一需要考虑的是高性能的流量转发，网关单节点通常能达到上百万的并发流量</li>
+<li>分布式
+出于流量压力分担和灾备考虑，网关设计同样需要分布式</li>
+<li>业务筛选
+网关同设计简单的规则，排除掉大部分的恶意流量</li>
+</ul>
+<p><font color="#289C60">流量管理</font></p>
+<ul>
+<li>请求校验
+请求鉴权可以把多少非法请求拦截，清洗</li>
+<li>数据缓存
+多数无状态的请求存在数据热点，所以采用CDN可以把相当大一部分的流量消费掉</li>
+</ul>
+<p><font color="#289C60">流控控制</font></p>
+<p>剩下的真实流量我们采用不同的算法来分流请求</p>
+<ul>
+<li>
+<p>流量分配</p>
+<ul>
+<li>计数器</li>
+<li>队列</li>
+<li>漏斗</li>
+<li>令牌桶</li>
+<li>动态流控</li>
+</ul>
+</li>
+<li>
+<p>流量限制
+在流量激增的时候，通常我们需要有限流措施来防止系统出现雪崩，那么就需要预估系统的流量上限，然后设定好上限数，但流量增加到一定阈值后，多出来的流量则不会进入系统，通过牺牲部分流量来保全系统的可用性。</p>
+<ul>
+<li>QPS粒度</li>
+<li>线程数粒度</li>
+<li>RT阈值</li>
+<li>限流策略</li>
+<li>限流工具 - Sentinel</li>
+</ul>
+</li>
+</ul>
+<p><font color="#289C60">7.3 服务调度</font></p>
+<p>所谓打铁还需自身硬，流量做好了调度管理后，剩下的就是服务自身的健壮性了。分布式系统服务出现故障是常有的事情，甚至我们需要把故障本身当做是分布式服务的一部分。</p>
+<p><font color="#289C60">注册中心</font></p>
+<p>我们网络管理一节中介绍了网关，网关是流量的集散地，而注册中心则是服务的根据地。</p>
+<ul>
+<li>状态类型
+第一好应用服务的状态，通过注册中心就可以检测服务是否可用</li>
+<li>生命周期
+应用服务不同的状态组成了应用的生命周期</li>
+</ul>
+<p><font color="#289C60">版本管理</font></p>
+<ul>
+<li>集群版本
+集群不用应用有自身对应的版本号，由不同服务组成的集群也需要定义大的版本号</li>
+</ul>
+<p><font color="#289C60">版本回滚</font></p>
+<p>在部署异常的时候可以根据大的集群版本进行回滚管理</p>
+<p><font color="#289C60">服务编排</font></p>
+<p>服务编排的定义是：通过消息的交互序列来控制各个部分资源的交互。参与交互的资源都是对等的，没有集中的控制。微服务环境下服务众多我们需要有一个总的协调器来协议服务之间的依赖，调用关系，K8S则是我们的不二选择。</p>
+<ul>
+<li>K8S</li>
+<li>Spring Cloud
+<ul>
+<li>HSF</li>
+<li>ZK+Dubble</li>
+</ul>
+</li>
+</ul>
+<p><font color="#289C60">服务控制</font></p>
+<p>前面我们解决了网络的健壮性和效率问题，这节介绍的是如何使我们的服务更加健壮。</p>
+<pre><code>发现
+</code></pre>
+<p>资源管理那节我们介绍了从云平台申请了容器宿主资源后，通过自动化脚本就可以启动应用服务，启动后服务则需要发现注册中心，并且把自身的服务信息注册到服务网关，也即是网关接入。注册中心则会监控服务的不同状态，做健康检查，把不可用的服务归类标记。</p>
+<ul>
+<li>网关接入</li>
+<li>健康检查</li>
+</ul>
+<pre><code>降级</code></pre>
+<p>当用户激增的时候，我们首先是在流量端做手脚，也就是限流。当我们发现限流后系统响应变慢了，有可能导致更多的问题时，我们也需要对服务本身做一些操作。服务降级就是把当前不是很核心的功能关闭掉，或者不是很要紧的准确性放宽范围，事后再做一些人工补救。</p>
+<ul>
+<li>降低一致性约束</li>
+<li>关闭非核心服务</li>
+<li>简化功能</li>
+</ul>
+<pre><code>熔断</code></pre>
+<p>当我们都做了以上的操作后，还是觉得不放心，那么就需要再进一步操心。熔断是对过载的一种自身保护，犹如我们开关跳闸一样。比如当我们服务不断对数据库进行查询的时候，如果业务问题造成查询问题，这是数据库本身需要熔断来保证不会被应用拖垮，并且访问友好的信息，告诉服务不要再盲目调用了。</p>
+<ul>
+<li>闭合状态</li>
+<li>半开状态</li>
+<li>断开状态</li>
+<li>熔断工具- Hystrix</li>
+</ul>
+<pre><code>幂等</code></pre>
+<p>我们知道，一个幂等操作的特点是其任意多次执行所产生的影响均与一次执行的影响相同。那么久需要对单次操作赋予一个全局的id来做标识，这样多次请求后我们可以判断来源于同个客户端，避免出现脏数据。</p>
+<ul>
+<li>全局一致性ID</li>
+<li>Snowflake</li>
+</ul>
+<p><font color="#289C60">7.4 数据调度</font></p>
+<p>数据存储最大的挑战就是数据冗余的管理，冗余多了效率变低而且占用资源，副本少了起不到灾备的作用，我们通常的做法是把有转态的请求，通过转态分离，转化为无状态请求。</p>
+<p><font color="#289C60">状态转移</font></p>
+<p>分离状态至全局存储，请求转换为无状态流量，比如我们通常会将登陆信息缓存至全局redis中间件，而不需要在多个应用中去冗余用户的登陆数据。</p>
+<p><font color="#289C60">分库分表</font></p>
+<p>数据横向扩展</p>
+<p><font color="#289C60">分片分区</font></p>
+<p>多副本冗余</p>
+<p><font color="#289C60">7.5 自动化运维</font></p>
+<p>我们从资源申请管理的时候就介绍到devops的趋势，真正做到开发运维一体化则需要不同的中间件来配合完成。</p>
+<p><font color="#289C60">配置中心</font></p>
+<p>全局配置中心按环境来区分，统一管理，减少了多处配置的混乱局面</p>
+<ul>
+<li>switch</li>
+<li>diamend</li>
+</ul>
+<p><font color="#289C60">部署策略</font></p>
+<p>微服务分布式部署是家常便饭，如何让我们的服务更好的支撑业务发展，稳健的部署策略是我们首先需要考虑的，如下的部署策略适合不同业务和不同的阶段。</p>
+<ul>
+<li>停机部署</li>
+<li>滚动部署</li>
+<li>蓝绿部署</li>
+<li>灰度部署</li>
+<li>A/B测试</li>
+</ul>
+<p><font color="#289C60">作业调度</font></p>
+<p>任务调度是系统必不可少的一个环节，传统的方式是在Linux机器上配置crond定时任务或者直接在业务代码里面完成调度业务，现在则是成熟的中间件来代替。</p>
+<ul>
+<li>SchedulerX</li>
+<li>Spring定时任务</li>
+</ul>
+<p><font color="#289C60">应用管理</font></p>
+<p>运维工作中很大一部分时间需要对应用进行重启，上下线操作，还有日志清理。</p>
+<ul>
+<li>应用重启</li>
+<li>应用下线</li>
+<li>日志清理</li>
+</ul>
+<p><font color="#289C60">7.6 容错处理</font></p>
+<p>既然我们知道分布式系统故障时家常便饭的事情，那么应对故障的方案也是不可或缺的环节。通常我们有主动和被动的方式来处理，主动是在错误出现的时候，我们试图再试试几次，说不定就成功了，成功的话就可以避免了该次错误。被动方式是错误的事情已经发生了，为了挽回，我们只是做时候处理，把负面影响降到最小。</p>
+<p><font color="#289C60">重试设计</font></p>
+<p>重试设计的关键在于设计好重试的时间和次数，如果超过重试次数，或是一段时间，那么重试就没有意义了。开源的项目 spring-retry可以很好的实现我们重试的计划。</p>
+<p><font color="#289C60">事务补偿</font></p>
+<p>事务补偿符合我们最终一致性的理念。补偿事务不一定会将系统中的数据返回到原始操作开始时其所处的状态。 相反，它补偿操作失败前由已成功完成的步骤所执行的工作。补偿事务中步骤的顺序不一定与原始操作中步骤的顺序完全相反。 例如，一个数据存储可能比另一个数据存储对不一致性更加敏感，因而补偿事务中撤销对此存储的更改的步骤应该会首先发生。对完成操作所需的每个资源采用短期的基于超时的锁并预先获取这些资源，这样有助于增加总体活动成功的可能性。 仅在获取所有资源后才应执行工作。 锁过期之前必须完成所有操作。</p>
+<p><font color="#289C60">7.7 全栈监控</font></p>
+<p>由于分布式系统是由众多机器共同协作的系统，而且网络也无法保证完全可用，所以我们需要建设一套对各个环节都能监控的系统，这样我们才能从底层到业务各个层面进行监控，出现意外的时候可以及时修复故障，避免更多的问题出现。</p>
+<p><font color="#289C60">基础层</font></p>
+<p>基础层面是对容器资源的监测，包含各个硬件指标的负载情况</p>
+<ul>
+<li>CPU，IO，内存，线程，吞吐</li>
+</ul>
+<p><font color="#289C60">中间件</font></p>
+<p>分布式系统接入了大量的中间件平台，中间件本身的健康情况也需要监控</p>
+<p><font color="#289C60">应用层</font></p>
+<ul>
+<li>性能监控
+应用层面的需要对每个应用服务的实时指标（qps，rt），上下游依赖等进行监控</li>
+<li>业务监控
+除了应用本身的监控程度，业务监控也是保证系统正常的一个环节，通过设计合理的业务规则，对异常的情况做报警设置</li>
+</ul>
+<p><font color="#289C60">监控链路</font></p>
+<ul>
+<li>zipkin/eagleeye</li>
+<li>sls</li>
+<li>goc</li>
+<li>Alimonitor</li>
+</ul>
+<p><font color="#289C60">7.8 故障恢复</font></p>
+<p>当故障已经发生后，我们第一要做的是马上消除故障，确保系统服务正常可用，这个时候通常的做回滚操作。</p>
+<p><font color="#289C60">应用回滚</font></p>
+<p>应用回滚之前需要保存好故障现场，以便排查原因。</p>
+<p><font color="#289C60">基线回退</font></p>
+<p>应用服务回滚后，代码基线也需要revert到前一版本。</p>
+<p><font color="#289C60">版本回滚</font></p>
+<p>整体回滚需要服务编排，通过大版本号对集群进行回滚。</p>
+<p><font color="#289C60">7.9 性能调优</font></p>
+<p>性能优化是分布式系统的大专题，涉及的面非常广，这块简直可以单独拿出来做一个系列来讲，本节就先不展开。本身我们做服务治理的过程也是在性能的优化过程。</p>
+<p><font color="#289C60">分布式锁</font></p>
+<p>缓存是解决性能问题的一大利器，理想情况下，每个请求不需要额外计算立刻能获取到结果返回时最快的。小到CPU的三级缓存，大到分布式缓存，缓存无处不在，分布式缓存需要解决的就是数据的一致性，这个时候我们引入了分布式锁的概念，如何处理分布式锁的问题将决定我们获取缓存数据的效率。</p>
+<p><font color="#289C60">高并发</font></p>
+<p>多线程编程模式提升了系统的吞吐量，但也同时带来了业务的复杂度。</p>
+<p><font color="#289C60">异步</font></p>
+<p>事件驱动的异步编程是一种新的编程模式，摒弃了多线程的复杂业务处理问题，同时能够提升系统的响应效率。</p>
+<h4 id="font-color289c608-总结font"><font color="#289C60">8. 总结</font></h4>
+<p>最后总结一下，如果有可能的话，请尝试使用单节点方式而不是分布式系统。分布式系统伴随着一些失败的操作，为了处理灾难性故障，我们使用备份。为了提高可靠性，我们引入了冗余。分布式系统本质就是一堆机器的协同。而我们要做的就是搞出各种手段来然机器的运行达到预期。这么复杂的系统，需要了解各个环节，各个中间件的接入，是一个非常大的工程。庆幸的是，在微服务背景下，多数基础性的工作已经有人帮我们实现了。前文所描述的分布式架构，在工程实现了是需要用到分布式三件套(Docker+K8S+Srping Cloud)基本就可以构建出来了。</p>
+<p>分布式架构核心技术分布图如下：</p>
+<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190225150737.png" alt=""></p>
+<p>分布式技术栈使用中间件：</p>
+<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190225150759.png" alt=""></p>
+<p>最后用一张图来概括分布式系统的知识体系。</p>
+<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190225150827.png" alt=""></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[七牛云床图迁移至Github]]></title>
+        <id>https://jike-leisong.github.io//post/七牛云床图迁移至Github</id>
+        <link href="https://jike-leisong.github.io//post/七牛云床图迁移至Github">
+        </link>
+        <updated>2019-02-24T02:35:20.000Z</updated>
+        <content type="html"><![CDATA[<p>由于大部分网站图床使用的是七牛云的，近期七牛云更新，导致原测试域名已失效，之前在测试域名存储的图片无法访问、查看、下载，网站文章关联的图片无法正常查看，只有绑定自己域名才难正常使用。考虑到诸多原因，所以决定把图片从七牛迁移至Github来存储，弃用七牛云。</p>
+<h4 id="操作步骤">操作步骤</h4>
+<ul>
+<li>七牛云空间间复制（原测试空间转移至可用测试空间）</li>
+<li>下载本地（七牛云可访问空间图片下载本地）</li>
+<li>本机上传github</li>
+</ul>
+<h5 id="七牛云空间间复制以mac为例qshell版本v220及以上">七牛云空间间复制（以mac为例，qshell版本v2.2.0及以上）</h5>
+<ol>
+<li>
+<p>官网下载七牛的同步工具qshell
+<a href="http://devtools.qiniu.com/qshell-v2.3.6.zip">下载</a></p>
+</li>
+<li>
+<p>解压下载的文件，</p>
+</li>
+</ol>
+<blockquote>
+<p>文件内容如下图：</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224110302.png" alt=""></p>
+<blockquote>
+<p>mac运行 qshell_darwin_x64 脚本，若遇到 Permission Denied 的错误，请使用命令 chmod +x qshell_darwin_x64来为文件添加可执行权限.(shell_darwin_x64 可重命名，eg：qshell)</p>
+</blockquote>
+<p><font color="red">以下系统全部用 qshell 命令运行</font></p>
+<ol start="3">
+<li>
+<p>创建新的测试空间</p>
+<p>原空间 bucketA , 新测试空间 bucketB</p>
+</li>
+<li>
+<p>运行命令</p>
+<p>进入下载文件文件夹，执行以下命令。</p>
+</li>
+</ol>
+<ul>
+<li>登录账户</li>
+</ul>
+<pre><code>qshell account &lt;AK&gt; &lt;SK&gt;
+</code></pre>
+<p>AK/SK <a href="https://portal.qiniu.com/user/key">查看方法</a></p>
+<ul>
+<li>使用导出文件列表命令，导出需要迁移的bucketA文件列表</li>
+</ul>
+<pre><code>qshell listbucket2 bucketA cp.txt
+</code></pre>
+<p>cp.txt文件内容如下：</p>
+<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224112206.png" alt=""></p>
+<ul>
+<li>处理文件名（由于空间复制，只需要文件名，故需处理 cp.txt,生成只包含文件名的文件）</li>
+</ul>
+<pre><code>cat cp.txt | awk '{print $1}' &gt;cpp.txt
+</code></pre>
+<p>得到的文件cpp.txt,文件内容如下图：</p>
+<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224112536.png" alt=""></p>
+<ul>
+<li>复制文件</li>
+</ul>
+<blockquote>
+<p>bucketA(old) --&gt; bucketB(new)</p>
+</blockquote>
+<pre><code>qshell batchcopy bucketA bucketB -i tocopy.txt
+</code></pre>
+<p>注：操作过程中需要确认操作，按提示输入相应输入内容，完成操作即可。</p>
+<p><font color="red">到此空间间文件复制已完成</font></p>
+<h4 id="下载本地">下载本地</h4>
+<blockquote>
+<p>文件少，可以手动下载即可。</p>
+</blockquote>
+<blockquote>
+<p>文件多，见<a href="https://github.com/qiniu/qshell/blob/master/docs/qdownload.md">官网</a></p>
+</blockquote>
+<h4 id="本机上传github">本机上传github</h4>
+<blockquote>
+<p>本机图片命令上传github即可，此处不做过多说明。</p>
+</blockquote>
+<p>经测试，所有图片均可正常打开，网站的图片均可正常打开及查看。</p>
 ]]></content>
     </entry>
 </feed>
