@@ -218,23 +218,40 @@
                   
                       <div class="tag-container">
                           
-                              <a href="https://jike-leisong.github.io//tag/MzKEL8HsE" class="tag">Spring, </a>
-                          
-                              <a href="https://jike-leisong.github.io//tag/cloud" class="tag">Cloud, </a>
+                              <a href="https://jike-leisong.github.io//tag/ZMreOtewG" class="tag">MVC, </a>
                           
                       </div>
                   
               </span>
-              <h2 class="fh5co-article-title animate-box">Hystrix</h2>
-              <span class="fh5co-meta fh5co-date animate-box">2017-11-29</span>
+              <h2 class="fh5co-article-title animate-box">MVC实现过程</h2>
+              <span class="fh5co-meta fh5co-date animate-box">2019-06-26</span>
 
               <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
                   <div class="row">
                       <div class="col-md-12 animate-box post-content">
-                          <p> <p><strong>Hystrix 搭建成功后页面：</strong></p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Hystrix-1.png" alt="Hystrix"></p>
-<p><strong>点击Monitor Stream按钮，我们就可以看到监控画面：</strong></p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/hystrix-2.png" alt="Hystrix"></p>
+                          <p> <ul>
+<li>
+<p>HandlerMapping ==&gt; 找到对应的 handler （HandlerExcutionChain）</p>
+</li>
+<li>
+<p>HandlerAdapter ==&gt; 适配器 对调用Handler 返回ModelAndView</p>
+</li>
+</ul>
+<p>(如果出现异常)</p>
+<ul>
+<li>
+<p>HandlerExceptionResolver ==&gt; 处理异常 返回 error 的ModelAndView</p>
+</li>
+<li>
+<p>HandlerInterceptor ==&gt; 处理拦截器</p>
+</li>
+<li>
+<p>ViewResolver ==&gt; 视图仓库 基于ViewName 找到对应的 View</p>
+</li>
+<li>
+<p>View ==&gt; 解析生产 Html 返回</p>
+</li>
+</ul>
  </p>
                       </div>
                   </div>
@@ -244,9 +261,9 @@
                           
                               <div class="next-post">
                                   <div class="next">下一篇</div>
-                                  <a href="https://jike-leisong.github.io//post/Feign">
+                                  <a href="https://jike-leisong.github.io//post/fen-ku-fen-biao">
                                       <h3 class="post-title">
-                                          Feign
+                                          分库分表
                                       </h3>
                                   </a>
                               </div>

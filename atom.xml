@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jike-leisong.github.io/</id>
     <title>itme.ink</title>
-    <updated>2019-06-18T15:55:10.109Z</updated>
+    <updated>2019-06-26T01:54:05.555Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jike-leisong.github.io/"/>
     <link rel="self" href="https://jike-leisong.github.io//atom.xml"/>
@@ -10,6 +10,37 @@
     <logo>https://jike-leisong.github.io//images/avatar.png</logo>
     <icon>https://jike-leisong.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, itme.ink</rights>
+    <entry>
+        <title type="html"><![CDATA[MVC实现过程]]></title>
+        <id>https://jike-leisong.github.io//post/mvc-shi-xian-guo-cheng</id>
+        <link href="https://jike-leisong.github.io//post/mvc-shi-xian-guo-cheng">
+        </link>
+        <updated>2019-06-26T01:45:28.000Z</updated>
+        <content type="html"><![CDATA[<ul>
+<li>
+<p>HandlerMapping ==&gt; 找到对应的 handler （HandlerExcutionChain）</p>
+</li>
+<li>
+<p>HandlerAdapter ==&gt; 适配器 对调用Handler 返回ModelAndView</p>
+</li>
+</ul>
+<p>(如果出现异常)</p>
+<ul>
+<li>
+<p>HandlerExceptionResolver ==&gt; 处理异常 返回 error 的ModelAndView</p>
+</li>
+<li>
+<p>HandlerInterceptor ==&gt; 处理拦截器</p>
+</li>
+<li>
+<p>ViewResolver ==&gt; 视图仓库 基于ViewName 找到对应的 View</p>
+</li>
+<li>
+<p>View ==&gt; 解析生产 Html 返回</p>
+</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[分库分表]]></title>
         <id>https://jike-leisong.github.io//post/fen-ku-fen-biao</id>
@@ -1699,91 +1730,6 @@ channel.txCommit
 <p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190225150759.png" alt=""></p>
 <p>最后用一张图来概括分布式系统的知识体系。</p>
 <p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190225150827.png" alt=""></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[七牛云床图迁移至Github]]></title>
-        <id>https://jike-leisong.github.io//post/七牛云床图迁移至Github</id>
-        <link href="https://jike-leisong.github.io//post/七牛云床图迁移至Github">
-        </link>
-        <updated>2019-02-24T02:35:20.000Z</updated>
-        <content type="html"><![CDATA[<p>由于大部分网站图床使用的是七牛云的，近期七牛云更新，导致原测试域名已失效，之前在测试域名存储的图片无法访问、查看、下载，网站文章关联的图片无法正常查看，只有绑定自己域名才难正常使用。考虑到诸多原因，所以决定把图片从七牛迁移至Github来存储，弃用七牛云。</p>
-<h4 id="操作步骤">操作步骤</h4>
-<ul>
-<li>七牛云空间间复制（原测试空间转移至可用测试空间）</li>
-<li>下载本地（七牛云可访问空间图片下载本地）</li>
-<li>本机上传github</li>
-</ul>
-<h5 id="七牛云空间间复制以mac为例qshell版本v220及以上">七牛云空间间复制（以mac为例，qshell版本v2.2.0及以上）</h5>
-<ol>
-<li>
-<p>官网下载七牛的同步工具qshell
-<a href="http://devtools.qiniu.com/qshell-v2.3.6.zip">下载</a></p>
-</li>
-<li>
-<p>解压下载的文件，</p>
-</li>
-</ol>
-<blockquote>
-<p>文件内容如下图：</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224110302.png" alt=""></p>
-<blockquote>
-<p>mac运行 qshell_darwin_x64 脚本，若遇到 Permission Denied 的错误，请使用命令 chmod +x qshell_darwin_x64来为文件添加可执行权限.(shell_darwin_x64 可重命名，eg：qshell)</p>
-</blockquote>
-<p><font color="red">以下系统全部用 qshell 命令运行</font></p>
-<ol start="3">
-<li>
-<p>创建新的测试空间</p>
-<p>原空间 bucketA , 新测试空间 bucketB</p>
-</li>
-<li>
-<p>运行命令</p>
-<p>进入下载文件文件夹，执行以下命令。</p>
-</li>
-</ol>
-<ul>
-<li>登录账户</li>
-</ul>
-<pre><code>qshell account &lt;AK&gt; &lt;SK&gt;
-</code></pre>
-<p>AK/SK <a href="https://portal.qiniu.com/user/key">查看方法</a></p>
-<ul>
-<li>使用导出文件列表命令，导出需要迁移的bucketA文件列表</li>
-</ul>
-<pre><code>qshell listbucket2 bucketA cp.txt
-</code></pre>
-<p>cp.txt文件内容如下：</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224112206.png" alt=""></p>
-<ul>
-<li>处理文件名（由于空间复制，只需要文件名，故需处理 cp.txt,生成只包含文件名的文件）</li>
-</ul>
-<pre><code>cat cp.txt | awk '{print $1}' &gt;cpp.txt
-</code></pre>
-<p>得到的文件cpp.txt,文件内容如下图：</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224112536.png" alt=""></p>
-<ul>
-<li>复制文件</li>
-</ul>
-<blockquote>
-<p>bucketA(old) --&gt; bucketB(new)</p>
-</blockquote>
-<pre><code>qshell batchcopy bucketA bucketB -i tocopy.txt
-</code></pre>
-<p>注：操作过程中需要确认操作，按提示输入相应输入内容，完成操作即可。</p>
-<p><font color="red">到此空间间文件复制已完成</font></p>
-<h4 id="下载本地">下载本地</h4>
-<blockquote>
-<p>文件少，可以手动下载即可。</p>
-</blockquote>
-<blockquote>
-<p>文件多，见<a href="https://github.com/qiniu/qshell/blob/master/docs/qdownload.md">官网</a></p>
-</blockquote>
-<h4 id="本机上传github">本机上传github</h4>
-<blockquote>
-<p>本机图片命令上传github即可，此处不做过多说明。</p>
-</blockquote>
-<p>经测试，所有图片均可正常打开，网站的图片均可正常打开及查看。</p>
 ]]></content>
     </entry>
 </feed>
