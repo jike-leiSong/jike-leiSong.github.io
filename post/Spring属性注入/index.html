@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1564729204297">
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1566526940204">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1564729204297" class="site-logo">
+        <img src="https://jike-leisong.github.io//images/avatar.png?v=1566526940204" class="site-logo">
         <h1 class="site-title">itme.ink</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -123,7 +123,7 @@
         &lt;constructor-arg name=&quot;username&quot; value=&quot;张三&quot;/&gt;
     &lt;/bean&gt;
 </code></pre>
-<p>如此我便成功给username赋上值了
+<p>如此我便成功给username赋上值了<br>
 我们来看看测试方法：</p>
 <pre><code class="language-java">@Test
     public void test4() {
@@ -171,7 +171,7 @@
 <ul>
 <li><strong>p名称空间注入</strong></li>
 </ul>
-<p>p名称空间注入也是一种注入方式，虽然用的不多，我们来看看p名称空间要怎么注入。
+<p>p名称空间注入也是一种注入方式，虽然用的不多，我们来看看p名称空间要怎么注入。<br>
 首先，我们需要在Spring配置的bean节点中添加p名称空间，如下：</p>
 <pre><code class="language-xml">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
        xmlns:p=&quot;http://www.springframework.org/schema/p&quot;
@@ -229,7 +229,7 @@
         &lt;!--&lt;constructor-arg name=&quot;userDao&quot; ref=&quot;userDao&quot;/&gt;--&gt;
     &lt;/bean&gt;
 </code></pre>
-<p>我们要配置两个bean，第一个bean用来配置一个UserDao 的实例，第二个bean用来配置一个UserService实例，在获取UserService实例的时候顺便将第一个bean获取的userDao作为参数传入。
+<p>我们要配置两个bean，第一个bean用来配置一个UserDao 的实例，第二个bean用来配置一个UserService实例，在获取UserService实例的时候顺便将第一个bean获取的userDao作为参数传入。<br>
 当然我们也可以通过构造方法进行对象的注入，方式就是我注释掉的代码，我这里不再赘述。</p>
 <ul>
 <li>数组注入&amp;List集合注入&amp;Map注入&amp;Properties注入</li>

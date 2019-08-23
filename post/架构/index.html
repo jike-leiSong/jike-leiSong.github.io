@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1564729204297">
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1566526940204">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1564729204297" class="site-logo">
+        <img src="https://jike-leisong.github.io//images/avatar.png?v=1566526940204" class="site-logo">
         <h1 class="site-title">itme.ink</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -96,37 +96,37 @@
             <div class="post-date">2017-12-17</div>
             
             <div class="post-content">
-              <p>线程安全概念：当多个线程访问某一个类（对象或方法）时，这个对象始终都能表现出正确的行为，那么这个类（对象或方法）就是线程安全的。
-synchronized：可以在任意对象及方法上加锁，而加锁的这段代码称为&quot;互斥区&quot;或&quot;临界区&quot;
-关键字synchronized取得的锁都是对象锁，而不是把一段代码（方法）当做锁，所以代码中哪个线程先执行synchronized关键字的方法，哪个线程就持有该方法所属对象的锁（Lock），
-在静态方法上加synchronized关键字，表示锁定.class类，类一级别的锁（独占.class类）。
-volatile关键字修饰属性，确保线程间共享，不具备synchronized关键字的原子性（同步）,Atomic 具有原子性,但是多个Atomic在一个方法内是非原子性的，需要加synchronized进行修饰，保证4个addAndGet整体原子性
-wait notfiy 方法，wait释放锁，notfiy不释放锁，并且必须与synchronized一起使用
-CountDownLatch  多个线程通知一个线程
-CyclicBarrier   多个线程一起
-Semaphore 信号量 semp.acquire();// 获取许可 semp.release();// 访问完后，释放
-ReentrantLock 重入锁 与Condition 使用await、signal
+              <p>线程安全概念：当多个线程访问某一个类（对象或方法）时，这个对象始终都能表现出正确的行为，那么这个类（对象或方法）就是线程安全的。<br>
+synchronized：可以在任意对象及方法上加锁，而加锁的这段代码称为&quot;互斥区&quot;或&quot;临界区&quot;<br>
+关键字synchronized取得的锁都是对象锁，而不是把一段代码（方法）当做锁，所以代码中哪个线程先执行synchronized关键字的方法，哪个线程就持有该方法所属对象的锁（Lock），<br>
+在静态方法上加synchronized关键字，表示锁定.class类，类一级别的锁（独占.class类）。<br>
+volatile关键字修饰属性，确保线程间共享，不具备synchronized关键字的原子性（同步）,Atomic 具有原子性,但是多个Atomic在一个方法内是非原子性的，需要加synchronized进行修饰，保证4个addAndGet整体原子性<br>
+wait notfiy 方法，wait释放锁，notfiy不释放锁，并且必须与synchronized一起使用<br>
+CountDownLatch  多个线程通知一个线程<br>
+CyclicBarrier   多个线程一起<br>
+Semaphore 信号量 semp.acquire();// 获取许可 semp.release();// 访问完后，释放<br>
+ReentrantLock 重入锁 与Condition 使用await、signal<br>
 ReentrantReadWriteLock 读写锁 读读共享 读写互斥 谢谢互斥</p>
-<p>ConcurrentHashMap，CopyOnWriteArrayList，CopyOnWriteArraySet，ConcurrentLinkedQueue，
-ArrayBlockingQueue，有界阻塞队列
-LinkedBlockingQueue，无界阻塞对列
+<p>ConcurrentHashMap，CopyOnWriteArrayList，CopyOnWriteArraySet，ConcurrentLinkedQueue，<br>
+ArrayBlockingQueue，有界阻塞队列<br>
+LinkedBlockingQueue，无界阻塞对列<br>
 SynchronousQueue</p>
 <hr>
 <p>jvm的基本结构：1.类加载子系统，2.方法区，3.堆，4.直接内存，5.栈,6.本地方法栈，7.垃圾回收系统，8.pc寄存器，9.执行引擎</p>
-<p>堆中的数据线程共享，
+<p>堆中的数据线程共享，<br>
 堆分为新生区和老年区，新生区包括eden、s0（from）、s1（to），s0和s1是大小相等并且可以互换的空间，绝大多数情况下对象分配在Eden区，在一次新生代回收后，对象还活着，则进入s0或s1区，之后每一次新生代回收，如果对象活着则他的年龄就加1，当对象达到一定年龄后进入老年区，s0（from）和s1（to）是通过复制算法将活着的对象复制到s0（from）或s1（to），s0（from）或s1（to）中的数据全部删除。s0（from）和s1（to）只能同时使用一个。</p>
 <p>栈是一块线程私有的内存空间，一般由三部分组成：局部变量、操作数栈、帧数据区。</p>
-<p>-Xmx:设置java程序获得的最大堆大小
--Xms:设置java程序启动时初始堆大小
--Xmn:设置新生代大小
--XX:SurvivorRatlo：用来设置新生代eden与from/to的比例
--XX:NewRatlo=老年代/新生代
--XX:PermSize
+<p>-Xmx:设置java程序获得的最大堆大小<br>
+-Xms:设置java程序启动时初始堆大小<br>
+-Xmn:设置新生代大小<br>
+-XX:SurvivorRatlo：用来设置新生代eden与from/to的比例<br>
+-XX:NewRatlo=老年代/新生代<br>
+-XX:PermSize<br>
 -XX:MaxPermSize：方法区最大内存</p>
-<p>垃圾回收的算法：引用计数法、标记压缩法，复制算法、分代、分区。
+<p>垃圾回收的算法：引用计数法、标记压缩法，复制算法、分代、分区。<br>
 垃圾回收器：串行、并行、cms、g1</p>
 <hr>
-<p>开启集群
+<p>开启集群<br>
 ./redis-trib.rb  create --replicas 1 192.168.1.104:7001 192.168.1.104:7002 192.168.1.104:7003 192.168.1.104:7004 192.168.1.104:7005 192.168.1.104:7006</p>
 
             </div>
@@ -146,9 +146,9 @@ SynchronousQueue</p>
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://jike-leisong.github.io//post/SOA">
+                <a href="https://jike-leisong.github.io//post/Zookeeper选举机制">
                   <h3 class="post-title">
-                    SOA
+                    Zookeeper选举机制
                   </h3>
                 </a>
               </div>

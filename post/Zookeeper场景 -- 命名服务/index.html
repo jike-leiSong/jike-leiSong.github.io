@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1564729204297">
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1566526940204">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1564729204297" class="site-logo">
+        <img src="https://jike-leisong.github.io//images/avatar.png?v=1566526940204" class="site-logo">
         <h1 class="site-title">itme.ink</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -103,11 +103,11 @@
 <li>阿里开源的分布式服务框架 Dubbo 中使用 Zookeeper 来作为其 <strong>命名服务</strong>，维护全局的服务地址列表。在Dubbo实现如下：</li>
 </ul>
 <blockquote>
-<p><strong>服务提供者：</strong>
+<p><strong>服务提供者：</strong><br>
 在启动的时候，向 ZK 上的指定节点 /dubbo/${serviceName}/providers 目录下写入自己的 URL 地址，这个操作就完成了服务的发布。</p>
 </blockquote>
 <blockquote>
-<p><strong>服务消费者：</strong>
+<p><strong>服务消费者：</strong><br>
 启动的时候，订阅 /dubbo/<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi>s</mi><mi>e</mi><mi>r</mi><mi>v</mi><mi>i</mi><mi>c</mi><mi>e</mi><mi>N</mi><mi>a</mi><mi>m</mi><mi>e</mi></mrow><mi mathvariant="normal">/</mi><mi>p</mi><mi>r</mi><mi>o</mi><mi>v</mi><mi>i</mi><mi>d</mi><mi>e</mi><mi>r</mi><mi>s</mi><mi mathvariant="normal">目</mi><mi mathvariant="normal">录</mi><mi mathvariant="normal">下</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">提</mi><mi mathvariant="normal">供</mi><mi mathvariant="normal">者</mi><mi>U</mi><mi>R</mi><mi>L</mi><mi mathvariant="normal">地</mi><mi mathvariant="normal">址</mi><mi mathvariant="normal">，</mi><mi mathvariant="normal">并</mi><mi mathvariant="normal">向</mi><mi mathvariant="normal">/</mi><mi>d</mi><mi>u</mi><mi>b</mi><mi>b</mi><mi>o</mi><mi mathvariant="normal">/</mi></mrow><annotation encoding="application/x-tex">{serviceName}/providers 目录下的提供者 URL地址，并向 /dubbo/</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord mathdefault">i</span><span class="mord mathdefault">c</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault">a</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span></span><span class="mord">/</span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord mathdefault">i</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">s</span><span class="mord cjk_fallback">目</span><span class="mord cjk_fallback">录</span><span class="mord cjk_fallback">下</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">提</span><span class="mord cjk_fallback">供</span><span class="mord cjk_fallback">者</span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault">L</span><span class="mord cjk_fallback">地</span><span class="mord cjk_fallback">址</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">并</span><span class="mord cjk_fallback">向</span><span class="mord">/</span><span class="mord mathdefault">d</span><span class="mord mathdefault">u</span><span class="mord mathdefault">b</span><span class="mord mathdefault">b</span><span class="mord mathdefault">o</span><span class="mord">/</span></span></span></span>{serviceName}/consumers 目录下写入自己的 URL 地址，这个操作就完成了服务的发布。</p>
 </blockquote>
 <p><strong>注意：</strong></p>

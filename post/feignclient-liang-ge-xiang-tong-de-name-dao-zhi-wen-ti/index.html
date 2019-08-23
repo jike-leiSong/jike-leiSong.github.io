@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1564729204297">
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1566526940204">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1564729204297" class="site-logo">
+        <img src="https://jike-leisong.github.io//images/avatar.png?v=1566526940204" class="site-logo">
         <h1 class="site-title">itme.ink</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -97,7 +97,7 @@
             
             <div class="post-content">
               <p><strong>记一次 feign 坑之旅。</strong></p>
-<p><strong>1、问题描述</strong>
+<p><strong>1、问题描述</strong><br>
 feign上传文件报错：</p>
 <pre><code>feign.codec.EncodeException: Could not write request: no suitable HttpMessageConverter found for request type \[org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile ]and content type \[multipart/form-data]
 ...
@@ -134,8 +134,8 @@ public interface IUploadService {
 </blockquote>
 <p><strong>解决方案</strong></p>
 <blockquote>
-<p>a.项目中不存在其他value值相同的feign。
-b.将feign名称改为 http://xxxxxxxxx
+<p>a.项目中不存在其他value值相同的feign。<br>
+b.将feign名称改为 http://xxxxxxxxx<br>
 c.将configuration打上注解component（测试未生效）</p>
 </blockquote>
 <p>注：大致可以确定为，由于feign的value相同，而造成的bug。已经有人提出该bug，<a href="https://github.com/spring-cloud/spring-cloud-netflix/issues/1211">链接内容</a>。</p>

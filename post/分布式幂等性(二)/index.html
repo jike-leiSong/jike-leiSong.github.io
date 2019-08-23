@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1564729204297">
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1566526940204">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1564729204297" class="site-logo">
+        <img src="https://jike-leisong.github.io//images/avatar.png?v=1566526940204" class="site-logo">
         <h1 class="site-title">itme.ink</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -130,13 +130,13 @@
 <p><em>要点：唯一索引或唯一组合索引来防止新增数据存在脏数据（当表存在唯一索引，并发时新增报错时，再查询一次就可以了，数据应该已经存在了，返回结果即可。）</em></p>
 <p>** 4. token 机制，防止页面重复提交 **</p>
 <blockquote>
-<p>业务要求：页面的数据只能被点击提交一次；
-发生原因：由于重复点击或者网络重发，后者nginx重发等情况会导致数据被重复提交。
-解决方法：
-集群环境：采用 token 加 redis （<em>redis单线程的，处理需要排队。</em>）
+<p>业务要求：页面的数据只能被点击提交一次；<br>
+发生原因：由于重复点击或者网络重发，后者nginx重发等情况会导致数据被重复提交。<br>
+解决方法：<br>
+集群环境：采用 token 加 redis （<em>redis单线程的，处理需要排队。</em>）<br>
 单JVM环境：采用 token 加 redis 或 token 加 jvm 内存</p>
-<p>处理流程：
-1. 数据提交前要向服务的申请token，token放到redis或jvm内存，token有效时间
+<p>处理流程：<br>
+1. 数据提交前要向服务的申请token，token放到redis或jvm内存，token有效时间<br>
 2. 提交后后台校验token，同时删除token，生成新的token返回</p>
 </blockquote>
 <pre><code>*token特点：要申请，一次有效性，可以限流。*
@@ -151,10 +151,10 @@
 <p>** 注意：id字段一定是主键或唯一索引，不然是锁表，会出事的。悲观锁使用时一般伴随事物一起使用，数据锁定时间可能会很长，根据实际情况选用。 **</p>
 <p>** 6. 乐观锁 **</p>
 <blockquote>
-<p>乐观锁只是在更新数据那一刻锁表，其他时间不锁表，所以相对于悲观锁，效率更高。
-乐观锁的实现方式多种多样可以通过verson或者其他状态条件：
-1. 通过版本号实现
-update table_xx set name = #name#,version = #version+1# where version = #version#;
+<p>乐观锁只是在更新数据那一刻锁表，其他时间不锁表，所以相对于悲观锁，效率更高。<br>
+乐观锁的实现方式多种多样可以通过verson或者其他状态条件：<br>
+1. 通过版本号实现<br>
+update table_xx set name = #name#,version = #version+1# where version = #version#;<br>
 <img src="https://pic3.zhimg.com/50/v2-c4ab9c4e424a6ebf5280440881f187de_hd.jpg" alt="Alt text"></p>
 </blockquote>
 <pre><code>2. 通过条件限制
@@ -185,7 +185,7 @@ update table_xxx set avai_amount=avai_amount-#subAmount# where id=#id# and avai_
 <p>*注意：订单等单据类业务，存在很长的状态流转，一定要深刻理解状态机，对业务系统设计能力提高有很大帮助。 *</p>
 <p>** 10. 对外提供接口的api如何保证幂等 **</p>
 <blockquote>
-<p>如银联提供的付款接口：需要接入商户提交付款请求时附带：source来源，seq序列号
+<p>如银联提供的付款接口：需要接入商户提交付款请求时附带：source来源，seq序列号<br>
 source+seq在数据库里面做唯一索引，防止多次付款，(并发时，只能处理一个请求)。</p>
 </blockquote>
 <p><em>重点：</em></p>

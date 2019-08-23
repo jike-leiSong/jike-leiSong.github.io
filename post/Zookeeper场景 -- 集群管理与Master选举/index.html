@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1564729204297">
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1566526940204">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1564729204297" class="site-logo">
+        <img src="https://jike-leisong.github.io//images/avatar.png?v=1566526940204" class="site-logo">
         <h1 class="site-title">itme.ink</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -128,7 +128,7 @@ b. 创建 EPHEMERAL 类型的节点，一旦客户端和服务器的会话结束
 </blockquote>
 <p>另外，这种场景演化一下，就是动态 Master 选举。这就要用到 EPHEMERAL_SEQUENTIAL 类型节点的特性了。</p>
 <blockquote>
-<p>上文中提到，所有客户端创建请求，最终只有一个能够创建成功。在这里稍微变化下，就是允许所有请求都能够创建成功，但是得有个创建顺序，于是所有的请求最终在 ZK 上创建结果的一种可能情况是这样：
+<p>上文中提到，所有客户端创建请求，最终只有一个能够创建成功。在这里稍微变化下，就是允许所有请求都能够创建成功，但是得有个创建顺序，于是所有的请求最终在 ZK 上创建结果的一种可能情况是这样：<br>
 /currentMaster/{session}-1,/currentMaster/{session}-2,/currentMaster/{session}-3...每次选取序列号最小的那个机器作为Master，如果这个机器挂了，由于他创建的节点会马上消失，那么之后最小的那个机器就是Master了。</p>
 </blockquote>
 <ul>
@@ -157,9 +157,9 @@ b. 创建 EPHEMERAL 类型的节点，一旦客户端和服务器的会话结束
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://jike-leisong.github.io//post/线程池的分类及使用场景">
+                <a href="https://jike-leisong.github.io//post/关于【缓存穿透、缓存击穿、缓存雪崩、热点数据失效】问题的解决方案">
                   <h3 class="post-title">
-                    线程池的分类及使用场景
+                    关于【缓存穿透、缓存击穿、缓存雪崩、热点数据失效】问题的解决方案
                   </h3>
                 </a>
               </div>

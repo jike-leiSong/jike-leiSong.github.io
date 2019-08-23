@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1564729204297">
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1566526940204">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1564729204297" class="site-logo">
+        <img src="https://jike-leisong.github.io//images/avatar.png?v=1566526940204" class="site-logo">
         <h1 class="site-title">itme.ink</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -114,7 +114,7 @@
 <li>有的人想有没有重复的数组，所以有了 set</li>
 <li>有人想要自动排序的数组，所以有了 TreeSet, TreeList, Tree**</li>
 </ul>
-<p>而几乎所有的集合都是基于数组来实现的
+<p>而几乎所有的集合都是基于数组来实现的<br>
 因为集合是对数组进行的封装，所以，数组永远比任何一个集合要快</p>
 <p>但任何一个集合，比数组提供的功能要多</p>
 <ol>
@@ -129,17 +129,17 @@
 <li>Java中有一个 Arrays类，专门用来操作 array。</li>
 </ol>
 <blockquote>
-<p><strong>Arrays中拥有一个 static 函数:</strong>
-equals: 比较俩个 array 是否相等。array拥有相同元素的个数，且所有对应元素两两相等
-fill(): 将值填入array中
-sort(): 用来对array进行排序
-binarySearch(): 在排好序的array中寻找元素
+<p><strong>Arrays中拥有一个 static 函数:</strong><br>
+equals: 比较俩个 array 是否相等。array拥有相同元素的个数，且所有对应元素两两相等<br>
+fill(): 将值填入array中<br>
+sort(): 用来对array进行排序<br>
+binarySearch(): 在排好序的array中寻找元素<br>
 System.arraycopy(): array的复制</p>
 </blockquote>
-<p>若撰写程序时不知道究竟需要多少对象，需要在空间不足时自动扩增容量，则需要使用容器类库，array不适用。所以就要用到集合。
-那我们开始讨论java中的集合。
+<p>若撰写程序时不知道究竟需要多少对象，需要在空间不足时自动扩增容量，则需要使用容器类库，array不适用。所以就要用到集合。<br>
+那我们开始讨论java中的集合。<br>
 集合分类：</p>
-<p><strong>Collection: List、Set</strong>
+<p><strong>Collection: List、Set</strong><br>
 <strong>Map：HashMap、HashTable</strong></p>
 <h4 id="collection接口">Collection接口</h4>
 <p>Collection是最基本的集合接口，声明了适用于JAVA集合（只包括Set和List）的通用方法。 Set 和List 都继承了Conllection.Map。</p>
@@ -158,7 +158,7 @@ Object[] toArray()： 返回一个数组，该数组中包括集合中的所有�
 <p>Iterator接口声明了如下方法：</p>
 <blockquote>
 <p>hasNext()：判断集合中元素是否遍历完毕，如果没有，就返回true<br>
-next() ：返回下一个元素
+next() ：返回下一个元素<br>
 remove()：从集合中删除上一个有next()方法返回的元素。</p>
 </blockquote>
 <h4 id="set集合">Set(集合)</h4>
@@ -204,8 +204,8 @@ isExists=true;
 <p>Set的功能方法</p>
 <p>Set具有与Collection完全一样的接口，因此没有任何额外的功能，不像前面有两个不同的List。实际上Set就是Collection,只是行为不同。(这是继承与多态思想的典型应用：表现不同的行为。)Set不保存重复的元素(至于如何判断元素相同则较为负责)</p>
 <p>Set : 存入Set的每个元素都必须是唯一的，因为Set不保存重复元素。加入Set的元素必须定义equals()方法以确保对象的唯一性。Set与Collection有完全一样的接口。Set接口不保证维护元素的次序。</p>
-<p>HashSet：为快速查找设计的Set。存入HashSet的对象必须定义hashCode()。
-TreeSet： 保存次序的Set, 底层为树结构。使用它可以从Set中提取有序的序列。
+<p>HashSet：为快速查找设计的Set。存入HashSet的对象必须定义hashCode()。<br>
+TreeSet： 保存次序的Set, 底层为树结构。使用它可以从Set中提取有序的序列。<br>
 LinkedHashSet：具有HashSet的查询速度，且内部使用链表维护元素的顺序(插入的次序)。于是在使用迭代器遍历Set时，结果会按元素插入的次序显示。</p>
 <h4 id="list列表">List(列表)</h4>
 <p>List的特征是其元素以线性方式存储，集合中可以存放重复对象。</p>
@@ -239,8 +239,8 @@ while(it.hashNext()) {
 }
 </code></pre>
 <p>List的功能方法</p>
-<p>实际上有两种List：
-一种是基本的ArrayList,其优点在于随机访问元素，
+<p>实际上有两种List：<br>
+一种是基本的ArrayList,其优点在于随机访问元素，<br>
 另一种是更强大的LinkedList,它并不是为快速随机访问设计的，而是具有一套更通用的方法。</p>
 <ul>
 <li>List：次序是List最重要的特点：<font color="red">它保证维护元素特定的顺序。</font>List为Collection添加了许多方法，使得能够向List中间插入与移除元素(这只推荐LinkedList使用。)一个List可以生成ListIterator,使用它可以从两个方向遍历List,也可以从List中间插入和移除元 素。</li>
@@ -263,7 +263,7 @@ void clear()：从映像中删除所有映射
 </ol>
 <p>Object get(Object key)：获得与关键字key相关的值 。Map集合中的键对象不允许重复，也就说，任意两个键对象通过equals()方法比较的结果都是false.，但是可以将任意多个键独享映射到同一个值对象上。</p>
 <p>Map的功能方法</p>
-<p>方法put(Object key, Object value)添加一个“值”(想要得东西)和与“值”相关联的“键”(key)(使用它来查找)。方法get(Object key)返回与给定“键”相关联的“值”。可以用containsKey()和containsValue()测试Map中是否包含某个“键”或“值”。 标准的Java类库中包含了几种不同的Map：HashMap, TreeMap, LinkedHashMap,
+<p>方法put(Object key, Object value)添加一个“值”(想要得东西)和与“值”相关联的“键”(key)(使用它来查找)。方法get(Object key)返回与给定“键”相关联的“值”。可以用containsKey()和containsValue()测试Map中是否包含某个“键”或“值”。 标准的Java类库中包含了几种不同的Map：HashMap, TreeMap, LinkedHashMap,<br>
 WeakHashMap, IdentityHashMap。它们都有同样的基本接口Map，但是行为、效率、排序策略、保存对象的生命周期和判定“键”等价的策略等各不相同。</p>
 <p>执行效率是Map的一个大问题。看看get()要做哪些事，就会明白为什么在ArrayList中搜索“键”是相当慢的。而这正是HashMap提高速度的地方。HashMap使用了特殊的值，称为“散列码”(hash code)，来取代对键的缓慢搜索。“散列码”是“相对唯一”用以代表对象的int值，它是通过将该对象的某些信息进行转换而生成的。所有Java对象都 能产生散列码，因为hashCode()是定义在基类Object中的方法。</p>
 <p>HashMap就是使用对象的hashCode()进行快速查询的。此方法能够显着提高性能。</p>
@@ -278,25 +278,25 @@ WeakHashMap, IdentityHashMap。它们都有同样的基本接口Map，但是行�
 <li>Collection 和 Map 的区别</li>
 </ol>
 <blockquote>
-<p>容器内每个为之所存储的元素个数不同。
-Collection类型者，每个位置只有一个元素。
+<p>容器内每个为之所存储的元素个数不同。<br>
+Collection类型者，每个位置只有一个元素。<br>
 Map类型者，持有key-value pair,像个小型数据库。</p>
 </blockquote>
 <ol start="2">
 <li>各自旗下的子类关系</li>
 </ol>
 <blockquote>
-<p>--List: 将以特定次序存储元素。所以取出来的顺序可能和放入顺序不同
+<p>--List: 将以特定次序存储元素。所以取出来的顺序可能和放入顺序不同<br>
 --ArraList / LinkedList / Vector</p>
-<p>--Set: 不能含有重复元素
+<p>--Set: 不能含有重复元素<br>
 --HashSet / TreeSet</p>
-<p>--Map
+<p>--Map<br>
 --HashMap / HashTable / TreeMap</p>
 </blockquote>
 <ol start="3">
 <li>其他特征</li>
 </ol>
-<p>List，Set，Map将持有对象一律视为Object型别。
+<p>List，Set，Map将持有对象一律视为Object型别。<br>
 Collection、List、Set、Map都是接口，不能实例化。</p>
 <p>继承自它们的 ArrayList, Vector, HashTable, HashMap是具象class，这些才可被实例化。</p>
 <p>vector容器确切知道它所持有的对象隶属什么型别。vector不进行边界检查。</p>
@@ -307,17 +307,17 @@ Collection、List、Set、Map都是接口，不能实例化。</p>
 <li>在除需要排序时使用TreeSet,TreeMap外,都应使用HashSet,HashMap,因为他们的效率更高。</li>
 <li>要特别注意对哈希表的操作，作为key的对象要正确复写equals和hashCode方法。</li>
 <li>容器类仅能持有对象引用（指向对象的指针），而不是将对象信息copy一份至数列某位置。一旦将对象置入容器内，便损失了该对象的型别信息。</li>
-<li>尽量返回接口而非实际的类型，如返回List而非ArrayList，这样如果以后需要将ArrayList换成LinkedList时，客户端代码不用改变。这就是针对抽象编程。
-<strong>注意：</strong>
-1、Collection没有get()方法来取得某个元素。只能通过iterator()遍历元素。
-2、Set和Collection拥有一模一样的接口。
-3、List，可以通过get()方法来一次取出一个元素。使用数字来选择一堆对象中的一个，get(0)...。(add/get)
-4、一般使用ArrayList。用LinkedList构造堆栈stack、队列queue。
-5、Map用 put(k,v) / get(k)，还可以使用containsKey()/containsValue()来检查其中是否含有某个key/value。
-HashMap会利用对象的hashCode来快速找到key。
-6、Map中元素，可以将key序列、value序列单独抽取出来。
-使用keySet()抽取key序列，将map中的所有keys生成一个Set。
-使用values()抽取value序列，将map中的所有values生成一个Collection。
+<li>尽量返回接口而非实际的类型，如返回List而非ArrayList，这样如果以后需要将ArrayList换成LinkedList时，客户端代码不用改变。这就是针对抽象编程。<br>
+<strong>注意：</strong><br>
+1、Collection没有get()方法来取得某个元素。只能通过iterator()遍历元素。<br>
+2、Set和Collection拥有一模一样的接口。<br>
+3、List，可以通过get()方法来一次取出一个元素。使用数字来选择一堆对象中的一个，get(0)...。(add/get)<br>
+4、一般使用ArrayList。用LinkedList构造堆栈stack、队列queue。<br>
+5、Map用 put(k,v) / get(k)，还可以使用containsKey()/containsValue()来检查其中是否含有某个key/value。<br>
+HashMap会利用对象的hashCode来快速找到key。<br>
+6、Map中元素，可以将key序列、value序列单独抽取出来。<br>
+使用keySet()抽取key序列，将map中的所有keys生成一个Set。<br>
+使用values()抽取value序列，将map中的所有values生成一个Collection。<br>
 为什么一个生成Set，一个生成Collection？那是因为，key总是独一无二的，value允许重复。</li>
 </ol>
 
@@ -338,9 +338,9 @@ HashMap会利用对象的hashCode来快速找到key。
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://jike-leisong.github.io//post/Java多线程Executor框架详解">
+                <a href="https://jike-leisong.github.io//post/面试题">
                   <h3 class="post-title">
-                    Java多线程Executor框架详解
+                    面试题
                   </h3>
                 </a>
               </div>

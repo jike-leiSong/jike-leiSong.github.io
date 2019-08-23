@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1564729204297">
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1566526940204">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1564729204297" class="site-logo">
+        <img src="https://jike-leisong.github.io//images/avatar.png?v=1566526940204" class="site-logo">
         <h1 class="site-title">itme.ink</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -98,14 +98,14 @@
             <div class="post-content">
               <p>[TOC]</p>
 <h4 id="foreach-属性介绍">foreach 属性介绍</h4>
-<p>foreach 用于迭代传入过来的参数。
+<p>foreach 用于迭代传入过来的参数。<br>
 <strong>它的属性介绍分别是:</strong></p>
 <blockquote>
 <ul>
-<li>**collection：**表示传入过来的参数的数据类型。该参数为必选。要做 foreach 的对象，作为入参时，List 对象默认用 list 代替作为键，数组对象有 array 代替作为键，Map 对象没有默认的键。当然在作为入参时可以使用 <font color="red">@Param(“keyName”) </font>来设置键，<font color="red">设置 keyName 后，list,array 将会失效。 </font>除了入参这种情况外，还有一种作为参数对象的某个字段的时候。举个例子：
-如果 User 有属性 List ids。入参是 User 对象，那么这个 collection = “ids” 如果 User 有属性 Ids ids;其中 Ids 是个对象，Ids 有个属性 List id;入参是 User 对象，那么 collection = “ids.id”
-* 如果传入的是单参数且参数类型是一个 List 的时候，collection 属性值为 list
-* 如果传入的是单参数且参数类型是一个 array 数组的时候，collection 的属性值为 array
+<li>**collection：**表示传入过来的参数的数据类型。该参数为必选。要做 foreach 的对象，作为入参时，List 对象默认用 list 代替作为键，数组对象有 array 代替作为键，Map 对象没有默认的键。当然在作为入参时可以使用 <font color="red">@Param(“keyName”) </font>来设置键，<font color="red">设置 keyName 后，list,array 将会失效。 </font>除了入参这种情况外，还有一种作为参数对象的某个字段的时候。举个例子：<br>
+如果 User 有属性 List ids。入参是 User 对象，那么这个 collection = “ids” 如果 User 有属性 Ids ids;其中 Ids 是个对象，Ids 有个属性 List id;入参是 User 对象，那么 collection = “ids.id”<br>
+* 如果传入的是单参数且参数类型是一个 List 的时候，collection 属性值为 list<br>
+* 如果传入的是单参数且参数类型是一个 array 数组的时候，collection 的属性值为 array<br>
 * 如果传入的参数是多个的时候，我们就需要把它们封装成一个 Map 了，当然单参数也可以封装成 map。</li>
 </ul>
 </blockquote>
@@ -277,7 +277,7 @@ DEBUG - &lt;==      Total: 2
 <pre><code>DEBUG - ==&gt;  Preparing: UPDATE t_test_foreach SET `name` = ? WHERE id IN ( ? , ? , ? ) 
 DEBUG - ==&gt; Parameters: updated(String), 1(Integer), 2(Integer), 4(Integer)
 </code></pre>
-<p>尊重他人劳动成果，转载请注明出处：
+<p>尊重他人劳动成果，转载请注明出处：<br>
 http://blog.csdn.net/czd3355/article/details/75340080</p>
 
             </div>

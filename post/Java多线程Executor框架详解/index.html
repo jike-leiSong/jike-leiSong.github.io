@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1564729204297">
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1566526940204">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1564729204297" class="site-logo">
+        <img src="https://jike-leisong.github.io//images/avatar.png?v=1566526940204" class="site-logo">
         <h1 class="site-title">itme.ink</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -97,7 +97,7 @@
             
             <div class="post-content">
               <p>在Java中，<font color="red">使用线程来异步执行任务。</font>Java线程的创建与销毁需要一定的开销，如果我们为每一个任务创建一个新的线程来执行，这些线程的创建与销毁将<font color="red">消耗大量的计算机资源。</font>同时，为每一个任务创建一个新线程来执行，这种策略可能会使处于高负荷状态的应用最终崩溃。</p>
-<p>Java线程既是工作单元，也是执行单元。从Jdk1.5开始，把<font color="red">工作单元</font>和<font color="red">执行机制</font>分离开来。
+<p>Java线程既是工作单元，也是执行单元。从Jdk1.5开始，把<font color="red">工作单元</font>和<font color="red">执行机制</font>分离开来。<br>
 工作单元包括：<font color="red">Runnable 和 Callable</font>，而执行机制由 Executor 框架提供。</p>
 <h4 id="executor框架简介">Executor框架简介</h4>
 <hr>
@@ -121,7 +121,7 @@
 <li>任务的执行</li>
 </ol>
 <blockquote>
-<p>包括任务执行机制的核心接口 Executor，以及继承自 Executor 的 ExecutorService 接口。
+<p>包括任务执行机制的核心接口 Executor，以及继承自 Executor 的 ExecutorService 接口。<br>
 Executor框架有两个关键类实现了ExecutorService接口：ThreadPoolExecutor 和 ScheduledThreadPoolExecutor</p>
 </blockquote>
 <ol start="3">
@@ -180,7 +180,7 @@ ExecutorService.submit(Runnable task);
 <li>FixedThreadPool</li>
 </ol>
 <blockquote>
-<p>创建固定长度的线程池，每次提交任务创建一个线程，直到达到线程池的最大数量，线程池的大小不在变化。
+<p>创建固定长度的线程池，每次提交任务创建一个线程，直到达到线程池的最大数量，线程池的大小不在变化。<br>
 这个线程池可以创建固定的线程数的线程池。<font color="red">特点是可以重用固定数量线程的线程池</font>。它的构造源码如下：</p>
 </blockquote>
 <pre><code class="language-java">public static ExecutorService newFixedThreadPool(int nThreads) { 
@@ -216,7 +216,7 @@ ExecutorService.submit(Runnable task);
                                     new LinkedBlockingQueue&lt;Runnable&gt;()));
 }
 </code></pre>
-<p>SingleThreadExecutor的corePoolSize和maxiumPoolSize都被设置1。
+<p>SingleThreadExecutor的corePoolSize和maxiumPoolSize都被设置1。<br>
 其他参数均与FixedThreadPool相同，其运行图如下：</p>
 <p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor-4.png" alt=""></p>
 <p>执行过程如下：</p>
@@ -243,8 +243,8 @@ ExecutorService.submit(Runnable task);
 <p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor-5.png" alt=""></p>
 <p>执行过程如下：</p>
 <blockquote>
-<p>1.首先执行SynchronousQueue.offer(Runnable task)。如果在当前的线程池中有空闲的线程正在执行SynchronousQueue.poll()，那么主线程执行的offer操作与空闲线程执行的poll操作配对成功，主线程把任务交给空闲线程执行。，execute()方法执行成功，否则执行步骤2
-2.当线程池为空(初始maximumPool为空)或没有空闲线程时，配对失败，将没有线程执行SynchronousQueue.poll操作。这种情况下，线程池会创建一个新的线程执行任务。
+<p>1.首先执行SynchronousQueue.offer(Runnable task)。如果在当前的线程池中有空闲的线程正在执行SynchronousQueue.poll()，那么主线程执行的offer操作与空闲线程执行的poll操作配对成功，主线程把任务交给空闲线程执行。，execute()方法执行成功，否则执行步骤2<br>
+2.当线程池为空(初始maximumPool为空)或没有空闲线程时，配对失败，将没有线程执行SynchronousQueue.poll操作。这种情况下，线程池会创建一个新的线程执行任务。<br>
 3.在创建完新的线程以后，将会执行poll操作。当步骤2的线程执行完成后，将等待60秒，如果此时主线程提交了一个新任务，那么这个空闲线程将执行新任务，否则被回收。因此长时间不提交任务的CachedThreadPool不会占用系统资源。</p>
 </blockquote>
 <p>SynchronousQueue是一个不存储元素阻塞队列，每次要进行offer操作时必须等待poll操作，否则不能继续添加元素。</p>
@@ -267,9 +267,9 @@ ExecutorService.submit(Runnable task);
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://jike-leisong.github.io//post/面试题">
+                <a href="https://jike-leisong.github.io//post/Spring中配置数据源的4种形式">
                   <h3 class="post-title">
-                    面试题
+                    Spring中配置数据源的4种形式
                   </h3>
                 </a>
               </div>

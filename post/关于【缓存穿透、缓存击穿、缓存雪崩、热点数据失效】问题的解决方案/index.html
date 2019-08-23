@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1564729204297">
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1566526940204">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1564729204297" class="site-logo">
+        <img src="https://jike-leisong.github.io//images/avatar.png?v=1566526940204" class="site-logo">
         <h1 class="site-title">itme.ink</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -108,8 +108,8 @@
 <li>什么是缓存穿透</li>
 </ol>
 <blockquote>
-<p>正常情况下我们查询的数据都是存在。
-那么请求去查询一条压根儿就不存在的数据，也就是缓存和数据库都查询不到这条数据，但是每次请求都会打到数据库上去。
+<p>正常情况下我们查询的数据都是存在。<br>
+那么请求去查询一条压根儿就不存在的数据，也就是缓存和数据库都查询不到这条数据，但是每次请求都会打到数据库上去。<br>
 这种查询不存在数据的现象我们称为 <strong>物理穿透</strong></p>
 </blockquote>
 <ol start="2">
@@ -180,7 +180,7 @@
 <li>解决方案</li>
 </ol>
 <blockquote>
-<p>上面的现象是多个线程同时去查询数据库的这条数据，那么我们可以在第一个查询数据的请求上使用一个
+<p>上面的现象是多个线程同时去查询数据库的这条数据，那么我们可以在第一个查询数据的请求上使用一个<br>
 <strong>互斥锁</strong>来锁住它。</p>
 </blockquote>
 <blockquote>
@@ -243,9 +243,9 @@
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://jike-leisong.github.io//post/Zookeeper场景 -- 命名服务">
+                <a href="https://jike-leisong.github.io//post/线程池的分类及使用场景">
                   <h3 class="post-title">
-                    Zookeeper使用场景 -- 命名服务
+                    线程池的分类及使用场景
                   </h3>
                 </a>
               </div>

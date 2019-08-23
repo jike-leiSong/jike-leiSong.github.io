@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1564729204297">
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1566526940204">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1564729204297" class="site-logo">
+        <img src="https://jike-leisong.github.io//images/avatar.png?v=1566526940204" class="site-logo">
         <h1 class="site-title">itme.ink</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -109,11 +109,11 @@
 <ul>
 <li><strong>顺序一致性：</strong><br>
 从一个客户端发起的事物请求，最终将会严格地按照其发起的顺序被应用到zookeeper中去。</li>
-<li><strong>原子性：</strong>
+<li><strong>原子性：</strong><br>
 所有事物请求的处理结果在整个集群中所有的机器上的应用情况是一致的。也就是说，要么整个集群所有的机器都成功应用了某一个事物，要么都没有应用，一定不会出现部分机器应用了该事物，而另一部分没有应用的情况。</li>
-<li><strong>单一视图：</strong>
+<li><strong>单一视图：</strong><br>
 无论客户端链接的是哪一个zookeeper服务器，其看到的服务区数据模式都是一致的。</li>
-<li><strong>实时性：</strong>
+<li><strong>实时性：</strong><br>
 通常所说的实时性就是指一旦事物被成功应用，那么客户端就能立刻从服务器上获取变更后的新数据，zookeeper仅仅能保证在一段时间内，客户端最终一定能从服务器端读取最新的数据状态。</li>
 </ul>
 </blockquote>

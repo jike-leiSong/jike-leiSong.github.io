@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1564729204297">
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1566526940204">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1564729204297" class="site-logo">
+        <img src="https://jike-leisong.github.io//images/avatar.png?v=1566526940204" class="site-logo">
         <h1 class="site-title">itme.ink</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -104,11 +104,11 @@
 <p>每一行数据具有唯一性</p>
 <p>这一点，只要是有主键就可以实现。因为主键的存在使得每一行数据都具有唯一性。</p>
 <p>消除数据之间的部分依赖</p>
-<p>依赖的定义：主键确定了其他字段，其他字段依赖于主键而存在。
+<p>依赖的定义：主键确定了其他字段，其他字段依赖于主键而存在。<br>
 ：</p>
-<p>部分依赖： 某个字段值依赖于部分字段，则发生这种现象的前提是该表主键位置拥有多个字段。
+<p>部分依赖： 某个字段值依赖于部分字段，则发生这种现象的前提是该表主键位置拥有多个字段。<br>
 ：</p>
-<p>完全依赖： 某个字段完全依赖与主键的所有字段。当一个表的主键仅有一个字段时，必然是完全依赖。
+<p>完全依赖： 某个字段完全依赖与主键的所有字段。当一个表的主键仅有一个字段时，必然是完全依赖。<br>
 解决办法：</p>
 <p>将部分依赖转换成完全依赖，拆表！</p>
 <p>将原来存在部分依赖的表拆分，简单来说就是该表主键有几个字段，就拆成（几个+1）的表，前几个字段将分别作为其所在表的唯一主键，即成为完全依赖模式。最后一个表为之前的那几个字段并存的联合主键。用于维护表与表之间的关系。</p>

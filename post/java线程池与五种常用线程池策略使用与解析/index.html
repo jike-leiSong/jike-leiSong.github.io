@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1564729204297">
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1566526940204">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1564729204297" class="site-logo">
+        <img src="https://jike-leisong.github.io//images/avatar.png?v=1566526940204" class="site-logo">
         <h1 class="site-title">itme.ink</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -117,23 +117,23 @@
 <p><strong>threadFactory</strong> - 执行程序创建新线程时使用的工厂。</p>
 <p><strong>handler</strong> - 阻塞队列已满且线程数达到最大值时所采取的饱和策略。java默认提供了4种饱和策略的实现方式：中止、抛弃、抛弃最旧的、调用者运行。将在下文中详细阐述。</p>
 <h4 id="二可选择的阻塞队列blockingqueue详解">二.可选择的阻塞队列BlockingQueue详解</h4>
-<p>首先看一下新任务进入时线程池的执行策略：
-如果运行的线程少于corePoolSize，则 Executor始终首选添加新的线程，而不进行排队。（如果当前运行的线程小于corePoolSize，则任务根本不会存入queue中，而是直接运行）
-如果运行的线程大于等于 corePoolSize，则 Executor始终首选将请求加入队列，而不添加新的线程。
-如果无法将请求加入队列，则创建新的线程，除非创建此线程超出 maximumPoolSize，在这种情况下，任务将被拒绝。
+<p>首先看一下新任务进入时线程池的执行策略：<br>
+如果运行的线程少于corePoolSize，则 Executor始终首选添加新的线程，而不进行排队。（如果当前运行的线程小于corePoolSize，则任务根本不会存入queue中，而是直接运行）<br>
+如果运行的线程大于等于 corePoolSize，则 Executor始终首选将请求加入队列，而不添加新的线程。<br>
+如果无法将请求加入队列，则创建新的线程，除非创建此线程超出 maximumPoolSize，在这种情况下，任务将被拒绝。<br>
 主要有3种类型的BlockingQueue：</p>
-<p><strong>2.1 无界队列</strong>
+<p><strong>2.1 无界队列</strong><br>
 队列大小无限制，常用的为无界的LinkedBlockingQueue，使用该队列做为阻塞队列时要尤其当心，当任务耗时较长时可能会导致大量新任务在队列中堆积最终导致OOM。最近工作中就遇到因为采用LinkedBlockingQueue作为阻塞队列，部分任务耗时80s＋且不停有新任务进来，导致cpu和内存飙升服务器挂掉。</p>
-<p><strong>2.2 有界队列</strong>
-常用的有两类，一类是遵循FIFO原则的队列如ArrayBlockingQueue与有界的LinkedBlockingQueue，另一类是优先级队列如PriorityBlockingQueue。PriorityBlockingQueue中的优先级由任务的Comparator决定。
+<p><strong>2.2 有界队列</strong><br>
+常用的有两类，一类是遵循FIFO原则的队列如ArrayBlockingQueue与有界的LinkedBlockingQueue，另一类是优先级队列如PriorityBlockingQueue。PriorityBlockingQueue中的优先级由任务的Comparator决定。<br>
 使用有界队列时队列大小需和线程池大小互相配合，线程池较小有界队列较大时可减少内存消耗，降低cpu使用率和上下文切换，但是可能会限制系统吞吐量。</p>
-<p><strong>2.3 同步移交</strong>
+<p><strong>2.3 同步移交</strong><br>
 如果不希望任务在队列中等待而是希望将任务直接移交给工作线程，可使用SynchronousQueue作为等待队列。SynchronousQueue不是一个真正的队列，而是一种线程之间移交的机制。要将一个元素放入SynchronousQueue中，必须有另一个线程正在等待接收这个元素。只有在使用无界线程池或者有饱和策略时才建议使用该队列。</p>
-<p><strong>2.4 几种BlockingQueue的具体实现原理</strong>
+<p><strong>2.4 几种BlockingQueue的具体实现原理</strong><br>
 关于上述几种BlockingQueue的具体实现原理与分析将在下篇博文中详细阐述。</p>
 <h4 id="三可选择的饱和策略rejectedexecutionhandler详解">三.可选择的饱和策略RejectedExecutionHandler详解</h4>
 <p>JDK主要提供了4种饱和策略供选择。4种策略都做为静态内部类在ThreadPoolExcutor中进行实现。</p>
-<p><strong>3.1 AbortPolicy中止策略</strong>
+<p><strong>3.1 AbortPolicy中止策略</strong><br>
 该策略是默认饱和策略。</p>
 <pre><code class="language-java">  public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
             throw new RejectedExecutionException(&quot;Task &quot; + r.toString() +
@@ -174,9 +174,9 @@
                                       new SynchronousQueue&lt;Runnable&gt;());
     }
 </code></pre>
-<p>在newCachedThreadPool中如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。
-初看该构造函数时我有这样的疑惑：核心线程池为0，那按照前面所讲的线程池策略新任务来临时无法进入核心线程池，只能进入 SynchronousQueue中进行等待，而SynchronousQueue的大小为1，那岂不是第一个任务到达时只能等待在队列中，直到第二个任务到达发现无法进入队列才能创建第一个线程？
-这个问题的答案在上面讲SynchronousQueue时其实已经给出了，要将一个元素放入SynchronousQueue中，必须有另一个线程正在等待接收这个元素。因此即便SynchronousQueue一开始为空且大小为1，第一个任务也无法放入其中，因为没有线程在等待从SynchronousQueue中取走元素。因此第一个任务到达时便会创建一个新线程执行该任务。
+<p>在newCachedThreadPool中如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。<br>
+初看该构造函数时我有这样的疑惑：核心线程池为0，那按照前面所讲的线程池策略新任务来临时无法进入核心线程池，只能进入 SynchronousQueue中进行等待，而SynchronousQueue的大小为1，那岂不是第一个任务到达时只能等待在队列中，直到第二个任务到达发现无法进入队列才能创建第一个线程？<br>
+这个问题的答案在上面讲SynchronousQueue时其实已经给出了，要将一个元素放入SynchronousQueue中，必须有另一个线程正在等待接收这个元素。因此即便SynchronousQueue一开始为空且大小为1，第一个任务也无法放入其中，因为没有线程在等待从SynchronousQueue中取走元素。因此第一个任务到达时便会创建一个新线程执行该任务。<br>
 这里引申出一个小技巧：有时我们可能希望线程池在没有任务的情况下销毁所有的线程，既设置线程池核心大小为0，但又不想使用SynchronousQueue而是想使用有界的等待队列。显然，不进行任何特殊设置的话这样的用法会发生奇怪的行为：直到等待队列被填满才会有新线程被创建，任务才开始执行。这并不是我们希望看到的，此时可通过allowCoreThreadTimeOut使等待队列中的元素出队被调用执行，详细原理和使用将会在后续博客中阐述。</p>
 <p><strong>4.2 newFixedThreadPool</strong></p>
 <p>创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。</p>
@@ -187,7 +187,7 @@
     }
 </code></pre>
 <p>看代码一目了然了，使用固定大小的线程池并使用无限大的队列</p>
-<p><strong>4.3 newScheduledThreadPool</strong>
+<p><strong>4.3 newScheduledThreadPool</strong><br>
 创建一个定长线程池，支持定时及周期性任务执行。</p>
 <pre><code class="language-java">public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize) {
         return new ScheduledThreadPoolExecutor(corePoolSize);
@@ -217,7 +217,7 @@
 <pre><code class="language-java">DelegatedExecutorService(ExecutorService executor) { e = executor; }
 </code></pre>
 <p>其实就是使用装饰模式增强了ScheduledExecutorService（1）的功能，不仅确保只有一个线程顺序执行任务，也保证线程意外终止后会重新创建一个线程继续执行任务。具体实现原理会在后续博客中讲解。</p>
-<p><strong>4.5 newWorkStealingPool</strong>
+<p><strong>4.5 newWorkStealingPool</strong><br>
 创建一个拥有多个任务队列（以便减少连接数）的线程池。</p>
 <p>这是jdk1.8中新增加的一种线程池实现，先看一下它的无参实现</p>
 <pre><code class="language-java">public static ExecutorService newWorkStealingPool() {

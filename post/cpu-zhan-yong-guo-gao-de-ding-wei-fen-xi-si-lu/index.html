@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Spring | itme.ink</title>
+<title>CPU占用过高的定位分析思路 | itme.ink</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -91,30 +91,57 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          <h2 class="current-tag">标签: Spring</h2>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/谈谈Spring IOC">
-                  <h2 class="post-title">谈谈Spring IOC</h2>
-                </a>
-                <div class="post-date">
-                  2017-12-15
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
+          <div class="post-detail">
+            <h2 class="post-title">CPU占用过高的定位分析思路</h2>
+            <div class="post-date">2019-08-23</div>
+            
+            <div class="post-content">
+              <ol>
+<li>先用 top 命令找出CPU占用比较高的</li>
+<li>ps -ef 或 jps 进一步定位，得知是一个怎么样的一个后台程序给我们惹事</li>
+</ol>
+<blockquote>
+<pre><code>  	jps -l / ps -ef|grep java|grep -v grep
+</code></pre>
+</blockquote>
+<ol start="3">
+<li>定位到具体的线程或者代码</li>
+</ol>
+<blockquote>
+<p>ps -mp 15 -o THREAD,tid,time</p>
+</blockquote>
+<ol start="4">
+<li>将需要的线程ID转换为16进制格式(英文小写格式)</li>
+<li>jstack 进程ID|grep tid(16进制线程ID小写英文) -A60</li>
+</ol>
+<blockquote>
+<p>jstack 15 | grep 13 -A60</p>
+</blockquote>
 
-          <div class="pagination-container">
-  
-    <a href="https://jike-leisong.github.io//tag/MzKEL8HsE/" class="prev"><i class="icon-arrow-ios-back-outline"></i> 上一页</a>
-  
-  
-</div>
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://jike-leisong.github.io//tag/hrpV8XEHZ" class="tag">
+                    JVM
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://jike-leisong.github.io//post/spring-aop">
+                  <h3 class="post-title">
+                    Spring AOP
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
 
         </div>
       </div>

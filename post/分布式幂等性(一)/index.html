@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1564729204297">
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1566526940204">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1564729204297" class="site-logo">
+        <img src="https://jike-leisong.github.io//images/avatar.png?v=1566526940204" class="site-logo">
         <h1 class="site-title">itme.ink</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -106,13 +106,13 @@
 <p>就是用户对于一个操作发起的一次请求或者多次请求的结果是一致的，不会因为多次点击而产生了副作用。举个简单的例子，那就是支付，用户购买商品使用支付，支付扣款成功，但是返回结果的时候网络异常，此时钱已经扣了，用户再次点击按钮，此时会进行第二次扣款，返回结果成功，用户查询余额发现多扣钱了，流水记录也变成了两条。</p>
 </blockquote>
 <p>在以前的单应用系统中，我们只需要把数据操作放入事物中即可，发生错误立即回滚，但是再响应客户端的时候也有可能出现网络中断或者异常等等。</p>
-<p>在增删改查4个操作中，尤为注意就是增加或者修改
-查询结果是不会改变的
-删除只会进行一次，用户多次点击产生的结果一样
-修改在大多场景下结果一样
+<p>在增删改查4个操作中，尤为注意就是增加或者修改<br>
+查询结果是不会改变的<br>
+删除只会进行一次，用户多次点击产生的结果一样<br>
+修改在大多场景下结果一样<br>
 增加在重复提交的场景下会出现</p>
 <p>那么如何设计接口才能做到幂等性呢？</p>
-<p>######方法一：
+<p>######方法一：<br>
 单次支付请求，也就是直接支付了，不需要额外的数据库操作了，这个时候发起异步请求创建一个唯一的 ticketId，就是门票，这张门票只能使用一次就作废，具体步骤如下：</p>
 <pre><code>1. 异步请求获取门票
 2. 调用支付，传入门票
@@ -120,8 +120,8 @@
 4. 返回结果到客户端
 </code></pre>
 <p>如果步骤4通信失败，用户再次发起请求，那么最终结果还是一样。</p>
-<p>######方法二：
-分布式环境下各个服务相互调用。系统举例，我们支付的时候先要扣款，然后更新订单，这个地方就设计到了订单服务以及支付服务了。用户调用支付，扣款成功后，更新对应订单状态，然后再保存流水。而这个地方就没必要使用门票 ticketId了，因为会比较麻烦。
+<p>######方法二：<br>
+分布式环境下各个服务相互调用。系统举例，我们支付的时候先要扣款，然后更新订单，这个地方就设计到了订单服务以及支付服务了。用户调用支付，扣款成功后，更新对应订单状态，然后再保存流水。而这个地方就没必要使用门票 ticketId了，因为会比较麻烦。<br>
 （支付状态：未支付，已支付）</p>
 <p>步骤：</p>
 <pre><code>1. 查询订单支付状态
@@ -129,7 +129,7 @@
 3. 如果未支付，则支付扣款并保存流水
 4. 返回支付结果
 </code></pre>
-<p>如果步骤4通信失败，用户再次发起请求，那么最终结果还是一样的。
+<p>如果步骤4通信失败，用户再次发起请求，那么最终结果还是一样的。<br>
 对于做过支付的朋友，幂等，也可以称之为冲正，保证客户端与服务端的交易一致性，避免多次扣款。</p>
 
             </div>
@@ -149,9 +149,9 @@
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://jike-leisong.github.io//post/Redis 基本语法">
+                <a href="https://jike-leisong.github.io//post/需了解">
                   <h3 class="post-title">
-                    Redis 基本语法
+                    需了解
                   </h3>
                 </a>
               </div>

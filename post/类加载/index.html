@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1564729204297">
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1566526940204">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1564729204297" class="site-logo">
+        <img src="https://jike-leisong.github.io//images/avatar.png?v=1566526940204" class="site-logo">
         <h1 class="site-title">itme.ink</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -96,27 +96,27 @@
             <div class="post-date">2017-12-17</div>
             
             <div class="post-content">
-              <p>类加载过程：jvm把class文件加载到内存，并对数据进行校验、解析和初始化，最终形成jvm可以直接使用的java类型的过程。
+              <p>类加载过程：jvm把class文件加载到内存，并对数据进行校验、解析和初始化，最终形成jvm可以直接使用的java类型的过程。<br>
 JVM将类加载过程分为三个步骤：装载（Load），链接（Link）和初始化(Initialize)，链接又分为三个步骤（验证、准备、解析）。</p>
 <ol>
-<li>装载：查找并加载类的二进制数据；
-2)链接：
-验证：确保被加载类的正确性；
-准备：为类的静态变量分配内存，并将其初始化为默认值；
-解析：把类中的符号引用转换为直接引用；
+<li>装载：查找并加载类的二进制数据；<br>
+2)链接：<br>
+验证：确保被加载类的正确性；<br>
+准备：为类的静态变量分配内存，并将其初始化为默认值；<br>
+解析：把类中的符号引用转换为直接引用；<br>
 3)初始化：为类的静态变量赋予正确的初始值；</li>
 </ol>
-<p>类什么时候才被初始化：
-1）创建类的实例，也就是new一个对象
-2）访问某个类或接口的静态变量，或者对该静态变量赋值
-3）调用类的静态方法
-4）反射（Class.forName(&quot;com.lyj.load&quot;)）
-5）初始化一个类的子类（会首先初始化子类的父类）
-6）JVM启动时标明的启动类，即文件名和类名相同的那个类
+<p>类什么时候才被初始化：<br>
+1）创建类的实例，也就是new一个对象<br>
+2）访问某个类或接口的静态变量，或者对该静态变量赋值<br>
+3）调用类的静态方法<br>
+4）反射（Class.forName(&quot;com.lyj.load&quot;)）<br>
+5）初始化一个类的子类（会首先初始化子类的父类）<br>
+6）JVM启动时标明的启动类，即文件名和类名相同的那个类<br>
 只有这6中情况才会导致类的类的初始化。</p>
-<p>类的初始化步骤：
-1）如果这个类还没有被加载和链接，那先进行加载和链接
-2）假如这个类存在直接父类，并且这个类还没有被初始化（注意：在一个类加载器中，类只能初始化一次），那就初始化直接的父类（不适用于接口）
+<p>类的初始化步骤：<br>
+1）如果这个类还没有被加载和链接，那先进行加载和链接<br>
+2）假如这个类存在直接父类，并且这个类还没有被初始化（注意：在一个类加载器中，类只能初始化一次），那就初始化直接的父类（不适用于接口）<br>
 3)加入类中存在初始化语句（如static变量和static块），那就依次执行这些初始化语句。</p>
 
             </div>

@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1564729204297">
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1566526940204">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1564729204297" class="site-logo">
+        <img src="https://jike-leisong.github.io//images/avatar.png?v=1566526940204" class="site-logo">
         <h1 class="site-title">itme.ink</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -98,13 +98,13 @@
             <div class="post-content">
               <p><strong>1、Zookeeper选举机制</strong></p>
 <blockquote>
-<p>Zookeeper虽然在配置文件中并没有指定master和slave
-但是，zookeeper工作时，是有一个节点为leader，其他则为follower
+<p>Zookeeper虽然在配置文件中并没有指定master和slave<br>
+但是，zookeeper工作时，是有一个节点为leader，其他则为follower<br>
 Leader是通过内部的选举机制临时产生的</p>
 </blockquote>
 <ul>
-<li>zookeeper的选举机制（zk的数据一致性核心算法paxos）**
-以一个简单的例子来说明整个选举的过程.
+<li>zookeeper的选举机制（zk的数据一致性核心算法paxos）**<br>
+以一个简单的例子来说明整个选举的过程.<br>
 假设有五台服务器组成的zookeeper集群,它们的id从1-5,同时它们都是最新启动的,也就是没有历史数据,在存放数据量这一点上,都是一样的.假设这些服务器依序启动,来看看会发生什么.</li>
 </ul>
 <ol>
@@ -115,9 +115,9 @@ Leader是通过内部的选举机制临时产生的</p>
 <li>服务器5启动,同4一样,当小弟.</li>
 </ol>
 <ul>
-<li>非全新集群的选举机制(数据恢复)**
-那么，初始化的时候，是按照上述的说明进行选举的，但是当zookeeper运行了一段时间之后，有机器down掉，重新选举时，选举过程就相对复杂了。
-需要加入数据version、leader id和逻辑时钟。
+<li>非全新集群的选举机制(数据恢复)**<br>
+那么，初始化的时候，是按照上述的说明进行选举的，但是当zookeeper运行了一段时间之后，有机器down掉，重新选举时，选举过程就相对复杂了。<br>
+需要加入数据version、leader id和逻辑时钟。<br>
 数据version：</li>
 </ul>
 <blockquote>
@@ -131,9 +131,9 @@ Leader是通过内部的选举机制临时产生的</p>
 <blockquote>
 <p>这个值从0开始递增,每次选举对应一个值,也就是说:  如果在同一次选举中,那么这个值应该是一致的 ;  逻辑时钟值越大,说明这一次选举leader的进程更新.</p>
 </blockquote>
-<p>选举的标准就变成：
-1、逻辑时钟小的选举结果被忽略，重新投票
-2、统一逻辑时钟后，数据id大的胜出
+<p>选举的标准就变成：<br>
+1、逻辑时钟小的选举结果被忽略，重新投票<br>
+2、统一逻辑时钟后，数据id大的胜出<br>
 3、数据id相同的情况下，leaderid大的胜出</p>
 <p>根据这个规则选出leader。</p>
 
@@ -154,9 +154,9 @@ Leader是通过内部的选举机制临时产生的</p>
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://jike-leisong.github.io//post/Spring中配置数据源的4种形式">
+                <a href="https://jike-leisong.github.io//post/深入理解分布式事务,高并发下分布式事务的解决方案">
                   <h3 class="post-title">
-                    Spring中配置数据源的4种形式
+                    深入理解分布式事务,高并发下分布式事务的解决方案
                   </h3>
                 </a>
               </div>
