@@ -1,345 +1,208 @@
+
 <!DOCTYPE html>
 <html>
   <head>
-      
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>itme.ink</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+<meta charset="utf-8" >
 
-<meta name="description" content="温故而知新"/>
-<meta name="keywords" content="温故而知新"/>
+<title>禅 | itme.ink</title>
+<meta name="description" content="温故而知新">
 
-<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1573183511057">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
-<!-- Modernizr JS -->
-<script src="https://jike-leisong.github.io//media/scripts/_vendors/modernizr-2.6.2.min.js"></script>
-<!-- FOR IE9 below -->
-<!--[if lt IE 9]>
-<scripts src="https://jike-leisong.github.io//media/scripts/_vendors/respond.min.js"></scripts>
-<![endif]-->
-
-<!-- Comment -->
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/tomorrow-night.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
-<link crossorigin="anonymous" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" href="https://lib.baomitu.com/font-awesome/5.8.1/css/all.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
 
   </head>
   <body>
-  
-<div id="fh5co-offcanvas">
-    <a href="#!" class="fh5co-close-offcanvas js-fh5co-close-offcanvas">
-        <span><i class="icon-cross3"></i> <span>Close</span></span>
-    </a>
-    <div class="fh5co-bio">
-        <figure>
-            <img src="https://jike-leisong.github.io//media/images/avatar.png" alt="itme.ink" class="img-responsive">
-        </figure>
-        <h3 class="heading">ABOUT ME</h3>
-        <h2>itme.ink</h2>
-        <p>温故而知新</p>
-        <ul class="fh5co-social">
-            
-                <li>
-                    
-                </li>
-            
-                <li>
-                    
-                </li>
-            
-                <li>
-                    
-                </li>
-            
-                <li>
-                    
-                </li>
-            
-                <li>
-                    
-                </li>
-            
-        </ul>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://jike-leisong.github.io/">
+        <img class="avatar" src="https://jike-leisong.github.io//images/avatar.png?v=1573183511057" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://jike-leisong.github.io/">
+        <h1 class="site-title">itme.ink</h1>
+      </a>
     </div>
-
-    <div class="fh5co-menu">
-        <div class="fh5co-box">
-            <h3 class="heading">搜索</h3>
-            <form action="#">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="输入关键字">
-                </div>
-            </form>
-        </div>
-        <div class="fh5co-box">
-            <h3 class="heading">标签</h3>
-            <ul>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/0WBzoU1G-">Mybatis</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/tomact">Tomact</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/JUSmlN723">Git</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/netty">Netty</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/MzKEL8HsE">Spring</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/boot">Boot</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/java">Java</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/duo-xian-cheng">多线程</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/mian-shi-ti">面试题</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/shu-ju-yuan">数据源</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/sql">SQL</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/mabatis">Mabatis</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/cloud">Cloud</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/zookeeper">Zookeeper</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/sOMy5ZlVw">分布式</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/session">Session</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/cron">Cron</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/linux">Linux</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/redis">Redis</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/soa">SOA</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/-kxmq3hFX">MQTT</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/hrpV8XEHZ">JVM</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/ZMreOtewG">MVC</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/2RK0lyPtw">DB</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/hJqNul-if">Spring Cloud</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/yYzItG4Us">设计模式</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/2VvjfMCS1">源码分析</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/xiao-xi">消息</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/tool">Tool</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/suan-fa">算法</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/kua-yu">跨域</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/xing-neng-diao-you">性能调优</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/shu-ju-ku">数据库</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/lei-jia-zai">类加载</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/jia-gou">架构</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/fen-bu-shi-shi-wu">分布式事务</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/hashmap">HashMap</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/huan-cun">缓存</a></li>
-                
-                    <li><a href="https://jike-leisong.github.io//tag/mi-deng-xing">幂等性</a></li>
-                
-            </ul>
-        </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
     </div>
+  </div>
 </div>
 
-<header id="fh5co-header">
-    <div class="container-fluid">
-        <div class="row">
-            <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-            <ul class="fh5co-social">
-                
-                    <li>
-                        <a href="/"
-                         >
-                            首页
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/archives"
-                         >
-                            归档
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/tags"
-                         >
-                            标签
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/post/about"
-                         >
-                            关于
-                        </a>
-                    </li>
-                
-            </ul>
-            <div class="col-lg-12 col-md-12 text-center">
-                <h1 id="fh5co-logo">
-                    <a href="https://jike-leisong.github.io/">itme.ink</a>
-                </h1>
-            </div>
-        </div>
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
     </div>
-</header>
+  </div>
+</transition>
 
 
-<!--  <a href="#" class="fh5co-post-prev"><span>👈 Prev</span></a>-->
-<!--  <a href="#" class="fh5co-post-next"><span>Next 👉</span></a>-->
-
-  <div class="container-fluid">
-      <div class="row fh5co-post-entry single-entry">
-          <article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
-              <figure class="animate-box">
-                  
-              </figure>
-              <span class="fh5co-meta animate-box">
-                  
-                      <div class="tag-container">
-                          
-                              <a href="https://jike-leisong.github.io//tag/shan" class="tag">禅, </a>
-                          
-                      </div>
-                  
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">禅</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2018-01-19</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://jike-leisong.github.io//tag/shan">
+                    禅
+                    
+                  </a>
+                
               </span>
-              <h2 class="fh5co-article-title animate-box">禅</h2>
-              <span class="fh5co-meta fh5co-date animate-box">2018-01-19</span>
-
-              <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
-                  <div class="row">
-                      <div class="col-md-12 animate-box post-content">
-                          <p> <p>[TOC]</p>
+            
+          </div>
+          <div class="post-content">
+            <p>[TOC]</p>
 <h4 id="互联网工程专题">互联网工程专题</h4>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2963358"><label class="task-list-item-label" for="task-item-2963358"> 《人人基因产品》讲解</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4673729"><label class="task-list-item-label" for="task-item-4673729"> 概要设计</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2772188"><label class="task-list-item-label" for="task-item-2772188"> Mysql 一主多从</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6684458"><label class="task-list-item-label" for="task-item-6684458"> maven 使用讲解</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3470738"><label class="task-list-item-label" for="task-item-3470738"> maven讲解</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9173412"><label class="task-list-item-label" for="task-item-9173412"> git 服务搭建与使用（上）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2422874"><label class="task-list-item-label" for="task-item-2422874"> git 基本命令</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1492192"><label class="task-list-item-label" for="task-item-1492192"> Jenkins</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-74545"><label class="task-list-item-label" for="task-item-74545"> 《人人基因产品》讲解</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9003955"><label class="task-list-item-label" for="task-item-9003955"> 概要设计</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5266298"><label class="task-list-item-label" for="task-item-5266298"> Mysql 一主多从</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1633211"><label class="task-list-item-label" for="task-item-1633211"> maven 使用讲解</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9319112"><label class="task-list-item-label" for="task-item-9319112"> maven讲解</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2840915"><label class="task-list-item-label" for="task-item-2840915"> git 服务搭建与使用（上）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-527010"><label class="task-list-item-label" for="task-item-527010"> git 基本命令</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3936007"><label class="task-list-item-label" for="task-item-3936007"> Jenkins</label></li>
 </ul>
 <h4 id="应用框架专题">应用框架专题</h4>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2415499"><label class="task-list-item-label" for="task-item-2415499"> Spring 机构概述</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-548935"><label class="task-list-item-label" for="task-item-548935"> Spring ioc</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6549125"><label class="task-list-item-label" for="task-item-6549125"> AOP 动态代理</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5941256"><label class="task-list-item-label" for="task-item-5941256"> Spring 插件</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3122382"><label class="task-list-item-label" for="task-item-3122382"> Spring mvc1</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7909850"><label class="task-list-item-label" for="task-item-7909850"> Spring mvc2</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6472002"><label class="task-list-item-label" for="task-item-6472002"> Spring mvc3</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1106865"><label class="task-list-item-label" for="task-item-1106865"> mybatis</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8216621"><label class="task-list-item-label" for="task-item-8216621"> mybatis 应用与配置</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6942451"><label class="task-list-item-label" for="task-item-6942451"> 分布式框架</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-7639669"><label class="task-list-item-label" for="task-item-7639669"> api 安全</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8362936"><label class="task-list-item-label" for="task-item-8362936"> java 日志</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-563974"><label class="task-list-item-label" for="task-item-563974"> java 异常处理</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4796407"><label class="task-list-item-label" for="task-item-4796407"> Spring 机构概述</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4840171"><label class="task-list-item-label" for="task-item-4840171"> Spring ioc</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-741239"><label class="task-list-item-label" for="task-item-741239"> AOP 动态代理</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1373950"><label class="task-list-item-label" for="task-item-1373950"> Spring 插件</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8789704"><label class="task-list-item-label" for="task-item-8789704"> Spring mvc1</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3894927"><label class="task-list-item-label" for="task-item-3894927"> Spring mvc2</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3171807"><label class="task-list-item-label" for="task-item-3171807"> Spring mvc3</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7544733"><label class="task-list-item-label" for="task-item-7544733"> mybatis</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9410233"><label class="task-list-item-label" for="task-item-9410233"> mybatis 应用与配置</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7855215"><label class="task-list-item-label" for="task-item-7855215"> 分布式框架</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3252177"><label class="task-list-item-label" for="task-item-3252177"> api 安全</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1574128"><label class="task-list-item-label" for="task-item-1574128"> java 日志</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6103132"><label class="task-list-item-label" for="task-item-6103132"> java 异常处理</label></li>
 </ul>
 <h4 id="性能调优专题">性能调优专题</h4>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-56129"><label class="task-list-item-label" for="task-item-56129"> nginx（一）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9399533"><label class="task-list-item-label" for="task-item-9399533"> nginx（二）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-2392433"><label class="task-list-item-label" for="task-item-2392433"> tomcat 线程模型源码分析</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-4112047"><label class="task-list-item-label" for="task-item-4112047"> tomcat 生产环境配置详解</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7688679"><label class="task-list-item-label" for="task-item-7688679"> 系统版本发布管理方法</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9382896"><label class="task-list-item-label" for="task-item-9382896"> JVM(一)</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2388193"><label class="task-list-item-label" for="task-item-2388193"> JVM(二)</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8862157"><label class="task-list-item-label" for="task-item-8862157"> JVM(三)</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9601729"><label class="task-list-item-label" for="task-item-9601729"> nginx（一）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3045989"><label class="task-list-item-label" for="task-item-3045989"> nginx（二）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-5670898"><label class="task-list-item-label" for="task-item-5670898"> tomcat 线程模型源码分析</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-1831116"><label class="task-list-item-label" for="task-item-1831116"> tomcat 生产环境配置详解</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8615609"><label class="task-list-item-label" for="task-item-8615609"> 系统版本发布管理方法</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-810229"><label class="task-list-item-label" for="task-item-810229"> JVM(一)</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3519329"><label class="task-list-item-label" for="task-item-3519329"> JVM(二)</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-57366"><label class="task-list-item-label" for="task-item-57366"> JVM(三)</label></li>
 </ul>
 <h4 id="分布式专题">分布式专题</h4>
 <ul class="contains-task-list">
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8255687"> <strong>并发编程</strong><label class="task-list-item-label" for="task-item-8255687"> **并发编程**</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6500562"> <strong>并发编程</strong><label class="task-list-item-label" for="task-item-6500562"> **并发编程**</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-690263"><label class="task-list-item-label" for="task-item-690263"> 分布式系列课程介绍与大型网站演变过程</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7203325"><label class="task-list-item-label" for="task-item-7203325"> 并发编程之Executor</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4999410"><label class="task-list-item-label" for="task-item-4999410"> 分布式专题并发编程 atomic & collections</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8539045"><label class="task-list-item-label" for="task-item-8539045"> 分布式系列课程介绍与大型网站演变过程</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8068739"><label class="task-list-item-label" for="task-item-8068739"> 并发编程之Executor</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7877402"><label class="task-list-item-label" for="task-item-7877402"> 分布式专题并发编程 atomic & collections</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3803601">  <strong>Zookeeper</strong><label class="task-list-item-label" for="task-item-3803601">  **Zookeeper**</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-861427">  <strong>Zookeeper</strong><label class="task-list-item-label" for="task-item-861427">  **Zookeeper**</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8247175"><label class="task-list-item-label" for="task-item-8247175"> Zookeeper 集群部署 & 快速入门</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8904557"><label class="task-list-item-label" for="task-item-8904557"> Zookeeper 场景介绍与开放</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6935976"><label class="task-list-item-label" for="task-item-6935976"> Zookeeper 场景讲解（分布式锁） & zkClient使用</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5044951"><label class="task-list-item-label" for="task-item-5044951"> Zookeeper之 zkClient & curator 详解</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1090909"><label class="task-list-item-label" for="task-item-1090909"> Zookeeper 源码分析和运维总结</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6557978"><label class="task-list-item-label" for="task-item-6557978"> Zookeeper 集群部署 & 快速入门</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7452231"><label class="task-list-item-label" for="task-item-7452231"> Zookeeper 场景介绍与开放</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6260797"><label class="task-list-item-label" for="task-item-6260797"> Zookeeper 场景讲解（分布式锁） & zkClient使用</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8791428"><label class="task-list-item-label" for="task-item-8791428"> Zookeeper之 zkClient & curator 详解</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9958871"><label class="task-list-item-label" for="task-item-9958871"> Zookeeper 源码分析和运维总结</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8109763">  <strong>Dubbo</strong><label class="task-list-item-label" for="task-item-8109763">  **Dubbo**</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9089521">  <strong>Dubbo</strong><label class="task-list-item-label" for="task-item-9089521">  **Dubbo**</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-626876"><label class="task-list-item-label" for="task-item-626876"> 《从0到1整体认知分布式架构》</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7247382"><label class="task-list-item-label" for="task-item-7247382"> 《快速掌握Dubbo常规应用》</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6764117"><label class="task-list-item-label" for="task-item-6764117"> 《Dubbo 企业级应用进阶》</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7350749"><label class="task-list-item-label" for="task-item-7350749"> dubbo 底层通信原理与实现探究</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1701450"><label class="task-list-item-label" for="task-item-1701450"> Dubbo 并发连接底层讲究</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8338657"><label class="task-list-item-label" for="task-item-8338657"> Dubbo 调用模块讲解</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7479964"><label class="task-list-item-label" for="task-item-7479964"> 《从0到1整体认知分布式架构》</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1584946"><label class="task-list-item-label" for="task-item-1584946"> 《快速掌握Dubbo常规应用》</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-337198"><label class="task-list-item-label" for="task-item-337198"> 《Dubbo 企业级应用进阶》</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4393310"><label class="task-list-item-label" for="task-item-4393310"> dubbo 底层通信原理与实现探究</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3780143"><label class="task-list-item-label" for="task-item-3780143"> Dubbo 并发连接底层讲究</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5662944"><label class="task-list-item-label" for="task-item-5662944"> Dubbo 调用模块讲解</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6967457">  <strong>Redis</strong><label class="task-list-item-label" for="task-item-6967457">  **Redis**</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2730339">  <strong>Redis</strong><label class="task-list-item-label" for="task-item-2730339">  **Redis**</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-878638"><label class="task-list-item-label" for="task-item-878638"> Nosql 之 Redis的演变过程</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7848667"><label class="task-list-item-label" for="task-item-7848667"> Redis 特性和集群特性讲解</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9755315"><label class="task-list-item-label" for="task-item-9755315"> Redis Cluster部署详解和Jedis客户端使用</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-345546"><label class="task-list-item-label" for="task-item-345546"> Redis Client之Protocol详解&工作分享</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8455416"><label class="task-list-item-label" for="task-item-8455416"> 企业级Redis JavaApi开发详解</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6200907"><label class="task-list-item-label" for="task-item-6200907"> Nosql 之 Redis的演变过程</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-412242"><label class="task-list-item-label" for="task-item-412242"> Redis 特性和集群特性讲解</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3813759"><label class="task-list-item-label" for="task-item-3813759"> Redis Cluster部署详解和Jedis客户端使用</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5171885"><label class="task-list-item-label" for="task-item-5171885"> Redis Client之Protocol详解&工作分享</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-382553"><label class="task-list-item-label" for="task-item-382553"> 企业级Redis JavaApi开发详解</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4319133">  <strong>Netty</strong><label class="task-list-item-label" for="task-item-4319133">  **Netty**</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4520518">  <strong>Netty</strong><label class="task-list-item-label" for="task-item-4520518">  **Netty**</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3143778"><label class="task-list-item-label" for="task-item-3143778"> IO与NIO线程模型Reactor模型Netty初探</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3880036"><label class="task-list-item-label" for="task-item-3880036"> Netty架构/模块组件/线程模型源码分析</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3212968"><label class="task-list-item-label" for="task-item-3212968"> 高性能序列化协议Protobuf及源码分析</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4889507"><label class="task-list-item-label" for="task-item-4889507"> 粘包分包现象及解决方案、编程码器源码分析</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8368480"><label class="task-list-item-label" for="task-item-8368480"> Netty之Http协议开发应用实践（高并发弹幕系统实现）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-4099043"><label class="task-list-item-label" for="task-item-4099043"> Netty之WebSocket协议开发应用实践一（贪吃蛇多人联机网游实现）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-6548631"><label class="task-list-item-label" for="task-item-6548631"> Netty之WebSocket协议开发应用实践二（贪吃蛇多人联机网游实现）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-5272440"><label class="task-list-item-label" for="task-item-5272440"> IO与NIO线程模型Reactor模型Netty初探</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9729094"><label class="task-list-item-label" for="task-item-9729094"> Netty架构/模块组件/线程模型源码分析</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5864717"><label class="task-list-item-label" for="task-item-5864717"> 高性能序列化协议Protobuf及源码分析</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1408233"><label class="task-list-item-label" for="task-item-1408233"> 粘包分包现象及解决方案、编程码器源码分析</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8836047"><label class="task-list-item-label" for="task-item-8836047"> Netty之Http协议开发应用实践（高并发弹幕系统实现）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-5327587"><label class="task-list-item-label" for="task-item-5327587"> Netty之WebSocket协议开发应用实践一（贪吃蛇多人联机网游实现）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-3874862"><label class="task-list-item-label" for="task-item-3874862"> Netty之WebSocket协议开发应用实践二（贪吃蛇多人联机网游实现）</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1320403">  <strong>RocketMq</strong><label class="task-list-item-label" for="task-item-1320403">  **RocketMq**</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4215971">  <strong>RocketMq</strong><label class="task-list-item-label" for="task-item-4215971">  **RocketMq**</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-9118023"><label class="task-list-item-label" for="task-item-9118023"> 初始消息中间件</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4440710"><label class="task-list-item-label" for="task-item-4440710"> 部署与快速开始特性</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9514075"><label class="task-list-item-label" for="task-item-9514075"> RocketMq特性详解</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-6251047"><label class="task-list-item-label" for="task-item-6251047"> RocketMq性能 & 测试（阿里大咖讲）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4860798"><label class="task-list-item-label" for="task-item-4860798"> api & 源码分析</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-6510568"><label class="task-list-item-label" for="task-item-6510568"> 初始消息中间件</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-873958"><label class="task-list-item-label" for="task-item-873958"> 部署与快速开始特性</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-147882"><label class="task-list-item-label" for="task-item-147882"> RocketMq特性详解</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-5402335"><label class="task-list-item-label" for="task-item-5402335"> RocketMq性能 & 测试（阿里大咖讲）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6790050"><label class="task-list-item-label" for="task-item-6790050"> api & 源码分析</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4404559">  <strong>Sharding-Jdbc</strong><label class="task-list-item-label" for="task-item-4404559">  **Sharding-Jdbc**</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5202184">  <strong>Sharding-Jdbc</strong><label class="task-list-item-label" for="task-item-5202184">  **Sharding-Jdbc**</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4299214"><label class="task-list-item-label" for="task-item-4299214"> 分配原则配置Sql改写执行Sharding-Jdbc&Mycat对比</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2274552"><label class="task-list-item-label" for="task-item-2274552"> 数据库垂直与水平拆分规则与业务Sharding-Jdbc源码分析</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4494965"><label class="task-list-item-label" for="task-item-4494965"> 分配原则配置Sql改写执行Sharding-Jdbc&Mycat对比</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8802638"><label class="task-list-item-label" for="task-item-8802638"> 数据库垂直与水平拆分规则与业务Sharding-Jdbc源码分析</label></li>
 </ul>
 </li>
 </ul>
@@ -348,90 +211,87 @@
 <h4 id="项目实战专题">项目实战专题</h4>
 <ul class="contains-task-list">
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4036103">  <strong>APM项目</strong><label class="task-list-item-label" for="task-item-4036103">  **APM项目**</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8427748">  <strong>APM项目</strong><label class="task-list-item-label" for="task-item-8427748">  **APM项目**</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5198490"><label class="task-list-item-label" for="task-item-5198490"> APM简介简介与字节码插桩技术应用</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3170352"><label class="task-list-item-label" for="task-item-3170352"> javassist插桩技术精讲</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6825579"><label class="task-list-item-label" for="task-item-6825579"> 服务接口性能数据采集</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4706552"><label class="task-list-item-label" for="task-item-4706552"> WEB相应性能数据采集</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1648452"><label class="task-list-item-label" for="task-item-1648452"> JDBC埋点数据采集</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9921984"><label class="task-list-item-label" for="task-item-9921984"> 数据存储与报表展示</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9329232"><label class="task-list-item-label" for="task-item-9329232"> APM简介简介与字节码插桩技术应用</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2011345"><label class="task-list-item-label" for="task-item-2011345"> javassist插桩技术精讲</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7523865"><label class="task-list-item-label" for="task-item-7523865"> 服务接口性能数据采集</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5635908"><label class="task-list-item-label" for="task-item-5635908"> WEB相应性能数据采集</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3529881"><label class="task-list-item-label" for="task-item-3529881"> JDBC埋点数据采集</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-375996"><label class="task-list-item-label" for="task-item-375996"> 数据存储与报表展示</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1596672">  <strong>区块链项目</strong><label class="task-list-item-label" for="task-item-1596672">  **区块链项目**</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6187720">  <strong>区块链项目</strong><label class="task-list-item-label" for="task-item-6187720">  **区块链项目**</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7494192"><label class="task-list-item-label" for="task-item-7494192"> 项目架构与技术点讲解</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6899972"><label class="task-list-item-label" for="task-item-6899972"> 区块链整体结构设计与实现</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6559514"><label class="task-list-item-label" for="task-item-6559514"> 比特币的设计与实现</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-287970"><label class="task-list-item-label" for="task-item-287970"> 密码学</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3770352"><label class="task-list-item-label" for="task-item-3770352"> 比特币钱包的设计与实现</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4585330"><label class="task-list-item-label" for="task-item-4585330"> P2P去中心化设计与实现</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4221275"><label class="task-list-item-label" for="task-item-4221275"> 项目架构与技术点讲解</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2725929"><label class="task-list-item-label" for="task-item-2725929"> 区块链整体结构设计与实现</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6096173"><label class="task-list-item-label" for="task-item-6096173"> 比特币的设计与实现</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-633871"><label class="task-list-item-label" for="task-item-633871"> 密码学</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7816218"><label class="task-list-item-label" for="task-item-7816218"> 比特币钱包的设计与实现</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6407315"><label class="task-list-item-label" for="task-item-6407315"> P2P去中心化设计与实现</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4060119">  <strong>双十一电商项目</strong><label class="task-list-item-label" for="task-item-4060119">  **双十一电商项目**</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9074012">  <strong>双十一电商项目</strong><label class="task-list-item-label" for="task-item-9074012">  **双十一电商项目**</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9360798"><label class="task-list-item-label" for="task-item-9360798"> 系统架构-电商系统架构发展历程</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2342286"><label class="task-list-item-label" for="task-item-2342286"> 系统架构-双十一系统架构讲解</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9782148"><label class="task-list-item-label" for="task-item-9782148"> 基础业务-商品模块讲解</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3418516"><label class="task-list-item-label" for="task-item-3418516"> 基础业务-会员&后台模块讲解</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4084361"><label class="task-list-item-label" for="task-item-4084361"> 基础业务-交易模块讲解</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6278723"><label class="task-list-item-label" for="task-item-6278723"> 高并发秒杀-秒杀系统限流方案</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8235255"><label class="task-list-item-label" for="task-item-8235255"> 高并发秒杀-秒杀系统缓存与队列异步化</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7026440"><label class="task-list-item-label" for="task-item-7026440"> 高并发秒杀-秒杀系统库存防超卖</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6384691"><label class="task-list-item-label" for="task-item-6384691"> 分布式会话-商城分布部署</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5690185"><label class="task-list-item-label" for="task-item-5690185"> 分布式会话-利用redis实现分布式会话缓存</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-383252"><label class="task-list-item-label" for="task-item-383252"> 商品详情页缓存-高并发场景下的商品详情页缓存方案实战</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2909531"><label class="task-list-item-label" for="task-item-2909531"> 海量数据缓存-读写分离各种实现优缺点与解决方案</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5333565"><label class="task-list-item-label" for="task-item-5333565"> 海量数据缓存-数据永不迁移的分库分表方案上</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4919324"><label class="task-list-item-label" for="task-item-4919324"> 海量数据缓存-数据永不迁移的分库分表方案下</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6207241"><label class="task-list-item-label" for="task-item-6207241"> 系统架构-电商系统架构发展历程</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5964006"><label class="task-list-item-label" for="task-item-5964006"> 系统架构-双十一系统架构讲解</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7969944"><label class="task-list-item-label" for="task-item-7969944"> 基础业务-商品模块讲解</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1162549"><label class="task-list-item-label" for="task-item-1162549"> 基础业务-会员&后台模块讲解</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6988494"><label class="task-list-item-label" for="task-item-6988494"> 基础业务-交易模块讲解</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4106406"><label class="task-list-item-label" for="task-item-4106406"> 高并发秒杀-秒杀系统限流方案</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1110976"><label class="task-list-item-label" for="task-item-1110976"> 高并发秒杀-秒杀系统缓存与队列异步化</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-374463"><label class="task-list-item-label" for="task-item-374463"> 高并发秒杀-秒杀系统库存防超卖</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2504227"><label class="task-list-item-label" for="task-item-2504227"> 分布式会话-商城分布部署</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1175845"><label class="task-list-item-label" for="task-item-1175845"> 分布式会话-利用redis实现分布式会话缓存</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-723356"><label class="task-list-item-label" for="task-item-723356"> 商品详情页缓存-高并发场景下的商品详情页缓存方案实战</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2588415"><label class="task-list-item-label" for="task-item-2588415"> 海量数据缓存-读写分离各种实现优缺点与解决方案</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6975571"><label class="task-list-item-label" for="task-item-6975571"> 海量数据缓存-数据永不迁移的分库分表方案上</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6058708"><label class="task-list-item-label" for="task-item-6058708"> 海量数据缓存-数据永不迁移的分库分表方案下</label></li>
 </ul>
 </li>
 </ul>
- </p>
-                      </div>
-                  </div>
 
-                  <div class="row">
-                      <div class="col-md-12 animate-box">
-                          
-                      </div>
-                  </div>
+          </div>
+        </div>
 
-                  <div class="row">
-                      <div class="col-md-12 animate-box">
-                          
-                      </div>
-                  </div>
-              </div>
-
-          </article>
+        
       </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">温故而知新</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
   </div>
-
-    
-<footer id="fh5co-footer">
-  <p>Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></p>
-</footer>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
+</div>
 
 
-    
-<!-- jQuery -->
-<script src="https://jike-leisong.github.io//media/scripts/_vendors/jquery.min.js"></script>
-<!-- jQuery Easing -->
-<script src="https://jike-leisong.github.io//media/scripts/_vendors/jquery.easing.1.3.js"></script>
-<!-- Bootstrap -->
-<script src="https://jike-leisong.github.io//media/scripts/_vendors/bootstrap.min.js"></script>
-<!-- Waypoints -->
-<script src="https://jike-leisong.github.io//media/scripts/_vendors/jquery.waypoints.min.js"></script>
-<!-- Main JS -->
-<script src="https://jike-leisong.github.io//media/scripts/_vendors/main.js"></script>
-<!-- Md5 Min JS -->
-<script src="https://jike-leisong.github.io//media/scripts/_vendors/md5.min.js"></script>
+    </div>
+    <script type="application/javascript">
 
-<script type="application/javascript">
-    hljs.initHighlightingOnLoad();
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
 </script>
 
 
