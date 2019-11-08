@@ -1,393 +1,766 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>itme.ink</title>
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1573183224231">
+    <meta charset="utf-8" >
+
+<title>文章归档 | itme.ink</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1573183321142">
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://jike-leisong.github.io/">
-  <img class="avatar" src="https://jike-leisong.github.io//images/avatar.png?v=1573183224231" alt="">
-  </a>
-  <h1 class="site-title">
-    itme.ink
-  </h1>
-  <p class="site-description">
-    温故而知新
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://jike-leisong.github.io/">itme.ink</a></h3>
   </div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-</div>
-
-    
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
         
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
 
-<div class="archives-container">
+    
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          
+
+          <h2 class="archives-title">文章归档</h2>
+          <div class="archives-container">
+            
+              <h3 class="year" data-aos-delay="500">2017</h3>
+              
+                
+                  <article class="post">
+                    <a href="https://jike-leisong.github.io//post/redis分页简单实现">
+                      <h4 class="post-title">
+                        redis分页简单实现
+                      </h4>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://jike-leisong.github.io//post/数据库事务的四大特性以及事务的隔离级别">
+                      <h4 class="post-title">
+                        数据库事务的四大特性以及事务的隔离级别
+                      </h4>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://jike-leisong.github.io//post/java中Map,List与Set的区别">
+                      <h4 class="post-title">
+                        java中Map,List与Set的区别
+                      </h4>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://jike-leisong.github.io//post/面试题">
+                      <h4 class="post-title">
+                        面试题
+                      </h4>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://jike-leisong.github.io//post/数据库必备3大基本原则">
+                      <h4 class="post-title">
+                        数据库必备3大基本原则
+                      </h4>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://jike-leisong.github.io//post/数据库设计原则之三大范式">
+                      <h4 class="post-title">
+                        数据库设计原则之三大范式
+                      </h4>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://jike-leisong.github.io//post/类加载">
+                      <h4 class="post-title">
+                        类加载
+                      </h4>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://jike-leisong.github.io//post/架构">
+                      <h4 class="post-title">
+                        架构
+                      </h4>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://jike-leisong.github.io//post/Zookeeper选举机制">
+                      <h4 class="post-title">
+                        Zookeeper选举机制
+                      </h4>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://jike-leisong.github.io//post/深入理解分布式事务,高并发下分布式事务的解决方案">
+                      <h4 class="post-title">
+                        深入理解分布式事务,高并发下分布式事务的解决方案
+                      </h4>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://jike-leisong.github.io//post/过滤器、拦截器以及Servlet的执行顺序和销毁顺序">
+                      <h4 class="post-title">
+                        过滤器、拦截器以及Servlet的执行顺序和销毁顺序
+                      </h4>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://jike-leisong.github.io//post/浅析HashMap、HashTable与ConcurrentHashMap的线程安全性">
+                      <h4 class="post-title">
+                        浅析HashMap、HashTable与ConcurrentHashMap的线程安全性
+                      </h4>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://jike-leisong.github.io//post/谈谈Spring IOC">
+                      <h4 class="post-title">
+                        谈谈Spring IOC
+                      </h4>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://jike-leisong.github.io//post/Zookeeper场景 -- 集群管理与Master选举">
+                      <h4 class="post-title">
+                        Zookeeper场景 -- 集群管理与Master选举
+                      </h4>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://jike-leisong.github.io//post/关于【缓存穿透、缓存击穿、缓存雪崩、热点数据失效】问题的解决方案">
+                      <h4 class="post-title">
+                        关于【缓存穿透、缓存击穿、缓存雪崩、热点数据失效】问题的解决方案
+                      </h4>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://jike-leisong.github.io//post/线程池的分类及使用场景">
+                      <h4 class="post-title">
+                        线程池的分类及使用场景
+                      </h4>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://jike-leisong.github.io//post/Zookeeper场景 -- 命名服务">
+                      <h4 class="post-title">
+                        Zookeeper使用场景 -- 命名服务
+                      </h4>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://jike-leisong.github.io//post/Zookeeper场景 -- 负载均衡">
+                      <h4 class="post-title">
+                        Zookeeper场景 -- 负载均衡
+                      </h4>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://jike-leisong.github.io//post/Zookeeper场景 -- 数据发布与订阅（配置中心）">
+                      <h4 class="post-title">
+                        Zookeeper场景 -- 数据发布与订阅（配置中心）
+                      </h4>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://jike-leisong.github.io//post/分布式幂等性(二)">
+                      <h4 class="post-title">
+                        分布式幂等性(二)
+                      </h4>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://jike-leisong.github.io//post/分布式幂等性(一)">
+                      <h4 class="post-title">
+                        分布式幂等性 (一)
+                      </h4>
+                    </a>
+                  </article>
+                
+              
+                
+              
+            
+              <h3 class="year" data-aos-delay="500">Inva</h3>
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+                  <article class="post">
+                    <a href="https://jike-leisong.github.io//post/需了解">
+                      <h4 class="post-title">
+                        需了解
+                      </h4>
+                    </a>
+                  </article>
+                
+              
+            
+          </div>
+        </div>
+        <div class="row flex-edges">
   
-    <h2 class="year">2017</h2>
-    
-      
-        <article class="post">
-          <a href="https://jike-leisong.github.io//post/redis分页简单实现">
-            <h2 class="post-title">
-              redis分页简单实现
-              <small>2017-12-25</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://jike-leisong.github.io//post/数据库事务的四大特性以及事务的隔离级别">
-            <h2 class="post-title">
-              数据库事务的四大特性以及事务的隔离级别
-              <small>2017-12-24</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://jike-leisong.github.io//post/java中Map,List与Set的区别">
-            <h2 class="post-title">
-              java中Map,List与Set的区别
-              <small>2017-12-23</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://jike-leisong.github.io//post/面试题">
-            <h2 class="post-title">
-              面试题
-              <small>2017-12-17</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://jike-leisong.github.io//post/数据库必备3大基本原则">
-            <h2 class="post-title">
-              数据库必备3大基本原则
-              <small>2017-12-17</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://jike-leisong.github.io//post/数据库设计原则之三大范式">
-            <h2 class="post-title">
-              数据库设计原则之三大范式
-              <small>2017-12-17</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://jike-leisong.github.io//post/类加载">
-            <h2 class="post-title">
-              类加载
-              <small>2017-12-17</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://jike-leisong.github.io//post/架构">
-            <h2 class="post-title">
-              架构
-              <small>2017-12-17</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://jike-leisong.github.io//post/Zookeeper选举机制">
-            <h2 class="post-title">
-              Zookeeper选举机制
-              <small>2017-12-17</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://jike-leisong.github.io//post/深入理解分布式事务,高并发下分布式事务的解决方案">
-            <h2 class="post-title">
-              深入理解分布式事务,高并发下分布式事务的解决方案
-              <small>2017-12-17</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://jike-leisong.github.io//post/过滤器、拦截器以及Servlet的执行顺序和销毁顺序">
-            <h2 class="post-title">
-              过滤器、拦截器以及Servlet的执行顺序和销毁顺序
-              <small>2017-12-16</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://jike-leisong.github.io//post/浅析HashMap、HashTable与ConcurrentHashMap的线程安全性">
-            <h2 class="post-title">
-              浅析HashMap、HashTable与ConcurrentHashMap的线程安全性
-              <small>2017-12-16</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://jike-leisong.github.io//post/谈谈Spring IOC">
-            <h2 class="post-title">
-              谈谈Spring IOC
-              <small>2017-12-15</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://jike-leisong.github.io//post/Zookeeper场景 -- 集群管理与Master选举">
-            <h2 class="post-title">
-              Zookeeper场景 -- 集群管理与Master选举
-              <small>2017-11-21</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://jike-leisong.github.io//post/关于【缓存穿透、缓存击穿、缓存雪崩、热点数据失效】问题的解决方案">
-            <h2 class="post-title">
-              关于【缓存穿透、缓存击穿、缓存雪崩、热点数据失效】问题的解决方案
-              <small>2017-11-21</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://jike-leisong.github.io//post/线程池的分类及使用场景">
-            <h2 class="post-title">
-              线程池的分类及使用场景
-              <small>2017-11-21</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://jike-leisong.github.io//post/Zookeeper场景 -- 命名服务">
-            <h2 class="post-title">
-              Zookeeper使用场景 -- 命名服务
-              <small>2017-11-21</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://jike-leisong.github.io//post/Zookeeper场景 -- 负载均衡">
-            <h2 class="post-title">
-              Zookeeper场景 -- 负载均衡
-              <small>2017-11-21</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://jike-leisong.github.io//post/Zookeeper场景 -- 数据发布与订阅（配置中心）">
-            <h2 class="post-title">
-              Zookeeper场景 -- 数据发布与订阅（配置中心）
-              <small>2017-11-21</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://jike-leisong.github.io//post/分布式幂等性(二)">
-            <h2 class="post-title">
-              分布式幂等性(二)
-              <small>2017-11-07</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-        <article class="post">
-          <a href="https://jike-leisong.github.io//post/分布式幂等性(一)">
-            <h2 class="post-title">
-              分布式幂等性 (一)
-              <small>2017-11-07</small>
-            </h2>
-          </a>
-        </article>
-      
-    
-      
-    
+    <a href="https://jike-leisong.github.io//archives/" class="paper-btn">
+      上一页
+    </a>
   
-    <h2 class="year">Inva</h2>
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-        <article class="post">
-          <a href="https://jike-leisong.github.io//post/需了解">
-            <h2 class="post-title">
-              需了解
-              <small>Invalid date</small>
-            </h2>
-          </a>
-        </article>
-      
-    
   
 </div>
-
-    
-        <div class="pagination-container">
-  
-    <a href="https://jike-leisong.github.io//archives/" class="prev-page">上一页</a>
-  
-  
-</div>
-
-    
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
-</div>
-
-<script>
-  hljs.initHighlightingOnLoad()
-</script>
 
       </div>
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://jike-leisong.github.io//images/avatar.png?v=1573183321142" class="no-responsive avatar">
+    <div class="text-muted">温故而知新</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://jike-leisong.github.io//post/Sql Demo">Sql Demo</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://jike-leisong.github.io//post/Tomcat线程源码分析">Tomcat线程源码分析</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://jike-leisong.github.io//post/Git常用命令速查表">Git常用命令速查表</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://jike-leisong.github.io//post/IO与NIO线程模型Reactor模型Netty初探">IO与NIO线程模型Reactor模型Netty初探</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://jike-leisong.github.io//post/Spring Boot 嵌套jsp页面Whitelabel Error Page">Spring Boot 嵌套jsp页面Whitelabel Error Page</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://jike-leisong.github.io//post/Mybatis invalid comparison">Mybatis invalid comparison</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://jike-leisong.github.io//post/Java多线程">Java 多线程</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://jike-leisong.github.io//post/Spring AOP 详解">Spring AOP 详解</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://jike-leisong.github.io//post/Java多线程Executor框架详解">Java多线程Executor框架详解</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://jike-leisong.github.io//post/Spring中配置数据源的4种形式">Spring中配置数据源的4种形式</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://jike-leisong.github.io//tag/0WBzoU1G-" class="badge secondary">
+          Mybatis
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/tomact" class="badge secondary">
+          Tomact
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/JUSmlN723" class="badge success">
+          Git
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/netty" class="badge warning">
+          Netty
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/MzKEL8HsE" class="badge success">
+          Spring
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/boot" class="badge secondary">
+          Boot
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/java" class="badge ">
+          Java
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/duo-xian-cheng" class="badge success">
+          多线程
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/mian-shi-ti" class="badge secondary">
+          面试题
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/shu-ju-yuan" class="badge secondary">
+          数据源
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/sql" class="badge warning">
+          SQL
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/mabatis" class="badge success">
+          Mabatis
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/cloud" class="badge secondary">
+          Cloud
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/zookeeper" class="badge secondary">
+          Zookeeper
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/sOMy5ZlVw" class="badge secondary">
+          分布式
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/session" class="badge secondary">
+          Session
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/cron" class="badge success">
+          Cron
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/linux" class="badge secondary">
+          Linux
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/redis" class="badge success">
+          Redis
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/soa" class="badge secondary">
+          SOA
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/-kxmq3hFX" class="badge success">
+          MQTT
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/hrpV8XEHZ" class="badge warning">
+          JVM
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/ZMreOtewG" class="badge secondary">
+          MVC
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/2RK0lyPtw" class="badge warning">
+          DB
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/hJqNul-if" class="badge secondary">
+          Spring Cloud
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/yYzItG4Us" class="badge warning">
+          设计模式
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/2VvjfMCS1" class="badge secondary">
+          源码分析
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/xiao-xi" class="badge secondary">
+          消息
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/tool" class="badge secondary">
+          Tool
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/suan-fa" class="badge success">
+          算法
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/kua-yu" class="badge secondary">
+          跨域
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/xing-neng-diao-you" class="badge success">
+          性能调优
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/shu-ju-ku" class="badge warning">
+          数据库
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/lei-jia-zai" class="badge secondary">
+          类加载
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/jia-gou" class="badge secondary">
+          架构
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/fen-bu-shi-shi-wu" class="badge ">
+          分布式事务
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/hashmap" class="badge secondary">
+          HashMap
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/huan-cun" class="badge secondary">
+          缓存
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/mi-deng-xing" class="badge secondary">
+          幂等性
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+
   </body>
 </html>

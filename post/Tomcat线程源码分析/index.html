@@ -1,91 +1,95 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>Tomcat线程源码分析 | itme.ink</title>
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1573183224231">
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1573183321142">
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://jike-leisong.github.io/">
-  <img class="avatar" src="https://jike-leisong.github.io//images/avatar.png?v=1573183224231" alt="">
-  </a>
-  <h1 class="site-title">
-    itme.ink
-  </h1>
-  <p class="site-description">
-    温故而知新
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://jike-leisong.github.io/">itme.ink</a></h3>
   </div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
   </div>
-</div>
+</nav>
 
-
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              Tomcat线程源码分析
-            </h2>
-            <div class="post-info">
-              <time class="post-time">
-                · 2018-02-07 ·
-              </time>
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>Tomcat线程源码分析</h1>
+            <p class="article-meta">
+              2018-02-07
               
-                <a href="https://jike-leisong.github.io//tag/tomact" class="post-tag">
-                  # Tomact
+                <a href="https://jike-leisong.github.io//tag/tomact" class="badge secondary">
+                  Tomact
                 </a>
               
-            </div>
+            </p>
             
             <div class="post-content">
               <h5 id="tomcat-线程">tomcat 线程</h5>
@@ -152,30 +156,419 @@
             </div>
           </article>
         </div>
-
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://jike-leisong.github.io//post/Git常用命令速查表">
+                <h3 class="post-title">
+                  Git常用命令速查表
+                </h3>
+              </a>
+            </div>
+          
+        </div>
         
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://jike-leisong.github.io//post/Git常用命令速查表">
-              <h3 class="post-title">
-                Git常用命令速查表
-              </h3>
-            </a>
-          </div>
-        
+      </div>
 
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://jike-leisong.github.io//images/avatar.png?v=1573183321142" class="no-responsive avatar">
+    <div class="text-muted">温故而知新</div>
+    <div class="social-container">
+      
         
-
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://jike-leisong.github.io//post/Sql Demo">Sql Demo</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://jike-leisong.github.io//post/Tomcat线程源码分析">Tomcat线程源码分析</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://jike-leisong.github.io//post/Git常用命令速查表">Git常用命令速查表</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://jike-leisong.github.io//post/IO与NIO线程模型Reactor模型Netty初探">IO与NIO线程模型Reactor模型Netty初探</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://jike-leisong.github.io//post/Spring Boot 嵌套jsp页面Whitelabel Error Page">Spring Boot 嵌套jsp页面Whitelabel Error Page</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://jike-leisong.github.io//post/Mybatis invalid comparison">Mybatis invalid comparison</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://jike-leisong.github.io//post/Java多线程">Java 多线程</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://jike-leisong.github.io//post/Spring AOP 详解">Spring AOP 详解</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://jike-leisong.github.io//post/Java多线程Executor框架详解">Java多线程Executor框架详解</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://jike-leisong.github.io//post/Spring中配置数据源的4种形式">Spring中配置数据源的4种形式</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://jike-leisong.github.io//tag/0WBzoU1G-" class="badge warning">
+          Mybatis
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/tomact" class="badge warning">
+          Tomact
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/JUSmlN723" class="badge secondary">
+          Git
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/netty" class="badge warning">
+          Netty
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/MzKEL8HsE" class="badge success">
+          Spring
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/boot" class="badge ">
+          Boot
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/java" class="badge ">
+          Java
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/duo-xian-cheng" class="badge ">
+          多线程
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/mian-shi-ti" class="badge secondary">
+          面试题
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/shu-ju-yuan" class="badge secondary">
+          数据源
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/sql" class="badge success">
+          SQL
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/mabatis" class="badge secondary">
+          Mabatis
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/cloud" class="badge warning">
+          Cloud
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/zookeeper" class="badge warning">
+          Zookeeper
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/sOMy5ZlVw" class="badge ">
+          分布式
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/session" class="badge secondary">
+          Session
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/cron" class="badge secondary">
+          Cron
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/linux" class="badge success">
+          Linux
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/redis" class="badge warning">
+          Redis
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/soa" class="badge secondary">
+          SOA
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/-kxmq3hFX" class="badge warning">
+          MQTT
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/hrpV8XEHZ" class="badge ">
+          JVM
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/ZMreOtewG" class="badge success">
+          MVC
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/2RK0lyPtw" class="badge secondary">
+          DB
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/hJqNul-if" class="badge ">
+          Spring Cloud
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/yYzItG4Us" class="badge secondary">
+          设计模式
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/2VvjfMCS1" class="badge secondary">
+          源码分析
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/xiao-xi" class="badge success">
+          消息
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/tool" class="badge warning">
+          Tool
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/suan-fa" class="badge secondary">
+          算法
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/kua-yu" class="badge secondary">
+          跨域
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/xing-neng-diao-you" class="badge warning">
+          性能调优
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/shu-ju-ku" class="badge ">
+          数据库
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/lei-jia-zai" class="badge secondary">
+          类加载
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/jia-gou" class="badge secondary">
+          架构
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/fen-bu-shi-shi-wu" class="badge warning">
+          分布式事务
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/hashmap" class="badge secondary">
+          HashMap
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/huan-cun" class="badge warning">
+          缓存
+        </a>
+      
+        <a href="https://jike-leisong.github.io//tag/mi-deng-xing" class="badge ">
+          幂等性
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
+  </div>
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
 </script>
 
-      </div>
-    </div>
+
+
+
   </body>
 </html>
