@@ -1,310 +1,192 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" >
+        <head>
+        <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,initial-scale=1,user-scalable=no" />
+        <meta charset="utf-8">
+        <title>itme.ink</title>
+        <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
+        <link rel="stylesheet" href="https://at.alicdn.com/t/font_1423691_1fcfxbwa79n.css">
+        <link href="https://cdn.bootcss.com/animate.css/3.7.2/animate.min.css" rel="stylesheet">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+        <script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+         <script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+         <script >hljs.initHighlightingOnLoad();</script>
 
-<title>itme.ink</title>
-<meta name="description" content="温故而知新">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1573183571074">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
-
-
-  </head>
-  <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1573183571074" class="site-logo">
-        <h1 class="site-title">itme.ink</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
-    </div>
-    <div>
-      
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      温故而知新
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
-    </div>
-  </div>
-</div>
-
-
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/Zookeeper 简介 ">
-                  <h2 class="post-title">Zookeeper 简介</h2>
-                </a>
-                <div class="post-date">
-                  2017-11-14
+    </head>
+    <body>
+          <header class="header mdui-m-b-5">      
+            <div class="container  ">
+                <div class="index-title animated fadeInDown mdui-text-center mdui-text-color-white mdui-m-b-2" style="animation-delay: 0.2s"><a href="https://jike-leisong.github.io/">itme.ink</a></div>
+                <div class="mdui-text-color-white animated fadeInDown mdui-text-center  mdui-m-b-3" style="animation-delay: 0.4s">温故而知新</div>
+           
+            <nav id="nav" class="mdui-text-center animated fadeInDown" style="animation-delay: 0.6s">
+                   
+                            <li><a href="/">首页</a>
+                                <span class="nav-style top"></span>
+                                <span class="nav-style bottom"></span>
+                                <span class="nav-style left"></span>
+                                <span class="nav-style right"></span>
+                                </li>
+                    
+                            <li><a href="/archives">归档</a>
+                                <span class="nav-style top"></span>
+                                <span class="nav-style bottom"></span>
+                                <span class="nav-style left"></span>
+                                <span class="nav-style right"></span>
+                                </li>
+                    
+                            <li><a href="/tags">标签</a>
+                                <span class="nav-style top"></span>
+                                <span class="nav-style bottom"></span>
+                                <span class="nav-style left"></span>
+                                <span class="nav-style right"></span>
+                                </li>
+                    
+                            <li><a href="/post/about">关于</a>
+                                <span class="nav-style top"></span>
+                                <span class="nav-style bottom"></span>
+                                <span class="nav-style left"></span>
+                                <span class="nav-style right"></span>
+                                </li>
+                    
+                  </nav>
                 </div>
-                <div class="post-abstract">
-                  
-                </div>
+        </header>
+        <div class="mdui-container ">
+                <div class="mdui-row">
+                        <div class="mdui-col-md-8 mdui-col-offset-md-2 mdui-m-t-1">
+                         
+                                                         
+                               <article class="mdui-p-a-5 index-list mdui-m-b-3 animated fadeIn" style="animation-delay: 0.8s;animation-duration: 2s">
+                                    <div class="mdui-typo-body-2 mdui-m-b-1" datetime="2017-11-14 15:22:00">2017-11-14</div>
+                                    <div class="mdui-typo-headline mdui-m-b-3 index-list-title index-guo"><a href="https://jike-leisong.github.io//post/Zookeeper 简介 ">Zookeeper 简介</a></div>
+                                    <div class="mdui-typo-subheading mdui-m-b-2 index-neirong"></div>
+                                    <div class="index-list-rm index-guo"><a href="https://jike-leisong.github.io//post/Zookeeper 简介 ">Read More</a></div>
+                                </article>
+                                
+                               <article class="mdui-p-a-5 index-list mdui-m-b-3 animated fadeIn" style="animation-delay: 0.8s;animation-duration: 2s">
+                                    <div class="mdui-typo-body-2 mdui-m-b-1" datetime="2017-11-13 09:35:20">2017-11-13</div>
+                                    <div class="mdui-typo-headline mdui-m-b-3 index-list-title index-guo"><a href="https://jike-leisong.github.io//post/Session 一致性解决方案">Session 一致性解决方案</a></div>
+                                    <div class="mdui-typo-subheading mdui-m-b-2 index-neirong"></div>
+                                    <div class="index-list-rm index-guo"><a href="https://jike-leisong.github.io//post/Session 一致性解决方案">Read More</a></div>
+                                </article>
+                                
+                               <article class="mdui-p-a-5 index-list mdui-m-b-3 animated fadeIn" style="animation-delay: 0.8s;animation-duration: 2s">
+                                    <div class="mdui-typo-body-2 mdui-m-b-1" datetime="2017-11-09 11:11:20">2017-11-09</div>
+                                    <div class="mdui-typo-headline mdui-m-b-3 index-list-title index-guo"><a href="https://jike-leisong.github.io//post/Linux cron 任务">在linux加入cron任务</a></div>
+                                    <div class="mdui-typo-subheading mdui-m-b-2 index-neirong"></div>
+                                    <div class="index-list-rm index-guo"><a href="https://jike-leisong.github.io//post/Linux cron 任务">Read More</a></div>
+                                </article>
+                                
+                               <article class="mdui-p-a-5 index-list mdui-m-b-3 animated fadeIn" style="animation-delay: 0.8s;animation-duration: 2s">
+                                    <div class="mdui-typo-body-2 mdui-m-b-1" datetime="2017-10-31 09:31:10">2017-10-31</div>
+                                    <div class="mdui-typo-headline mdui-m-b-3 index-list-title index-guo"><a href="https://jike-leisong.github.io//post/Redis 基本语法">Redis 基本语法</a></div>
+                                    <div class="mdui-typo-subheading mdui-m-b-2 index-neirong"></div>
+                                    <div class="index-list-rm index-guo"><a href="https://jike-leisong.github.io//post/Redis 基本语法">Read More</a></div>
+                                </article>
+                                
+                               <article class="mdui-p-a-5 index-list mdui-m-b-3 animated fadeIn" style="animation-delay: 0.8s;animation-duration: 2s">
+                                    <div class="mdui-typo-body-2 mdui-m-b-1" datetime="Invalid date">Invalid date</div>
+                                    <div class="mdui-typo-headline mdui-m-b-3 index-list-title index-guo"><a href="https://jike-leisong.github.io//post/SOA">SOA</a></div>
+                                    <div class="mdui-typo-subheading mdui-m-b-2 index-neirong"></div>
+                                    <div class="index-list-rm index-guo"><a href="https://jike-leisong.github.io//post/SOA">Read More</a></div>
+                                </article>
+                                
+                               <article class="mdui-p-a-5 index-list mdui-m-b-3 animated fadeIn" style="animation-delay: 0.8s;animation-duration: 2s">
+                                    <div class="mdui-typo-body-2 mdui-m-b-1" datetime="Invalid date">Invalid date</div>
+                                    <div class="mdui-typo-headline mdui-m-b-3 index-list-title index-guo"><a href="https://jike-leisong.github.io//post/Spring bean里的scope属性">Spring bean里的scope属性</a></div>
+                                    <div class="mdui-typo-subheading mdui-m-b-2 index-neirong"></div>
+                                    <div class="index-list-rm index-guo"><a href="https://jike-leisong.github.io//post/Spring bean里的scope属性">Read More</a></div>
+                                </article>
+                                
+                               <article class="mdui-p-a-5 index-list mdui-m-b-3 animated fadeIn" style="animation-delay: 0.8s;animation-duration: 2s">
+                                    <div class="mdui-typo-body-2 mdui-m-b-1" datetime="2019-09-02 15:29:26">2019-09-02</div>
+                                    <div class="mdui-typo-headline mdui-m-b-3 index-list-title index-guo"><a href="https://jike-leisong.github.io//post/mqtt-shi-jian">MQTT实践</a></div>
+                                    <div class="mdui-typo-subheading mdui-m-b-2 index-neirong"></div>
+                                    <div class="index-list-rm index-guo"><a href="https://jike-leisong.github.io//post/mqtt-shi-jian">Read More</a></div>
+                                </article>
+                                
+                               <article class="mdui-p-a-5 index-list mdui-m-b-3 animated fadeIn" style="animation-delay: 0.8s;animation-duration: 2s">
+                                    <div class="mdui-typo-body-2 mdui-m-b-1" datetime="2019-08-23 10:15:02">2019-08-23</div>
+                                    <div class="mdui-typo-headline mdui-m-b-3 index-list-title index-guo"><a href="https://jike-leisong.github.io//post/cpu-zhan-yong-guo-gao-de-ding-wei-fen-xi-si-lu">CPU占用过高的定位分析思路</a></div>
+                                    <div class="mdui-typo-subheading mdui-m-b-2 index-neirong"></div>
+                                    <div class="index-list-rm index-guo"><a href="https://jike-leisong.github.io//post/cpu-zhan-yong-guo-gao-de-ding-wei-fen-xi-si-lu">Read More</a></div>
+                                </article>
+                                
+                               <article class="mdui-p-a-5 index-list mdui-m-b-3 animated fadeIn" style="animation-delay: 0.8s;animation-duration: 2s">
+                                    <div class="mdui-typo-body-2 mdui-m-b-1" datetime="2019-07-02 10:19:11">2019-07-02</div>
+                                    <div class="mdui-typo-headline mdui-m-b-3 index-list-title index-guo"><a href="https://jike-leisong.github.io//post/spring-aop">Spring AOP</a></div>
+                                    <div class="mdui-typo-subheading mdui-m-b-2 index-neirong"></div>
+                                    <div class="index-list-rm index-guo"><a href="https://jike-leisong.github.io//post/spring-aop">Read More</a></div>
+                                </article>
+                                
+                               <article class="mdui-p-a-5 index-list mdui-m-b-3 animated fadeIn" style="animation-delay: 0.8s;animation-duration: 2s">
+                                    <div class="mdui-typo-body-2 mdui-m-b-1" datetime="2019-06-26 09:45:28">2019-06-26</div>
+                                    <div class="mdui-typo-headline mdui-m-b-3 index-list-title index-guo"><a href="https://jike-leisong.github.io//post/mvc-shi-xian-guo-cheng">MVC实现过程</a></div>
+                                    <div class="mdui-typo-subheading mdui-m-b-2 index-neirong"></div>
+                                    <div class="index-list-rm index-guo"><a href="https://jike-leisong.github.io//post/mvc-shi-xian-guo-cheng">Read More</a></div>
+                                </article>
+                                
+                               <article class="mdui-p-a-5 index-list mdui-m-b-3 animated fadeIn" style="animation-delay: 0.8s;animation-duration: 2s">
+                                    <div class="mdui-typo-body-2 mdui-m-b-1" datetime="2019-06-18 23:50:58">2019-06-18</div>
+                                    <div class="mdui-typo-headline mdui-m-b-3 index-list-title index-guo"><a href="https://jike-leisong.github.io//post/fen-ku-fen-biao">分库分表</a></div>
+                                    <div class="mdui-typo-subheading mdui-m-b-2 index-neirong"></div>
+                                    <div class="index-list-rm index-guo"><a href="https://jike-leisong.github.io//post/fen-ku-fen-biao">Read More</a></div>
+                                </article>
+                                
+                               <article class="mdui-p-a-5 index-list mdui-m-b-3 animated fadeIn" style="animation-delay: 0.8s;animation-duration: 2s">
+                                    <div class="mdui-typo-body-2 mdui-m-b-1" datetime="2019-06-18 23:38:08">2019-06-18</div>
+                                    <div class="mdui-typo-headline mdui-m-b-3 index-list-title index-guo"><a href="https://jike-leisong.github.io//post/eureka-dubbo">Eureka Dubbo</a></div>
+                                    <div class="mdui-typo-subheading mdui-m-b-2 index-neirong"></div>
+                                    <div class="index-list-rm index-guo"><a href="https://jike-leisong.github.io//post/eureka-dubbo">Read More</a></div>
+                                </article>
+                                
+                                                            <nav class="mdui-m-t-5">
+                                
+                                <div class="index-yema mdui-float-left"><a href="https://jike-leisong.github.io//page/2/">上一页</a></div>
+                                 
+                                
+                                <div class="index-yema mdui-float-right"><a href="https://jike-leisong.github.io//page/4/">下一页</a></div>
+                                 
+                                </nav>     
+
+                        </div>
+                      </div>
               </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/Session 一致性解决方案">
-                  <h2 class="post-title">Session 一致性解决方案</h2>
-                </a>
-                <div class="post-date">
-                  2017-11-13
-                </div>
-                <div class="post-abstract">
+                <footer class="footer mdui-m-t-5 mdui-text-center">
+               <nav class="social-links">
+                      <ul>
+                      
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      </ul>
+                    </nav>
+                  <div class="copyright">
+                      <p>Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> <br/> Theme <a href="https://github.com/alterfang/gridea-theme-song/">宋</a> by <a href="https://shanbu.fun/">山卜方</a> </p>
+                  </div>
                   
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/Linux cron 任务">
-                  <h2 class="post-title">在linux加入cron任务</h2>
-                </a>
-                <div class="post-date">
-                  2017-11-09
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/Redis 基本语法">
-                  <h2 class="post-title">Redis 基本语法</h2>
-                </a>
-                <div class="post-date">
-                  2017-10-31
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/SOA">
-                  <h2 class="post-title">SOA</h2>
-                </a>
-                <div class="post-date">
-                  Invalid date
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/Spring bean里的scope属性">
-                  <h2 class="post-title">Spring bean里的scope属性</h2>
-                </a>
-                <div class="post-date">
-                  Invalid date
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/mqtt-shi-jian">
-                  <h2 class="post-title">MQTT实践</h2>
-                </a>
-                <div class="post-date">
-                  2019-09-02
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/cpu-zhan-yong-guo-gao-de-ding-wei-fen-xi-si-lu">
-                  <h2 class="post-title">CPU占用过高的定位分析思路</h2>
-                </a>
-                <div class="post-date">
-                  2019-08-23
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/spring-aop">
-                  <h2 class="post-title">Spring AOP</h2>
-                </a>
-                <div class="post-date">
-                  2019-07-02
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/mvc-shi-xian-guo-cheng">
-                  <h2 class="post-title">MVC实现过程</h2>
-                </a>
-                <div class="post-date">
-                  2019-06-26
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/fen-ku-fen-biao">
-                  <h2 class="post-title">分库分表</h2>
-                </a>
-                <div class="post-date">
-                  2019-06-18
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/eureka-dubbo">
-                  <h2 class="post-title">Eureka Dubbo</h2>
-                </a>
-                <div class="post-date">
-                  2019-06-18
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-
-          <div class="pagination-container">
-  
-    <a href="https://jike-leisong.github.io//page/2/" class="prev"><i class="icon-arrow-ios-back-outline"></i> 上一页</a>
-  
-  
-    <a href="https://jike-leisong.github.io//page/4/" class="next">下一页 <i class="icon-arrow-ios-forward-outline"></i></a>
-  
-</div>
-
-        </div>
-      </div>
-    </div>
-
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
-<script type="application/javascript">
-
-AOS.init();
-
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
-</script>
-
-
-
-
-  </body>
+              </footer>
+    </body>
 </html>

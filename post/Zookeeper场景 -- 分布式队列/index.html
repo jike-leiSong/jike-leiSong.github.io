@@ -1,102 +1,64 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" >
+        <head>
+        <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,initial-scale=1,user-scalable=no" />
+        <meta charset="utf-8">
+        <title>Zookeeper场景 -- 分布式队列 | itme.ink</title>
+        <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
+        <link rel="stylesheet" href="https://at.alicdn.com/t/font_1423691_1fcfxbwa79n.css">
+        <link href="https://cdn.bootcss.com/animate.css/3.7.2/animate.min.css" rel="stylesheet">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+        <script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+         <script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+         <script >hljs.initHighlightingOnLoad();</script>
 
-<title>Zookeeper场景 -- 分布式队列 | itme.ink</title>
-<meta name="description" content="温故而知新">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1573183571074">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
-
-
-  </head>
-  <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1573183571074" class="site-logo">
-        <h1 class="site-title">itme.ink</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
-    </div>
-    <div>
-      
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      温故而知新
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
-    </div>
-  </div>
-</div>
-
-
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">Zookeeper场景 -- 分布式队列</h2>
-            <div class="post-date">2017-11-21</div>
-            
-            <div class="post-content">
-              <h3 id="分布式队列">分布式队列</h3>
+    </head>
+    <body>
+              <header class="header mdui-m-b-5">      
+            <div class="container  ">
+                <div class="index-title animated fadeInDown mdui-text-center mdui-text-color-white mdui-m-b-2" style="animation-delay: 0.2s"><a href="https://jike-leisong.github.io/">itme.ink</a></div>
+                <div class="mdui-text-color-white animated fadeInDown mdui-text-center  mdui-m-b-3" style="animation-delay: 0.4s">温故而知新</div>
+           
+            <nav id="nav" class="mdui-text-center animated fadeInDown" style="animation-delay: 0.6s">
+                   
+                            <li><a href="/">首页</a>
+                                <span class="nav-style top"></span>
+                                <span class="nav-style bottom"></span>
+                                <span class="nav-style left"></span>
+                                <span class="nav-style right"></span>
+                                </li>
+                    
+                            <li><a href="/archives">归档</a>
+                                <span class="nav-style top"></span>
+                                <span class="nav-style bottom"></span>
+                                <span class="nav-style left"></span>
+                                <span class="nav-style right"></span>
+                                </li>
+                    
+                            <li><a href="/tags">标签</a>
+                                <span class="nav-style top"></span>
+                                <span class="nav-style bottom"></span>
+                                <span class="nav-style left"></span>
+                                <span class="nav-style right"></span>
+                                </li>
+                    
+                            <li><a href="/post/about">关于</a>
+                                <span class="nav-style top"></span>
+                                <span class="nav-style bottom"></span>
+                                <span class="nav-style left"></span>
+                                <span class="nav-style right"></span>
+                                </li>
+                    
+                  </nav>
+                </div>
+        </header>
+        <div class="mdui-container ">
+                <div class="mdui-row">
+                        <div class="mdui-col-md-8 mdui-col-offset-md-2 ">
+                                <article class="mdui-p-a-2 post animated fadeIn" style="animation-delay: 0.8s;animation-duration: 2s">
+                                    <div class="post-title  mdui-m-b-1">Zookeeper场景 -- 分布式队列</div>
+                                    <div class="mdui-typo-body-2 mdui-m-b-2" datetime="2017-11-21 21:05:20">2017-11-21 / 2 min read</div>
+                                    <div class="mdui-m-b-2 mdui-typo post-neirong"><h3 id="分布式队列">分布式队列</h3>
 <blockquote>
 <p>队列方面，简单地讲有两种，一种是常规的先进先出队列，另一种是要等待到队列成员聚齐之后到才统一按序执行。对于第一种先进先出的队列和分布式锁服务中的控制时序场景基本原理一致，这里不再赘述。</p>
 </blockquote>
@@ -116,59 +78,87 @@
 <blockquote>
 <p>第二种队列其实是在 FIFO 队列的基础上作为一个增强。通常可以在 /queue 这个 znode 下预先建立一个 /queue/num 节点，并且赋值为 n（或者直接给 /queue 赋值 n），表示队列大小，之后每次有队列成员加入后，就判断下是否已经达到队列大小，决定是否可以开始执行了。这种用法的典型场景是，分布式环境中，一个大任务 Task A，需要在很多子任务完成（或条件就绪）情况下才能进行。这个时候，凡是其中一个子任务完成（就绪），那么就去 /taskList 下建立自己的临时时序节点（CreateMode.EPHEMERAL_SEQUENTIAL），当 /taskList 发现自己下面的子节点满足指定个数，就可以进行下一步按序进行处理了。</p>
 </blockquote>
+</div>
+                                    <div class="mdui-divider mdui-m-b-2"></div>
+                                    <div class="mdui-row-xs-2 post-fenye">
+                                       
+                                        <div class="mdui-col"> <div class="mdui-text-left"><a href="https://jike-leisong.github.io//post/Zookeeper场景 -- 分布式锁">Zookeeper场景 -- 分布式锁</a></div></div>
+                                        
 
-            </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://jike-leisong.github.io//tag/zookeeper" class="tag">
-                    Zookeeper
-                  </a>
-                
-                  <a href="https://jike-leisong.github.io//tag/sOMy5ZlVw" class="tag">
-                    分布式
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://jike-leisong.github.io//post/Zookeeper场景 -- 分布式通知:协调">
-                  <h3 class="post-title">
-                    Zookeeper场景 -- 分布式通知/协调
-                  </h3>
-                </a>
-              </div>
-            
+                                        
+                                        <div class="mdui-col"><div class="mdui-text-right "><a href="https://jike-leisong.github.io//post/Zookeeper场景 -- 分布式通知:协调">Zookeeper场景 -- 分布式通知/协调</a></div> </div>
+                                       
+                                      </div>
+                                   
+                                    <div class="mdui-divider mdui-m-t-2 mdui-m-b-2"></div>
+                                    
+                                     <script src="https://jike-leisong.github.io//media/scripts/Valine.min.js"></script>
+ <div class="comment"></div>
 
-            
+<script>
+      new Valine({
+            el: '.comment',
 
-          </div>
 
-        </div>
-      </div>
-    </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
-<script type="application/javascript">
-
-AOS.init();
-
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
+            path: window.location.pathname,
+            pageSize: 30,
+            avatar:'mm', 
+       })
+    </script> 
+<script>
+    if(window.location.hash){
+        var checkExist = setInterval(function() {
+           if ($(window.location.hash).length) {
+              $('html, body').animate({scrollTop: $(window.location.hash).offset().top-90}, 1000);
+              clearInterval(checkExist);
+           }
+        }, 100);
+    }
 </script>
+                                </article>
 
+                                    
+                        </div>
+                      </div>
+    
+                
 
-
-
-  </body>
+              </div>
+                    <footer class="footer mdui-m-t-5 mdui-text-center">
+               <nav class="social-links">
+                      <ul>
+                      
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      </ul>
+                    </nav>
+                  <div class="copyright">
+                      <p>Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> <br/> Theme <a href="https://github.com/alterfang/gridea-theme-song/">宋</a> by <a href="https://shanbu.fun/">山卜方</a> </p>
+                  </div>
+                  
+              </footer>
+    </body>
 </html>
