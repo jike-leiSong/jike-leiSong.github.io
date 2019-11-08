@@ -1,18 +1,15 @@
-
 <!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
+    <meta charset="utf-8" >
 
 <title>Eureka Dubbo | itme.ink</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1573183511057">
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1573183571074">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
@@ -21,82 +18,85 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 
 
   </head>
   <body>
     <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://jike-leisong.github.io/">
-        <img class="avatar" src="https://jike-leisong.github.io//images/avatar.png?v=1573183511057" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://jike-leisong.github.io/">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://jike-leisong.github.io/">
+        <img src="https://jike-leisong.github.io//images/avatar.png?v=1573183571074" class="site-logo">
         <h1 class="site-title">itme.ink</h1>
       </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
     </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
-</div>
-
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
+    <div>
       
         
-          <a href="/" class="menu purple-link">
+          <a href="/" class="site-nav">
             首页
           </a>
         
       
         
-          <a href="/archives" class="menu purple-link">
+          <a href="/archives" class="site-nav">
             归档
           </a>
         
       
         
-          <a href="/tags" class="menu purple-link">
+          <a href="/tags" class="site-nav">
             标签
           </a>
         
       
         
-          <a href="/post/about" class="menu purple-link">
+          <a href="/post/about" class="site-nav">
             关于
           </a>
         
       
     </div>
   </div>
-</transition>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
 
 
-      <div class="content-container">
-        <div class="post-detail">
-          
-          <h2 class="post-title">Eureka Dubbo</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-06-18</span>
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Eureka Dubbo</h2>
+            <div class="post-date">2019-06-18</div>
             
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://jike-leisong.github.io//tag/hJqNul-if">
-                    Spring Cloud
-                    
-                  </a>
-                
-              </span>
-            
-          </div>
-          <div class="post-content">
-            <p>1、Eureka的高可用方案 上面的例子中，Eureka只有一个8761的注册中心，那么如何避免单点问题呢？</p>
+            <div class="post-content">
+              <p>1、Eureka的高可用方案 上面的例子中，Eureka只有一个8761的注册中心，那么如何避免单点问题呢？</p>
 <blockquote>
 <p>我们采用集群的方式来解决。比如现在有三台机器：Server1、Server2和Server3.在高可用方案中，三台机器两两注册。比如S1要向S2、S3分别进行注册，目前他无法实现注册的传递性。这样以来，如果Server1宕机，我们还可以继续从Server2和3中获取服务。</p>
 </blockquote>
@@ -105,43 +105,40 @@
 <p>在CAP理论中，zk更看重C和P，即一致性和分区容错性。但Eureka更在意的是A和P，A为高可用。zk中有master和follower区别，当进入选举模式时，就无法正常对外提供服务。但Eureka中，集群是对等的，地位是相同的，虽不能保证一致性，但至少可以提供注册服务。根据不同的业务场景，各有取舍。</p>
 </blockquote>
 
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://jike-leisong.github.io//tag/hJqNul-if" class="tag">
+                    Spring Cloud
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://jike-leisong.github.io//post/feignclient-liang-ge-xiang-tong-de-name-dao-zhi-wen-ti">
+                  <h3 class="post-title">
+                    FeignClient两个相同的name导致问题
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
           </div>
+
         </div>
-
-        
-          <div class="next-post">
-            <a class="purple-link" href="https://jike-leisong.github.io//post/feignclient-liang-ge-xiang-tong-de-name-dao-zhi-wen-ti">
-              <h3 class="post-title">
-                下一篇：FeignClient两个相同的name导致问题
-              </h3>
-            </a>
-          </div>
-          
       </div>
-
-      
-
-      <div class="site-footer">
-  <div class="slogan">温故而知新</div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
-</div>
-
-
     </div>
-    <script type="application/javascript">
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
 
 hljs.initHighlightingOnLoad()
 

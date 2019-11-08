@@ -1,18 +1,15 @@
-
 <!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
+    <meta charset="utf-8" >
 
 <title>七牛云床图迁移至Github | itme.ink</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1573183511057">
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1573183571074">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
@@ -21,82 +18,85 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 
 
   </head>
   <body>
     <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://jike-leisong.github.io/">
-        <img class="avatar" src="https://jike-leisong.github.io//images/avatar.png?v=1573183511057" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://jike-leisong.github.io/">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://jike-leisong.github.io/">
+        <img src="https://jike-leisong.github.io//images/avatar.png?v=1573183571074" class="site-logo">
         <h1 class="site-title">itme.ink</h1>
       </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
     </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
-  </div>
-</div>
-
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
+    <div>
       
         
-          <a href="/" class="menu purple-link">
+          <a href="/" class="site-nav">
             首页
           </a>
         
       
         
-          <a href="/archives" class="menu purple-link">
+          <a href="/archives" class="site-nav">
             归档
           </a>
         
       
         
-          <a href="/tags" class="menu purple-link">
+          <a href="/tags" class="site-nav">
             标签
           </a>
         
       
         
-          <a href="/post/about" class="menu purple-link">
+          <a href="/post/about" class="site-nav">
             关于
           </a>
         
       
     </div>
   </div>
-</transition>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
 
 
-      <div class="content-container">
-        <div class="post-detail">
-          
-          <h2 class="post-title">七牛云床图迁移至Github</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-02-24</span>
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">七牛云床图迁移至Github</h2>
+            <div class="post-date">2019-02-24</div>
             
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://jike-leisong.github.io//tag/tool">
-                    Tool
-                    
-                  </a>
-                
-              </span>
-            
-          </div>
-          <div class="post-content">
-            <p>由于大部分网站图床使用的是七牛云的，近期七牛云更新，导致原测试域名已失效，之前在测试域名存储的图片无法访问、查看、下载，网站文章关联的图片无法正常查看，只有绑定自己域名才难正常使用。考虑到诸多原因，所以决定把图片从七牛迁移至Github来存储，弃用七牛云。</p>
+            <div class="post-content">
+              <p>由于大部分网站图床使用的是七牛云的，近期七牛云更新，导致原测试域名已失效，之前在测试域名存储的图片无法访问、查看、下载，网站文章关联的图片无法正常查看，只有绑定自己域名才难正常使用。考虑到诸多原因，所以决定把图片从七牛迁移至Github来存储，弃用七牛云。</p>
 <h4 id="操作步骤">操作步骤</h4>
 <ul>
 <li>七牛云空间间复制（原测试空间转移至可用测试空间）</li>
@@ -174,43 +174,40 @@
 </blockquote>
 <p>经测试，所有图片均可正常打开，网站的图片均可正常打开及查看。</p>
 
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://jike-leisong.github.io//tag/tool" class="tag">
+                    Tool
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://jike-leisong.github.io//post/阶乘超大数溢出">
+                  <h3 class="post-title">
+                    n的阶乘会溢出？解决超大数字阶乘溢出问题。
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
           </div>
+
         </div>
-
-        
-          <div class="next-post">
-            <a class="purple-link" href="https://jike-leisong.github.io//post/阶乘超大数溢出">
-              <h3 class="post-title">
-                下一篇：n的阶乘会溢出？解决超大数字阶乘溢出问题。
-              </h3>
-            </a>
-          </div>
-          
       </div>
-
-      
-
-      <div class="site-footer">
-  <div class="slogan">温故而知新</div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
-</div>
-
-
     </div>
-    <script type="application/javascript">
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
 
 hljs.initHighlightingOnLoad()
 
