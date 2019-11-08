@@ -1,102 +1,241 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
+      
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>itme.ink</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>类加载 | itme.ink</title>
-<meta name="description" content="温故而知新">
+<meta name="description" content="温故而知新"/>
+<meta name="keywords" content="温故而知新"/>
 
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1573183321142">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico">
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
+<!-- Modernizr JS -->
+<script src="https://jike-leisong.github.io//media/scripts/_vendors/modernizr-2.6.2.min.js"></script>
+<!-- FOR IE9 below -->
+<!--[if lt IE 9]>
+<scripts src="https://jike-leisong.github.io//media/scripts/_vendors/respond.min.js"></scripts>
+<![endif]-->
 
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<!-- Comment -->
 
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/tomorrow-night.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<link crossorigin="anonymous" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" href="https://lib.baomitu.com/font-awesome/5.8.1/css/all.min.css" rel="stylesheet">
 
   </head>
   <body>
   
-    <nav class="navbar border fixed split-nav">
-  <div class="nav-brand">
-    <h3><a href="https://jike-leisong.github.io/">itme.ink</a></h3>
-  </div>
-  <div class="collapsible">
-    <input id="collapsible1" type="checkbox" name="collapsible1">
-    <button>
-      <label for="collapsible1">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-      </label>
-    </button>
-    <div class="collapsible-body">
-      <ul class="inline">
-        
-          <li>
+<div id="fh5co-offcanvas">
+    <a href="#!" class="fh5co-close-offcanvas js-fh5co-close-offcanvas">
+        <span><i class="icon-cross3"></i> <span>Close</span></span>
+    </a>
+    <div class="fh5co-bio">
+        <figure>
+            <img src="https://jike-leisong.github.io//media/images/avatar.png" alt="itme.ink" class="img-responsive">
+        </figure>
+        <h3 class="heading">ABOUT ME</h3>
+        <h2>itme.ink</h2>
+        <p>温故而知新</p>
+        <ul class="fh5co-social">
             
-              <a href="/" class="menu">
-                首页
-              </a>
+                <li>
+                    
+                </li>
             
-          </li>
-        
-          <li>
+                <li>
+                    
+                </li>
             
-              <a href="/archives" class="menu">
-                归档
-              </a>
+                <li>
+                    
+                </li>
             
-          </li>
-        
-          <li>
+                <li>
+                    
+                </li>
             
-              <a href="/tags" class="menu">
-                标签
-              </a>
+                <li>
+                    
+                </li>
             
-          </li>
-        
-          <li>
-            
-              <a href="/post/about" class="menu">
-                关于
-              </a>
-            
-          </li>
-        
-      </ul>
+        </ul>
     </div>
-  </div>
-</nav>
 
-    <div id="top" class="row site">
-      <div class="sm-12 md-8 col">
-        <div class="paper">
-          <article class="article">
-            <h1>类加载</h1>
-            <p class="article-meta">
-              2017-12-17
-              
-                <a href="https://jike-leisong.github.io//tag/lei-jia-zai" class="badge warning">
-                  类加载
-                </a>
-              
-                <a href="https://jike-leisong.github.io//tag/mian-shi-ti" class="badge success">
-                  面试题
-                </a>
-              
-            </p>
-            
-            <div class="post-content">
-              <p>类加载过程：jvm把class文件加载到内存，并对数据进行校验、解析和初始化，最终形成jvm可以直接使用的java类型的过程。<br>
+    <div class="fh5co-menu">
+        <div class="fh5co-box">
+            <h3 class="heading">搜索</h3>
+            <form action="#">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="输入关键字">
+                </div>
+            </form>
+        </div>
+        <div class="fh5co-box">
+            <h3 class="heading">标签</h3>
+            <ul>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/0WBzoU1G-">Mybatis</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/tomact">Tomact</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/JUSmlN723">Git</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/netty">Netty</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/MzKEL8HsE">Spring</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/boot">Boot</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/java">Java</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/duo-xian-cheng">多线程</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/mian-shi-ti">面试题</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/shu-ju-yuan">数据源</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/sql">SQL</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/mabatis">Mabatis</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/cloud">Cloud</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/zookeeper">Zookeeper</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/sOMy5ZlVw">分布式</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/session">Session</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/cron">Cron</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/linux">Linux</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/redis">Redis</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/soa">SOA</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/-kxmq3hFX">MQTT</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/hrpV8XEHZ">JVM</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/ZMreOtewG">MVC</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/2RK0lyPtw">DB</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/hJqNul-if">Spring Cloud</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/yYzItG4Us">设计模式</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/2VvjfMCS1">源码分析</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/xiao-xi">消息</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/tool">Tool</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/suan-fa">算法</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/kua-yu">跨域</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/xing-neng-diao-you">性能调优</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/shu-ju-ku">数据库</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/lei-jia-zai">类加载</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/jia-gou">架构</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/fen-bu-shi-shi-wu">分布式事务</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/hashmap">HashMap</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/huan-cun">缓存</a></li>
+                
+                    <li><a href="https://jike-leisong.github.io//tag/mi-deng-xing">幂等性</a></li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<header id="fh5co-header">
+    <div class="container-fluid">
+        <div class="row">
+            <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+            <ul class="fh5co-social">
+                
+                    <li>
+                        <a href="/"
+                         >
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives"
+                         >
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags"
+                         >
+                            标签
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/post/about"
+                         >
+                            关于
+                        </a>
+                    </li>
+                
+            </ul>
+            <div class="col-lg-12 col-md-12 text-center">
+                <h1 id="fh5co-logo">
+                    <a href="https://jike-leisong.github.io/">itme.ink</a>
+                </h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<!--  <a href="#" class="fh5co-post-prev"><span>👈 Prev</span></a>-->
+<!--  <a href="#" class="fh5co-post-next"><span>Next 👉</span></a>-->
+
+  <div class="container-fluid">
+      <div class="row fh5co-post-entry single-entry">
+          <article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
+              <figure class="animate-box">
+                  
+              </figure>
+              <span class="fh5co-meta animate-box">
+                  
+                      <div class="tag-container">
+                          
+                              <a href="https://jike-leisong.github.io//tag/lei-jia-zai" class="tag">类加载, </a>
+                          
+                              <a href="https://jike-leisong.github.io//tag/mian-shi-ti" class="tag">面试题, </a>
+                          
+                      </div>
+                  
+              </span>
+              <h2 class="fh5co-article-title animate-box">类加载</h2>
+              <span class="fh5co-meta fh5co-date animate-box">2017-12-17</span>
+
+              <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+                  <div class="row">
+                      <div class="col-md-12 animate-box post-content">
+                          <p> <p>类加载过程：jvm把class文件加载到内存，并对数据进行校验、解析和初始化，最终形成jvm可以直接使用的java类型的过程。<br>
 JVM将类加载过程分为三个步骤：装载（Load），链接（Link）和初始化(Initialize)，链接又分为三个步骤（验证、准备、解析）。</p>
 <ol>
 <li>装载：查找并加载类的二进制数据；<br>
@@ -118,419 +257,58 @@ JVM将类加载过程分为三个步骤：装载（Load），链接（Link）和
 1）如果这个类还没有被加载和链接，那先进行加载和链接<br>
 2）假如这个类存在直接父类，并且这个类还没有被初始化（注意：在一个类加载器中，类只能初始化一次），那就初始化直接的父类（不适用于接口）<br>
 3)加入类中存在初始化语句（如static变量和static块），那就依次执行这些初始化语句。</p>
+ </p>
+                      </div>
+                  </div>
 
-            </div>
-          </article>
-        </div>
-        <div class="paper" data-aos="fade-in">
-          
-            <div class="next-post">
-              <div class="next">
-                下一篇
+                  <div class="row">
+                      <div class="col-md-12 animate-box">
+                          
+                              <div class="next-post">
+                                  <div class="next">下一篇</div>
+                                  <a href="https://jike-leisong.github.io//post/架构">
+                                      <h3 class="post-title">
+                                          架构
+                                      </h3>
+                                  </a>
+                              </div>
+                          
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-12 animate-box">
+                          
+                      </div>
+                  </div>
               </div>
-              <a href="https://jike-leisong.github.io//post/架构">
-                <h3 class="post-title">
-                  架构
-                </h3>
-              </a>
-            </div>
-          
-        </div>
-        
+
+          </article>
       </div>
+  </div>
 
-      <div class="sm-12 md-4 col sidebar">
-  <div class="paper info-container">
-    <img src="https://jike-leisong.github.io//images/avatar.png?v=1573183321142" class="no-responsive avatar">
-    <div class="text-muted">温故而知新</div>
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      最新文章
-    </div>
-    <div class="row">
-      <ul>
-        
-          
-            <li>
-              <a href="https://jike-leisong.github.io//post/Sql Demo">Sql Demo</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://jike-leisong.github.io//post/Tomcat线程源码分析">Tomcat线程源码分析</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://jike-leisong.github.io//post/Git常用命令速查表">Git常用命令速查表</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://jike-leisong.github.io//post/IO与NIO线程模型Reactor模型Netty初探">IO与NIO线程模型Reactor模型Netty初探</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://jike-leisong.github.io//post/Spring Boot 嵌套jsp页面Whitelabel Error Page">Spring Boot 嵌套jsp页面Whitelabel Error Page</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://jike-leisong.github.io//post/Mybatis invalid comparison">Mybatis invalid comparison</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://jike-leisong.github.io//post/Java多线程">Java 多线程</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://jike-leisong.github.io//post/Spring AOP 详解">Spring AOP 详解</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://jike-leisong.github.io//post/Java多线程Executor框架详解">Java多线程Executor框架详解</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://jike-leisong.github.io//post/Spring中配置数据源的4种形式">Spring中配置数据源的4种形式</a>
-            </li>
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      </ul>
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      标签列表
-    </div>
-    <div class="row">
-      
-        <a href="https://jike-leisong.github.io//tag/0WBzoU1G-" class="badge secondary">
-          Mybatis
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/tomact" class="badge ">
-          Tomact
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/JUSmlN723" class="badge warning">
-          Git
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/netty" class="badge success">
-          Netty
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/MzKEL8HsE" class="badge warning">
-          Spring
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/boot" class="badge ">
-          Boot
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/java" class="badge success">
-          Java
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/duo-xian-cheng" class="badge ">
-          多线程
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/mian-shi-ti" class="badge success">
-          面试题
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/shu-ju-yuan" class="badge ">
-          数据源
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/sql" class="badge secondary">
-          SQL
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/mabatis" class="badge secondary">
-          Mabatis
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/cloud" class="badge ">
-          Cloud
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/zookeeper" class="badge ">
-          Zookeeper
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/sOMy5ZlVw" class="badge success">
-          分布式
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/session" class="badge secondary">
-          Session
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/cron" class="badge secondary">
-          Cron
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/linux" class="badge warning">
-          Linux
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/redis" class="badge secondary">
-          Redis
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/soa" class="badge ">
-          SOA
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/-kxmq3hFX" class="badge warning">
-          MQTT
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/hrpV8XEHZ" class="badge warning">
-          JVM
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/ZMreOtewG" class="badge ">
-          MVC
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/2RK0lyPtw" class="badge success">
-          DB
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/hJqNul-if" class="badge warning">
-          Spring Cloud
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/yYzItG4Us" class="badge secondary">
-          设计模式
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/2VvjfMCS1" class="badge secondary">
-          源码分析
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/xiao-xi" class="badge ">
-          消息
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/tool" class="badge success">
-          Tool
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/suan-fa" class="badge warning">
-          算法
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/kua-yu" class="badge success">
-          跨域
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/xing-neng-diao-you" class="badge secondary">
-          性能调优
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/shu-ju-ku" class="badge secondary">
-          数据库
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/lei-jia-zai" class="badge secondary">
-          类加载
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/jia-gou" class="badge secondary">
-          架构
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/fen-bu-shi-shi-wu" class="badge secondary">
-          分布式事务
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/hashmap" class="badge secondary">
-          HashMap
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/huan-cun" class="badge ">
-          缓存
-        </a>
-      
-        <a href="https://jike-leisong.github.io//tag/mi-deng-xing" class="badge secondary">
-          幂等性
-        </a>
-      
-    </div>
-  </div>
-  <div class="paper">
-    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
-  </div>
-</div>
+    
+<footer id="fh5co-footer">
+  <p>Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></p>
+</footer>
 
 
-    </div>
-
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
+<!-- jQuery -->
+<script src="https://jike-leisong.github.io//media/scripts/_vendors/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script src="https://jike-leisong.github.io//media/scripts/_vendors/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<script src="https://jike-leisong.github.io//media/scripts/_vendors/bootstrap.min.js"></script>
+<!-- Waypoints -->
+<script src="https://jike-leisong.github.io//media/scripts/_vendors/jquery.waypoints.min.js"></script>
+<!-- Main JS -->
+<script src="https://jike-leisong.github.io//media/scripts/_vendors/main.js"></script>
+<!-- Md5 Min JS -->
+<script src="https://jike-leisong.github.io//media/scripts/_vendors/md5.min.js"></script>
 
 <script type="application/javascript">
-
-AOS.init();
-
-hljs.initHighlightingOnLoad()
-
+    hljs.initHighlightingOnLoad();
 </script>
 
 
