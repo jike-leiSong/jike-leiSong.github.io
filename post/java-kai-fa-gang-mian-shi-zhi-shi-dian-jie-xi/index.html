@@ -1,102 +1,94 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
-
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Java开发岗面试知识点解析 | itme.ink</title>
-<meta name="description" content="温故而知新">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1573183224231">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1567410755384">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
 
   </head>
   <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1567410755384" class="site-logo">
-        <h1 class="site-title">itme.ink</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
-    </div>
-    <div>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://jike-leisong.github.io/">
+  <img class="avatar" src="https://jike-leisong.github.io//images/avatar.png?v=1573183224231" alt="">
+  </a>
+  <h1 class="site-title">
+    itme.ink
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
       
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
+        <a href="/" class="menu">
+          首页
+        </a>
       
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
+    
       
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
+        <a href="/archives" class="menu">
+          归档
+        </a>
       
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
+    
       
-    </div>
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
+  <div class="social-container">
+    
       
-        
+    
       
-        
+    
       
-        
+    
       
-        
+    
       
-        
-      
-    </div>
-    <div class="site-description">
-      温故而知新
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
-    </div>
+    
   </div>
 </div>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">Java开发岗面试知识点解析</h2>
-            <div class="post-date">2019-06-18</div>
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Java开发岗面试知识点解析
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-06-18 ·
+              </time>
+              
+                <a href="https://jike-leisong.github.io//tag/mian-shi-ti" class="post-tag">
+                  # 面试题
+                </a>
+              
+            </div>
             
             <div class="post-content">
-              <p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img//java-001.jpg" alt=""></p>
+              <figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img//java-001.jpg" alt=""></figure>
 <blockquote>
 <p>天之道，损有余而补不足，是故虚胜实，不足胜有余。</p>
 </blockquote>
@@ -223,7 +215,7 @@ HashMap 没有考虑同步，是线程不安全的；Hashtable 使用了 synchro
 <blockquote>
 <p>答：在 Java8 之前，其底层实现是数组 + 链表实现，Java8 使用了数组 + 链表 + 红黑树实现。此时你可以简单的在纸上画图分析：</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/java-002.jpg" alt=""></p>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/java-002.jpg" alt=""></figure>
 <p>4）ConcurrentHashMap 和 Hashtable 的区别？ （必问）</p>
 <blockquote>
 <p>答：ConcurrentHashMap 结合了 HashMap 和 HashTable 二者的优势。HashMap 没有考虑同步，hashtable 考虑了同步的问题。但是 hashtable 在每次同步执行时都要锁住整个结构。 ConcurrentHashMap 锁的方式是稍微细粒度的。 ConcurrentHashMap 将 hash 表分为 16 个桶（默认值），诸如 get,put,remove 等常用操作只锁当前需要用到的桶。</p>
@@ -361,7 +353,7 @@ wait 方法：是 Object 的方法，必须与 synchronized 关键字一起使�
 Entry 的 Key 是一个 ThreadLocal 实例，Value 是一个线程特有对象。Entry 的作用即是：为其属主线程建立起一个 ThreadLocal 实例与一个线程特有对象之间的对应关系；<br>
 Entry 对 Key 的引用是弱引用；Entry 对 Value 的引用是强引用。</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/java-003.jpg" alt=""></p>
+<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/java-003.jpg" alt=""></figure>
 <p>9）Atomic 关键字：</p>
 <blockquote>
 <p>答：可以使基本数据类型以原子的方式实现自增自减等操作。参考我的博客：concurrent.atomic 包下的类 AtomicInteger 的使用。</p>
@@ -499,7 +491,7 @@ Full GC，发生在老年代的 GC，当老年代没有足够的空间时即发�
 <blockquote>
 <p><strong>1）三次握手、四次挥手示意图：</strong></p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/java-004.jpg" alt=""></p>
+<figure data-type="image" tabindex="4"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/java-004.jpg" alt=""></figure>
 <blockquote>
 <p>总共有四种状态：主动建立连接、主动断开连接、被动建立连和被动断开连接</p>
 </blockquote>
@@ -541,8 +533,8 @@ LISTEN—-SYN_RCVD—-ESTABLISHED—-CLOSE_WAIT—-LAST_ACK</p>
 <p>慢开始 + 拥塞避免；<br>
 快重传 + 快恢复。</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/java-005.jpg" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/java-006.jpg" alt=""></p>
+<figure data-type="image" tabindex="5"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/java-005.jpg" alt=""></figure>
+<figure data-type="image" tabindex="6"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/java-006.jpg" alt=""></figure>
 <blockquote>
 <p><strong>4）浏览器中输入：“www.xxx.com” 之后都发生了什么？请详细阐述。</strong></p>
 </blockquote>
@@ -698,7 +690,7 @@ AOP：面向切面编程，将功能代码从业务逻辑代码中分离出来�
 <blockquote>
 <p>答：核心控制器为 DispatcherServlet。消息流程如下：</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/1.jpg" alt=""></p>
+<figure data-type="image" tabindex="7"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/1.jpg" alt=""></figure>
 <p>4）其他问题包括：重定向和转发的区别、动态代理和静态代理的区别等。</p>
 <p>Mybatis 知识点</p>
 <p>关于 MyBatis 主要考察占位符#和 $ 的区别，区别如下：</p>
@@ -835,53 +827,32 @@ tar -cvzf 文件名。</p>
 <p>对于各位志在投身 Java 开发岗位的小伙伴们来说，本文所提到的知识点绝对是面试中的重点，希望各位可以有效掌握。</p>
 
             </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://jike-leisong.github.io//tag/mian-shi-ti" class="tag">
-                    面试题
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://jike-leisong.github.io//post/she-ji-mo-shi">
-                  <h3 class="post-title">
-                    常用设计模式
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-
-          </div>
-
+          </article>
         </div>
-      </div>
-    </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://jike-leisong.github.io//post/she-ji-mo-shi">
+              <h3 class="post-title">
+                常用设计模式
+              </h3>
+            </a>
+          </div>
+        
 
-<script type="application/javascript">
+        
 
-AOS.init();
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
+</div>
 
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
+<script>
+  hljs.initHighlightingOnLoad()
 </script>
 
-
-
-
+      </div>
+    </div>
   </body>
 </html>

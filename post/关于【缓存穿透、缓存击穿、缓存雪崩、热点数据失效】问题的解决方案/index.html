@@ -1,99 +1,91 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
-
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>关于【缓存穿透、缓存击穿、缓存雪崩、热点数据失效】问题的解决方案 | itme.ink</title>
-<meta name="description" content="温故而知新">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1573183224231">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1567410755384">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
 
   </head>
   <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1567410755384" class="site-logo">
-        <h1 class="site-title">itme.ink</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
-    </div>
-    <div>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://jike-leisong.github.io/">
+  <img class="avatar" src="https://jike-leisong.github.io//images/avatar.png?v=1573183224231" alt="">
+  </a>
+  <h1 class="site-title">
+    itme.ink
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
       
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
+        <a href="/" class="menu">
+          首页
+        </a>
       
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
+    
       
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
+        <a href="/archives" class="menu">
+          归档
+        </a>
       
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
+    
       
-    </div>
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
+  <div class="social-container">
+    
       
-        
+    
       
-        
+    
       
-        
+    
       
-        
+    
       
-        
-      
-    </div>
-    <div class="site-description">
-      温故而知新
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
-    </div>
+    
   </div>
 </div>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">关于【缓存穿透、缓存击穿、缓存雪崩、热点数据失效】问题的解决方案</h2>
-            <div class="post-date">2017-11-21</div>
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              关于【缓存穿透、缓存击穿、缓存雪崩、热点数据失效】问题的解决方案
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2017-11-21 ·
+              </time>
+              
+                <a href="https://jike-leisong.github.io//tag/huan-cun" class="post-tag">
+                  # 缓存
+                </a>
+              
+            </div>
             
             <div class="post-content">
               <h5 id="前言">前言</h5>
@@ -101,7 +93,7 @@
 <p>特别是高QPS的系统，每次都去查询数据库，对于数据库来说压力太大，就是灾难。</p>
 <p>今天我们不牵涉多级缓存的知识，就把系统使用到的缓存方案，不管是一级还是多级的都统称为缓存，主要是为了讲述使用缓存的时候可能会遇到的一些问题以及一些解决办法。</p>
 <p>我们使用缓存时，我们的业务系统大概的调用流程如下图：</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190411141629.png" alt=""></p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190411141629.png" alt=""></figure>
 <p>当我们查询一条数据时，先去查询缓存，如果缓存有就直接返回，如果没有就去查询数据库，然后返回。这种情况下就可能会出现一些现象。</p>
 <h5 id="缓存穿透">缓存穿透</h5>
 <ol>
@@ -144,7 +136,7 @@
 <p>这种方案可以加在第一种方案中，在缓存之前在加一层 BloomFilter ，在查询的时候先去 BloomFilter 去查询 key 是否存在，如果不存在就直接返回，存在再走查缓存 -&gt; 查 DB。</p>
 </blockquote>
 <p>流程图如下：</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190411164009.png" alt=""></p>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190411164009.png" alt=""></figure>
 <ol start="4">
 <li>方案选择</li>
 </ol>
@@ -214,7 +206,7 @@
 <p><strong>开启Redis持久化机制，尽快恢复缓存集群</strong></p>
 <p>一旦重启，就能从磁盘上自动加载数据恢复内存中的数据。</p>
 <p>防止雪崩方案如下图所示：</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190416105704.png" alt=""></p>
+<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190416105704.png" alt=""></figure>
 <h5 id="解决热点数据集中失效问题">解决热点数据集中失效问题</h5>
 <p>我们在设置缓存的时候，一般会给缓存设置一个失效时间，过了这个时间，缓存就失效了。</p>
 <p>对于一些热点的数据来说，当缓存失效以后会存在大量的请求过来，然后打到数据库去，从而可能导致数据库崩溃的情况。</p>
@@ -231,53 +223,32 @@
 <p>但是也是由于它会阻塞其他的线程，此时系统吞吐量会下降。需要结合实际的业务去考虑是否要这么做。</p>
 
             </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://jike-leisong.github.io//tag/huan-cun" class="tag">
-                    缓存
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://jike-leisong.github.io//post/线程池的分类及使用场景">
-                  <h3 class="post-title">
-                    线程池的分类及使用场景
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-
-          </div>
-
+          </article>
         </div>
-      </div>
-    </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://jike-leisong.github.io//post/线程池的分类及使用场景">
+              <h3 class="post-title">
+                线程池的分类及使用场景
+              </h3>
+            </a>
+          </div>
+        
 
-<script type="application/javascript">
+        
 
-AOS.init();
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
+</div>
 
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
+<script>
+  hljs.initHighlightingOnLoad()
 </script>
 
-
-
-
+      </div>
+    </div>
   </body>
 </html>

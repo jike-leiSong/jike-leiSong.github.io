@@ -1,99 +1,95 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
-
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Java多线程Executor框架详解 | itme.ink</title>
-<meta name="description" content="温故而知新">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1573183224231">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1567410755384">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
 
   </head>
   <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1567410755384" class="site-logo">
-        <h1 class="site-title">itme.ink</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
-    </div>
-    <div>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://jike-leisong.github.io/">
+  <img class="avatar" src="https://jike-leisong.github.io//images/avatar.png?v=1573183224231" alt="">
+  </a>
+  <h1 class="site-title">
+    itme.ink
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
       
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
+        <a href="/" class="menu">
+          首页
+        </a>
       
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
+    
       
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
+        <a href="/archives" class="menu">
+          归档
+        </a>
       
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
+    
       
-    </div>
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
+  <div class="social-container">
+    
       
-        
+    
       
-        
+    
       
-        
+    
       
-        
+    
       
-        
-      
-    </div>
-    <div class="site-description">
-      温故而知新
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
-    </div>
+    
   </div>
 </div>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">Java多线程Executor框架详解</h2>
-            <div class="post-date">2017-12-18</div>
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Java多线程Executor框架详解
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2017-12-18 ·
+              </time>
+              
+                <a href="https://jike-leisong.github.io//tag/mian-shi-ti" class="post-tag">
+                  # 面试题
+                </a>
+              
+                <a href="https://jike-leisong.github.io//tag/duo-xian-cheng" class="post-tag">
+                  # 多线程
+                </a>
+              
+            </div>
             
             <div class="post-content">
               <p>在Java中，<font color="red">使用线程来异步执行任务。</font>Java线程的创建与销毁需要一定的开销，如果我们为每一个任务创建一个新的线程来执行，这些线程的创建与销毁将<font color="red">消耗大量的计算机资源。</font>同时，为每一个任务创建一个新线程来执行，这种策略可能会使处于高负荷状态的应用最终崩溃。</p>
@@ -105,7 +101,7 @@
 <p>在HotSpot VM的线程模型中，Java线程被一对一映射为本地操作系统线程。Java线程启动时会创建一个本地操作系统线程；当Java线程终止时，这个操作系统线程也会被回收。操作系统会调用所有线程将他们分配给可用的CPU。</p>
 <p>可以将此种模式分为两层，在上层，Java多线程程序通常把应用程序分解为若干任务，然后使用用户级的调度器（Executor框架）将这些任务映射为固定数量的线程；在底层，操作系统内核将这些线程映射到硬件处理器上。</p>
 <p>两级调度模型示意图：</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor.png" alt=""></p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor.png" alt=""></figure>
 <p>从图中看出，该框架用来控制应用程序的上层调度（下层调度由操作系统内核控制，不受应用程序的控制）。</p>
 <p><strong>Executor框架的结构和成员</strong></p>
 <ul>
@@ -134,7 +130,7 @@ Executor框架有两个关键类实现了ExecutorService接口：ThreadPoolExecu
 <li>Executor框架的类与接口</li>
 </ul>
 <p>示意图：</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor-1.png" alt=""></p>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor-1.png" alt=""></figure>
 <blockquote>
 <ul>
 <li>Executor 是一个接口，它是 Executor 框架的基础，它将 <font color="red">任务的提交</font>和<font color="red">任务的执行</font>分离。</li>
@@ -146,7 +142,7 @@ Executor框架有两个关键类实现了ExecutorService接口：ThreadPoolExecu
 </blockquote>
 <p><strong>Executor框架的使用</strong></p>
 <p>先来看个图：</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor-2.png" alt=""></p>
+<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor-2.png" alt=""></figure>
 <ol>
 <li>主线程首先要创建实现 Runnable 接口或 Callable 接口的任务对象。工具类 Executors 可以把一个 Runnable 对象封装为一个 Callable 接口。</li>
 </ol>
@@ -195,7 +191,7 @@ ExecutorService.submit(Runnable task);
 <li>最后一个参数表示FixedThreadPool使用了无界队列LinkedBlockingQueue作为线程池的做工队列，由于是无界的，当线程池的线程数达到corePoolSize后，新任务将在无界队列中等待，因此线程池的线程数量不会超过corePoolSize，同时maxiumPoolSize也就变成了一个无效的参数，并且运行中的线程池并不会拒绝任务。</li>
 </ul>
 <p>FixedThreadPool运行图如下:</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor-3.png" alt=""></p>
+<figure data-type="image" tabindex="4"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor-3.png" alt=""></figure>
 <p>执行过程如下：</p>
 <blockquote>
 <ol>
@@ -218,7 +214,7 @@ ExecutorService.submit(Runnable task);
 </code></pre>
 <p>SingleThreadExecutor的corePoolSize和maxiumPoolSize都被设置1。<br>
 其他参数均与FixedThreadPool相同，其运行图如下：</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor-4.png" alt=""></p>
+<figure data-type="image" tabindex="5"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor-4.png" alt=""></figure>
 <p>执行过程如下：</p>
 <blockquote>
 <ol>
@@ -240,7 +236,7 @@ ExecutorService.submit(Runnable task);
 </code></pre>
 <p>CachedThreadPool的corePoolSize被设置为0，即corePool为空；maximumPoolSize被设置为Integer.MAX_VALUE，即maximum是无界的。这里keepAliveTime设置为60秒，意味着空闲的线程最多可以等待任务60秒，否则将被回收。</p>
 <p>CachedThreadPool使用没有容量的SynchronousQueue作为主线程池的工作队列，它是一个没有容量的阻塞队列。每个插入操作必须等待另一个线程的对应移除操作。这意味着，<font color="red">如果主线程提交任务的速度高于线程池中处理任务的速度时，CachedThreadPool会不断创建新线程。极端情况下，CachedThreadPool会因为创建过多线程而耗尽CPU资源。</font>其运行图如下：</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor-5.png" alt=""></p>
+<figure data-type="image" tabindex="6"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor-5.png" alt=""></figure>
 <p>执行过程如下：</p>
 <blockquote>
 <p>1.首先执行SynchronousQueue.offer(Runnable task)。如果在当前的线程池中有空闲的线程正在执行SynchronousQueue.poll()，那么主线程执行的offer操作与空闲线程执行的poll操作配对成功，主线程把任务交给空闲线程执行。，execute()方法执行成功，否则执行步骤2<br>
@@ -251,57 +247,32 @@ ExecutorService.submit(Runnable task);
 <p>参考书籍：《Java并发编程的艺术》，《Java并发编程实战》，《Java高并发程序设计》</p>
 
             </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://jike-leisong.github.io//tag/mian-shi-ti" class="tag">
-                    面试题
-                  </a>
-                
-                  <a href="https://jike-leisong.github.io//tag/duo-xian-cheng" class="tag">
-                    多线程
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://jike-leisong.github.io//post/Spring中配置数据源的4种形式">
-                  <h3 class="post-title">
-                    Spring中配置数据源的4种形式
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-
-          </div>
-
+          </article>
         </div>
-      </div>
-    </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://jike-leisong.github.io//post/Spring中配置数据源的4种形式">
+              <h3 class="post-title">
+                Spring中配置数据源的4种形式
+              </h3>
+            </a>
+          </div>
+        
 
-<script type="application/javascript">
+        
 
-AOS.init();
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
+</div>
 
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
+<script>
+  hljs.initHighlightingOnLoad()
 </script>
 
-
-
-
+      </div>
+    </div>
   </body>
 </html>

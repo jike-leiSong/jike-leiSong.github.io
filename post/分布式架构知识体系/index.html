@@ -1,99 +1,91 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
-
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>分布式架构知识体系 | itme.ink</title>
-<meta name="description" content="温故而知新">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1573183224231">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1567410755384">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
 
   </head>
   <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1567410755384" class="site-logo">
-        <h1 class="site-title">itme.ink</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
-    </div>
-    <div>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://jike-leisong.github.io/">
+  <img class="avatar" src="https://jike-leisong.github.io//images/avatar.png?v=1573183224231" alt="">
+  </a>
+  <h1 class="site-title">
+    itme.ink
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
       
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
+        <a href="/" class="menu">
+          首页
+        </a>
       
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
+    
       
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
+        <a href="/archives" class="menu">
+          归档
+        </a>
       
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
+    
       
-    </div>
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
+  <div class="social-container">
+    
       
-        
+    
       
-        
+    
       
-        
+    
       
-        
+    
       
-        
-      
-    </div>
-    <div class="site-description">
-      温故而知新
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
-    </div>
+    
   </div>
 </div>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">分布式架构知识体系</h2>
-            <div class="post-date">2019-02-24</div>
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              分布式架构知识体系
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-02-24 ·
+              </time>
+              
+                <a href="https://jike-leisong.github.io//tag/sOMy5ZlVw" class="post-tag">
+                  # 分布式
+                </a>
+              
+            </div>
             
             <div class="post-content">
               <h4 id="font-color289c601问题font"><font color="#289C60">1.问题</font></h4>
@@ -122,12 +114,12 @@
 <li><font color="#289C60">SOA面向服务架构</font></li>
 </ul>
 <p>由于业务发展到一定层度后，需要对服务进行解耦，进而把一个单一的大系统按逻辑拆分成不同的子系统，通过服务接口来通讯，面向服务的设计模式，最终需要总线集成服务，而且大部分时候还共享数据库，出现单点故障的时候会导致总线层面的故障，更进一步可能会把数据库拖垮，所以才有了更加独立的设计方案的出现。</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224170111.png" alt=""></p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224170111.png" alt=""></figure>
 <ul>
 <li><font color="#289C60">MSA微服务架构</font></li>
 </ul>
 <p>微服务是真正意义上的独立服务，从服务入口到数据持久层，逻辑上都是独立隔离的，无需服务总线来接入，但同时增加了整个分布式系统的搭建和管理难度，需要对服务进行编排和管理，所以伴随着微服务的兴起，微服务生态的整套技术栈也需要无缝接入，才能支撑起微服务的治理理念。</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224170824.png" alt=""></p>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224170824.png" alt=""></figure>
 <h5 id="font-color289c6042-节点与网络font"><font color="#289C60">4.2 节点与网络</font></h5>
 <p><font color="#289C60">节点</font></p>
 <blockquote>
@@ -178,13 +170,13 @@
 <li>操作系统休眠</li>
 <li>硬件休眠</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224175443.png" alt=""></p>
+<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224175443.png" alt=""></figure>
 <p><font color="#289C60">逻辑时钟</font></p>
 <ul>
 <li>定义事件先来后到</li>
 <li>t’ = max(t, t_msg + 1)</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224175754.png" alt=""></p>
+<figure data-type="image" tabindex="4"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224175754.png" alt=""></figure>
 <p><font color="#289C60">向量时钟</font></p>
 <ul>
 <li>t_i’ = max(t_i, t_msg_i)</li>
@@ -194,7 +186,7 @@
 <p>有了衡量时间的工具，解决顺序问题自然就是水到渠成了。因为整个分布式的理论基础就是如何协商不同节点的一致性问题，而顺序则是一致性理论的基本概念，所以前文我们才需要花时间介绍衡量时间的刻度和工具。</p>
 <h5 id="font-color289c6044-一致性理论font"><font color="#289C60">4.4 一致性理论</font></h5>
 <p>说到一致性理论，我们必须看一张关于一致性强弱对系统建设影响的对比图：</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224175849.png" alt=""></p>
+<figure data-type="image" tabindex="5"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224175849.png" alt=""></figure>
 <p>该图对比了不同一致性算法下的事务，性能，错误，延迟的平衡。</p>
 <p><font color="#289C60">强一致性ACID</font></p>
 <p>单机环境下我们对传统关系型数据库有苛刻的要求，由于存在网络的延迟和消息丢失，ACID便是保证事务的原则，这四大原则甚至我们都不需要解释出来就耳熟能详了：</p>
@@ -615,60 +607,39 @@
 <h4 id="font-color289c608-总结font"><font color="#289C60">8. 总结</font></h4>
 <p>最后总结一下，如果有可能的话，请尝试使用单节点方式而不是分布式系统。分布式系统伴随着一些失败的操作，为了处理灾难性故障，我们使用备份。为了提高可靠性，我们引入了冗余。分布式系统本质就是一堆机器的协同。而我们要做的就是搞出各种手段来然机器的运行达到预期。这么复杂的系统，需要了解各个环节，各个中间件的接入，是一个非常大的工程。庆幸的是，在微服务背景下，多数基础性的工作已经有人帮我们实现了。前文所描述的分布式架构，在工程实现了是需要用到分布式三件套(Docker+K8S+Srping Cloud)基本就可以构建出来了。</p>
 <p>分布式架构核心技术分布图如下：</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190225150737.png" alt=""></p>
+<figure data-type="image" tabindex="6"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190225150737.png" alt=""></figure>
 <p>分布式技术栈使用中间件：</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190225150759.png" alt=""></p>
+<figure data-type="image" tabindex="7"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190225150759.png" alt=""></figure>
 <p>最后用一张图来概括分布式系统的知识体系。</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190225150827.png" alt=""></p>
+<figure data-type="image" tabindex="8"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190225150827.png" alt=""></figure>
 
             </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://jike-leisong.github.io//tag/sOMy5ZlVw" class="tag">
-                    分布式
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://jike-leisong.github.io//post/七牛云床图迁移至Github">
-                  <h3 class="post-title">
-                    七牛云床图迁移至Github
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-
-          </div>
-
+          </article>
         </div>
-      </div>
-    </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://jike-leisong.github.io//post/七牛云床图迁移至Github">
+              <h3 class="post-title">
+                七牛云床图迁移至Github
+              </h3>
+            </a>
+          </div>
+        
 
-<script type="application/javascript">
+        
 
-AOS.init();
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
+</div>
 
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
+<script>
+  hljs.initHighlightingOnLoad()
 </script>
 
-
-
-
+      </div>
+    </div>
   </body>
 </html>

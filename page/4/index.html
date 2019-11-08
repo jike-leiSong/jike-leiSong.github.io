@@ -1,310 +1,349 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
-
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>itme.ink</title>
-<meta name="description" content="温故而知新">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1573183224231">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1567410755384">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
 
   </head>
   <body>
-    <div id="app" class="main">
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://jike-leisong.github.io/">
+  <img class="avatar" src="https://jike-leisong.github.io//images/avatar.png?v=1573183224231" alt="">
+  </a>
+  <h1 class="site-title">
+    itme.ink
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
 
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1567410755384" class="site-logo">
-        <h1 class="site-title">itme.ink</h1>
+    
+        <div class="post-container">
+  
+    <article class="post">
+      <a href="https://jike-leisong.github.io//post/feignclient-liang-ge-xiang-tong-de-name-dao-zhi-wen-ti">
+        <h2 class="post-title">FeignClient两个相同的name导致问题</h2>
       </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
+      <div class="post-info">
+        <time class="post-time">
+          · 2019-06-18 ·
+        </time>
+        
+          <a href="https://jike-leisong.github.io//tag/hJqNul-if" class="post-tag">
+            # Spring Cloud
+          </a>
+        
       </div>
-    </div>
-    <div>
       
+      <div class="post-abstract">
         
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      温故而知新
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
-    </div>
-  </div>
-</div>
-
-
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/feignclient-liang-ge-xiang-tong-de-name-dao-zhi-wen-ti">
-                  <h2 class="post-title">FeignClient两个相同的name导致问题</h2>
-                </a>
-                <div class="post-date">
-                  2019-06-18
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/java-kai-fa-gang-mian-shi-zhi-shi-dian-jie-xi">
-                  <h2 class="post-title">Java开发岗面试知识点解析</h2>
-                </a>
-                <div class="post-date">
-                  2019-06-18
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/she-ji-mo-shi">
-                  <h2 class="post-title">常用设计模式</h2>
-                </a>
-                <div class="post-date">
-                  2019-06-18
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/java线程池与五种常用线程池策略使用与解析">
-                  <h2 class="post-title">java线程池与五种常用线程池策略使用与解析</h2>
-                </a>
-                <div class="post-date">
-                  2019-06-05
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/如何保证消息队列的可靠性传输">
-                  <h2 class="post-title">如何保证消息队列的可靠性传输</h2>
-                </a>
-                <div class="post-date">
-                  2019-04-16
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/分布式架构知识体系">
-                  <h2 class="post-title">分布式架构知识体系</h2>
-                </a>
-                <div class="post-date">
-                  2019-02-24
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/七牛云床图迁移至Github">
-                  <h2 class="post-title">七牛云床图迁移至Github</h2>
-                </a>
-                <div class="post-date">
-                  2019-02-24
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/阶乘超大数溢出">
-                  <h2 class="post-title">n的阶乘会溢出？解决超大数字阶乘溢出问题。</h2>
-                </a>
-                <div class="post-date">
-                  2019-02-19
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/shell动态发布不同环境项目">
-                  <h2 class="post-title">shell动态发布不同环境项目</h2>
-                </a>
-                <div class="post-date">
-                  2018-01-25
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/maven+profile+yml动态发布">
-                  <h2 class="post-title">Spring-Boot+maven+profile+yml动态发布</h2>
-                </a>
-                <div class="post-date">
-                  2018-01-25
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/服务器端解决跨域问题的三种方法">
-                  <h2 class="post-title">服务器端解决跨域问题的三种方法</h2>
-                </a>
-                <div class="post-date">
-                  2018-01-18
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://jike-leisong.github.io//post/mybatis的xml中sql语句中in的写法">
-                  <h2 class="post-title">mybatis的xml中list遍历</h2>
-                </a>
-                <div class="post-date">
-                  2018-01-12
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-
-          <div class="pagination-container">
+      </di>
+    </article>
   
-    <a href="https://jike-leisong.github.io//page/3/" class="prev"><i class="icon-arrow-ios-back-outline"></i> 上一页</a>
+    <article class="post">
+      <a href="https://jike-leisong.github.io//post/java-kai-fa-gang-mian-shi-zhi-shi-dian-jie-xi">
+        <h2 class="post-title">Java开发岗面试知识点解析</h2>
+      </a>
+      <div class="post-info">
+        <time class="post-time">
+          · 2019-06-18 ·
+        </time>
+        
+          <a href="https://jike-leisong.github.io//tag/mian-shi-ti" class="post-tag">
+            # 面试题
+          </a>
+        
+      </div>
+      
+      <div class="post-abstract">
+        
+      </di>
+    </article>
   
+    <article class="post">
+      <a href="https://jike-leisong.github.io//post/she-ji-mo-shi">
+        <h2 class="post-title">常用设计模式</h2>
+      </a>
+      <div class="post-info">
+        <time class="post-time">
+          · 2019-06-18 ·
+        </time>
+        
+          <a href="https://jike-leisong.github.io//tag/yYzItG4Us" class="post-tag">
+            # 设计模式
+          </a>
+        
+          <a href="https://jike-leisong.github.io//tag/2VvjfMCS1" class="post-tag">
+            # 源码分析
+          </a>
+        
+      </div>
+      
+      <div class="post-abstract">
+        
+      </di>
+    </article>
   
-    <a href="https://jike-leisong.github.io//page/5/" class="next">下一页 <i class="icon-arrow-ios-forward-outline"></i></a>
+    <article class="post">
+      <a href="https://jike-leisong.github.io//post/java线程池与五种常用线程池策略使用与解析">
+        <h2 class="post-title">java线程池与五种常用线程池策略使用与解析</h2>
+      </a>
+      <div class="post-info">
+        <time class="post-time">
+          · 2019-06-05 ·
+        </time>
+        
+          <a href="https://jike-leisong.github.io//tag/duo-xian-cheng" class="post-tag">
+            # 多线程
+          </a>
+        
+      </div>
+      
+      <div class="post-abstract">
+        
+      </di>
+    </article>
+  
+    <article class="post">
+      <a href="https://jike-leisong.github.io//post/如何保证消息队列的可靠性传输">
+        <h2 class="post-title">如何保证消息队列的可靠性传输</h2>
+      </a>
+      <div class="post-info">
+        <time class="post-time">
+          · 2019-04-16 ·
+        </time>
+        
+          <a href="https://jike-leisong.github.io//tag/xiao-xi" class="post-tag">
+            # 消息
+          </a>
+        
+      </div>
+      
+      <div class="post-abstract">
+        
+      </di>
+    </article>
+  
+    <article class="post">
+      <a href="https://jike-leisong.github.io//post/分布式架构知识体系">
+        <h2 class="post-title">分布式架构知识体系</h2>
+      </a>
+      <div class="post-info">
+        <time class="post-time">
+          · 2019-02-24 ·
+        </time>
+        
+          <a href="https://jike-leisong.github.io//tag/sOMy5ZlVw" class="post-tag">
+            # 分布式
+          </a>
+        
+      </div>
+      
+      <div class="post-abstract">
+        
+      </di>
+    </article>
+  
+    <article class="post">
+      <a href="https://jike-leisong.github.io//post/七牛云床图迁移至Github">
+        <h2 class="post-title">七牛云床图迁移至Github</h2>
+      </a>
+      <div class="post-info">
+        <time class="post-time">
+          · 2019-02-24 ·
+        </time>
+        
+          <a href="https://jike-leisong.github.io//tag/tool" class="post-tag">
+            # Tool
+          </a>
+        
+      </div>
+      
+      <div class="post-abstract">
+        
+      </di>
+    </article>
+  
+    <article class="post">
+      <a href="https://jike-leisong.github.io//post/阶乘超大数溢出">
+        <h2 class="post-title">n的阶乘会溢出？解决超大数字阶乘溢出问题。</h2>
+      </a>
+      <div class="post-info">
+        <time class="post-time">
+          · 2019-02-19 ·
+        </time>
+        
+          <a href="https://jike-leisong.github.io//tag/suan-fa" class="post-tag">
+            # 算法
+          </a>
+        
+      </div>
+      
+      <div class="post-abstract">
+        
+      </di>
+    </article>
+  
+    <article class="post">
+      <a href="https://jike-leisong.github.io//post/shell动态发布不同环境项目">
+        <h2 class="post-title">shell动态发布不同环境项目</h2>
+      </a>
+      <div class="post-info">
+        <time class="post-time">
+          · 2018-01-25 ·
+        </time>
+        
+          <a href="https://jike-leisong.github.io//tag/linux" class="post-tag">
+            # Linux
+          </a>
+        
+      </div>
+      
+      <div class="post-abstract">
+        
+      </di>
+    </article>
+  
+    <article class="post">
+      <a href="https://jike-leisong.github.io//post/maven+profile+yml动态发布">
+        <h2 class="post-title">Spring-Boot+maven+profile+yml动态发布</h2>
+      </a>
+      <div class="post-info">
+        <time class="post-time">
+          · 2018-01-25 ·
+        </time>
+        
+          <a href="https://jike-leisong.github.io//tag/MzKEL8HsE" class="post-tag">
+            # Spring
+          </a>
+        
+          <a href="https://jike-leisong.github.io//tag/boot" class="post-tag">
+            # Boot
+          </a>
+        
+      </div>
+      
+      <div class="post-abstract">
+        
+      </di>
+    </article>
+  
+    <article class="post">
+      <a href="https://jike-leisong.github.io//post/服务器端解决跨域问题的三种方法">
+        <h2 class="post-title">服务器端解决跨域问题的三种方法</h2>
+      </a>
+      <div class="post-info">
+        <time class="post-time">
+          · 2018-01-18 ·
+        </time>
+        
+          <a href="https://jike-leisong.github.io//tag/kua-yu" class="post-tag">
+            # 跨域
+          </a>
+        
+      </div>
+      
+      <div class="post-abstract">
+        
+      </di>
+    </article>
+  
+    <article class="post">
+      <a href="https://jike-leisong.github.io//post/mybatis的xml中sql语句中in的写法">
+        <h2 class="post-title">mybatis的xml中list遍历</h2>
+      </a>
+      <div class="post-info">
+        <time class="post-time">
+          · 2018-01-12 ·
+        </time>
+        
+          <a href="https://jike-leisong.github.io//tag/0WBzoU1G-" class="post-tag">
+            # Mybatis
+          </a>
+        
+      </div>
+      
+      <div class="post-abstract">
+        
+      </di>
+    </article>
   
 </div>
 
-        </div>
-      </div>
-    </div>
+    
+        <div class="pagination-container">
+  
+    <a href="https://jike-leisong.github.io//page/3/" class="prev-page">上一页</a>
+  
+  
+    <a href="https://jike-leisong.github.io//page/5/" class="prev-page">下一页</a>
+  
+</div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
+</div>
 
-<script type="application/javascript">
-
-AOS.init();
-
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
+<script>
+  hljs.initHighlightingOnLoad()
 </script>
 
-
-
-
+      </div>
+    </div>
   </body>
 </html>

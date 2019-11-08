@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jike-leisong.github.io/</id>
     <title>itme.ink</title>
-    <updated>2019-09-05T07:55:51.271Z</updated>
+    <updated>2019-11-08T03:20:35.009Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jike-leisong.github.io/"/>
     <link rel="self" href="https://jike-leisong.github.io//atom.xml"/>
@@ -138,7 +138,7 @@
 <p>protocol=”org.apache.coyote.http11.<font color="red">Http11AprProtocol</font>“</p>
 </blockquote>
 <h5 id="bio-线程模型">BIO 线程模型</h5>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-2-7-%E4%B8%8B%E5%8D%882_57_53.png" alt=""></p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-2-7-%E4%B8%8B%E5%8D%882_57_53.png" alt=""></figure>
 <h5 id="bio-源码解读">BIO 源码解读</h5>
 <ul>
 <li>JIoEndpoint</li>
@@ -146,7 +146,7 @@
 <li>SocketProcessor extends Runnable</li>
 </ul>
 <h5 id="nio-线程模型">NIO 线程模型</h5>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-2-7-%E4%B8%8B%E5%8D%882_57_53.png" alt=""></p>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-2-7-%E4%B8%8B%E5%8D%882_57_53.png" alt=""></figure>
 <h5 id="nio-源码解读">NIO 源码解读</h5>
 <ul>
 <li>Acceptor extends Runnable</li>
@@ -162,7 +162,7 @@
         <link href="https://jike-leisong.github.io//post/Git常用命令速查表">
         </link>
         <updated>2018-01-23T14:43:20.000Z</updated>
-        <content type="html"><![CDATA[<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-23-%E4%B8%8B%E5%8D%8810_45_35.png" alt=""></p>
+        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-23-%E4%B8%8B%E5%8D%8810_45_35.png" alt=""></figure>
 ]]></content>
     </entry>
     <entry>
@@ -171,7 +171,7 @@
         <link href="https://jike-leisong.github.io//post/IO与NIO线程模型Reactor模型Netty初探">
         </link>
         <updated>2018-01-21T07:35:00.000Z</updated>
-        <content type="html"><![CDATA[<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img//2018-1-21-%E4%B8%8B%E5%8D%883_49_25.png" alt=""></p>
+        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img//2018-1-21-%E4%B8%8B%E5%8D%883_49_25.png" alt=""></figure>
 <p><strong>网络进程</strong></p>
 <blockquote>
 <ul>
@@ -180,11 +180,11 @@
 </ul>
 </blockquote>
 <p><strong>BIO (Block IO)</strong></p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_53_11.png" alt=""></p>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_53_11.png" alt=""></figure>
 <p><strong>BIO（Block IO）多线程版本</strong></p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_53_59.png" alt=""></p>
+<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_53_59.png" alt=""></figure>
 <p><strong>伪异步IO版本</strong></p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_54_30.png" alt=""></p>
+<figure data-type="image" tabindex="4"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_54_30.png" alt=""></figure>
 <p><strong>整个BIO最主要的问题</strong></p>
 <blockquote>
 <p>每当一个新的客户端请求接入时，服务端必须创建一个线程来处理这个链路<br>
@@ -192,25 +192,25 @@
 </blockquote>
 <p><strong>NIO （Non Block IO (new IO)）</strong></p>
 <blockquote>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_57_03.png" alt=""></p>
+<figure data-type="image" tabindex="5"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_57_03.png" alt=""></figure>
 </blockquote>
 <p><strong>NIO/单线程Reactor模型</strong></p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_57_37.png" alt=""></p>
+<figure data-type="image" tabindex="6"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_57_37.png" alt=""></figure>
 <p><strong>多线程Reactor模型</strong></p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_58_04.png" alt=""></p>
+<figure data-type="image" tabindex="7"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_58_04.png" alt=""></figure>
 <p><strong>主从多线程Reactor模型</strong></p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_58_34.png" alt=""></p>
+<figure data-type="image" tabindex="8"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_58_34.png" alt=""></figure>
 <p><strong>IO 模型图</strong></p>
 <blockquote>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/IO%E6%A8%A1%E5%9E%8B%E5%9B%BE.png" alt=""></p>
+<figure data-type="image" tabindex="9"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/IO%E6%A8%A1%E5%9E%8B%E5%9B%BE.png" alt=""></figure>
 </blockquote>
 <p><strong>NIO 模型图</strong></p>
 <blockquote>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/NIO%E6%A8%A1%E5%9E%8B%E5%9B%BE.png" alt=""></p>
+<figure data-type="image" tabindex="10"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/NIO%E6%A8%A1%E5%9E%8B%E5%9B%BE.png" alt=""></figure>
 </blockquote>
 <p><strong>IO多路复用、Select、epll</strong></p>
 <blockquote>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/%E6%89%A9%E5%B1%95.png" alt=""></p>
+<figure data-type="image" tabindex="11"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/%E6%89%A9%E5%B1%95.png" alt=""></figure>
 </blockquote>
 ]]></content>
     </entry>
@@ -227,14 +227,14 @@
 </blockquote>
 <h4 id="问题">问题</h4>
 <blockquote>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/erroPage.jpg" alt=""></p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/erroPage.jpg" alt=""></figure>
 </blockquote>
 <h4 id="解决">解决</h4>
 <blockquote>
 <p>修改 Working directory，点击1，选择2--<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi><mi>O</mi><mi>D</mi><mi>U</mi><mi>L</mi><msub><mi>E</mi><mi>D</mi></msub><mi>I</mi><mi>R</mi></mrow><annotation encoding="application/x-tex">MODULE_DIR</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mord mathdefault">L</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">D</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span></span></span>，如下图：</p>
 </blockquote>
 <blockquote>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/errorPage1.jpg" alt=""></p>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/errorPage1.jpg" alt=""></figure>
 </blockquote>
 ]]></content>
     </entry>
@@ -602,7 +602,7 @@ CurrentTime = 1446130273737
 <p>在HotSpot VM的线程模型中，Java线程被一对一映射为本地操作系统线程。Java线程启动时会创建一个本地操作系统线程；当Java线程终止时，这个操作系统线程也会被回收。操作系统会调用所有线程将他们分配给可用的CPU。</p>
 <p>可以将此种模式分为两层，在上层，Java多线程程序通常把应用程序分解为若干任务，然后使用用户级的调度器（Executor框架）将这些任务映射为固定数量的线程；在底层，操作系统内核将这些线程映射到硬件处理器上。</p>
 <p>两级调度模型示意图：</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor.png" alt=""></p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor.png" alt=""></figure>
 <p>从图中看出，该框架用来控制应用程序的上层调度（下层调度由操作系统内核控制，不受应用程序的控制）。</p>
 <p><strong>Executor框架的结构和成员</strong></p>
 <ul>
@@ -631,7 +631,7 @@ Executor框架有两个关键类实现了ExecutorService接口：ThreadPoolExecu
 <li>Executor框架的类与接口</li>
 </ul>
 <p>示意图：</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor-1.png" alt=""></p>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor-1.png" alt=""></figure>
 <blockquote>
 <ul>
 <li>Executor 是一个接口，它是 Executor 框架的基础，它将 <font color="red">任务的提交</font>和<font color="red">任务的执行</font>分离。</li>
@@ -643,7 +643,7 @@ Executor框架有两个关键类实现了ExecutorService接口：ThreadPoolExecu
 </blockquote>
 <p><strong>Executor框架的使用</strong></p>
 <p>先来看个图：</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor-2.png" alt=""></p>
+<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor-2.png" alt=""></figure>
 <ol>
 <li>主线程首先要创建实现 Runnable 接口或 Callable 接口的任务对象。工具类 Executors 可以把一个 Runnable 对象封装为一个 Callable 接口。</li>
 </ol>
@@ -692,7 +692,7 @@ ExecutorService.submit(Runnable task);
 <li>最后一个参数表示FixedThreadPool使用了无界队列LinkedBlockingQueue作为线程池的做工队列，由于是无界的，当线程池的线程数达到corePoolSize后，新任务将在无界队列中等待，因此线程池的线程数量不会超过corePoolSize，同时maxiumPoolSize也就变成了一个无效的参数，并且运行中的线程池并不会拒绝任务。</li>
 </ul>
 <p>FixedThreadPool运行图如下:</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor-3.png" alt=""></p>
+<figure data-type="image" tabindex="4"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor-3.png" alt=""></figure>
 <p>执行过程如下：</p>
 <blockquote>
 <ol>
@@ -715,7 +715,7 @@ ExecutorService.submit(Runnable task);
 </code></pre>
 <p>SingleThreadExecutor的corePoolSize和maxiumPoolSize都被设置1。<br>
 其他参数均与FixedThreadPool相同，其运行图如下：</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor-4.png" alt=""></p>
+<figure data-type="image" tabindex="5"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor-4.png" alt=""></figure>
 <p>执行过程如下：</p>
 <blockquote>
 <ol>
@@ -737,7 +737,7 @@ ExecutorService.submit(Runnable task);
 </code></pre>
 <p>CachedThreadPool的corePoolSize被设置为0，即corePool为空；maximumPoolSize被设置为Integer.MAX_VALUE，即maximum是无界的。这里keepAliveTime设置为60秒，意味着空闲的线程最多可以等待任务60秒，否则将被回收。</p>
 <p>CachedThreadPool使用没有容量的SynchronousQueue作为主线程池的工作队列，它是一个没有容量的阻塞队列。每个插入操作必须等待另一个线程的对应移除操作。这意味着，<font color="red">如果主线程提交任务的速度高于线程池中处理任务的速度时，CachedThreadPool会不断创建新线程。极端情况下，CachedThreadPool会因为创建过多线程而耗尽CPU资源。</font>其运行图如下：</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor-5.png" alt=""></p>
+<figure data-type="image" tabindex="6"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/Executor-5.png" alt=""></figure>
 <p>执行过程如下：</p>
 <blockquote>
 <p>1.首先执行SynchronousQueue.offer(Runnable task)。如果在当前的线程池中有空闲的线程正在执行SynchronousQueue.poll()，那么主线程执行的offer操作与空闲线程执行的poll操作配对成功，主线程把任务交给空闲线程执行。，execute()方法执行成功，否则执行步骤2<br>

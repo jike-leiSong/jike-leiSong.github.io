@@ -1,102 +1,94 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
-
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>IO与NIO线程模型Reactor模型Netty初探 | itme.ink</title>
-<meta name="description" content="温故而知新">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1573183224231">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1567410755384">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
 
   </head>
   <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1567410755384" class="site-logo">
-        <h1 class="site-title">itme.ink</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
-    </div>
-    <div>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://jike-leisong.github.io/">
+  <img class="avatar" src="https://jike-leisong.github.io//images/avatar.png?v=1573183224231" alt="">
+  </a>
+  <h1 class="site-title">
+    itme.ink
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
       
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
+        <a href="/" class="menu">
+          首页
+        </a>
       
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
+    
       
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
+        <a href="/archives" class="menu">
+          归档
+        </a>
       
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
+    
       
-    </div>
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
+  <div class="social-container">
+    
       
-        
+    
       
-        
+    
       
-        
+    
       
-        
+    
       
-        
-      
-    </div>
-    <div class="site-description">
-      温故而知新
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
-    </div>
+    
   </div>
 </div>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">IO与NIO线程模型Reactor模型Netty初探</h2>
-            <div class="post-date">2018-01-21</div>
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              IO与NIO线程模型Reactor模型Netty初探
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2018-01-21 ·
+              </time>
+              
+                <a href="https://jike-leisong.github.io//tag/netty" class="post-tag">
+                  # Netty
+                </a>
+              
+            </div>
             
             <div class="post-content">
-              <p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img//2018-1-21-%E4%B8%8B%E5%8D%883_49_25.png" alt=""></p>
+              <figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img//2018-1-21-%E4%B8%8B%E5%8D%883_49_25.png" alt=""></figure>
 <p><strong>网络进程</strong></p>
 <blockquote>
 <ul>
@@ -105,11 +97,11 @@
 </ul>
 </blockquote>
 <p><strong>BIO (Block IO)</strong></p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_53_11.png" alt=""></p>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_53_11.png" alt=""></figure>
 <p><strong>BIO（Block IO）多线程版本</strong></p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_53_59.png" alt=""></p>
+<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_53_59.png" alt=""></figure>
 <p><strong>伪异步IO版本</strong></p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_54_30.png" alt=""></p>
+<figure data-type="image" tabindex="4"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_54_30.png" alt=""></figure>
 <p><strong>整个BIO最主要的问题</strong></p>
 <blockquote>
 <p>每当一个新的客户端请求接入时，服务端必须创建一个线程来处理这个链路<br>
@@ -117,75 +109,54 @@
 </blockquote>
 <p><strong>NIO （Non Block IO (new IO)）</strong></p>
 <blockquote>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_57_03.png" alt=""></p>
+<figure data-type="image" tabindex="5"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_57_03.png" alt=""></figure>
 </blockquote>
 <p><strong>NIO/单线程Reactor模型</strong></p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_57_37.png" alt=""></p>
+<figure data-type="image" tabindex="6"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_57_37.png" alt=""></figure>
 <p><strong>多线程Reactor模型</strong></p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_58_04.png" alt=""></p>
+<figure data-type="image" tabindex="7"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_58_04.png" alt=""></figure>
 <p><strong>主从多线程Reactor模型</strong></p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_58_34.png" alt=""></p>
+<figure data-type="image" tabindex="8"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/2018-1-21-%E4%B8%8B%E5%8D%883_58_34.png" alt=""></figure>
 <p><strong>IO 模型图</strong></p>
 <blockquote>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/IO%E6%A8%A1%E5%9E%8B%E5%9B%BE.png" alt=""></p>
+<figure data-type="image" tabindex="9"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/IO%E6%A8%A1%E5%9E%8B%E5%9B%BE.png" alt=""></figure>
 </blockquote>
 <p><strong>NIO 模型图</strong></p>
 <blockquote>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/NIO%E6%A8%A1%E5%9E%8B%E5%9B%BE.png" alt=""></p>
+<figure data-type="image" tabindex="10"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/NIO%E6%A8%A1%E5%9E%8B%E5%9B%BE.png" alt=""></figure>
 </blockquote>
 <p><strong>IO多路复用、Select、epll</strong></p>
 <blockquote>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/%E6%89%A9%E5%B1%95.png" alt=""></p>
+<figure data-type="image" tabindex="11"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/%E6%89%A9%E5%B1%95.png" alt=""></figure>
 </blockquote>
 
             </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://jike-leisong.github.io//tag/netty" class="tag">
-                    Netty
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://jike-leisong.github.io//post/Spring Boot 嵌套jsp页面Whitelabel Error Page">
-                  <h3 class="post-title">
-                    Spring Boot 嵌套jsp页面Whitelabel Error Page
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-
-          </div>
-
+          </article>
         </div>
-      </div>
-    </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://jike-leisong.github.io//post/Spring Boot 嵌套jsp页面Whitelabel Error Page">
+              <h3 class="post-title">
+                Spring Boot 嵌套jsp页面Whitelabel Error Page
+              </h3>
+            </a>
+          </div>
+        
 
-<script type="application/javascript">
+        
 
-AOS.init();
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
+</div>
 
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
+<script>
+  hljs.initHighlightingOnLoad()
 </script>
 
-
-
-
+      </div>
+    </div>
   </body>
 </html>

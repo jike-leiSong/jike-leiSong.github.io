@@ -1,99 +1,91 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
-
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>七牛云床图迁移至Github | itme.ink</title>
-<meta name="description" content="温故而知新">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
+<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1573183224231">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://jike-leisong.github.io//favicon.ico?v=1567410755384">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
 
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
 
   </head>
   <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://jike-leisong.github.io/">
-        <img src="https://jike-leisong.github.io//images/avatar.png?v=1567410755384" class="site-logo">
-        <h1 class="site-title">itme.ink</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
-    </div>
-    <div>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://jike-leisong.github.io/">
+  <img class="avatar" src="https://jike-leisong.github.io//images/avatar.png?v=1573183224231" alt="">
+  </a>
+  <h1 class="site-title">
+    itme.ink
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
       
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
+        <a href="/" class="menu">
+          首页
+        </a>
       
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
+    
       
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
+        <a href="/archives" class="menu">
+          归档
+        </a>
       
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
+    
       
-    </div>
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
+  <div class="social-container">
+    
       
-        
+    
       
-        
+    
       
-        
+    
       
-        
+    
       
-        
-      
-    </div>
-    <div class="site-description">
-      温故而知新
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
-    </div>
+    
   </div>
 </div>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">七牛云床图迁移至Github</h2>
-            <div class="post-date">2019-02-24</div>
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              七牛云床图迁移至Github
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-02-24 ·
+              </time>
+              
+                <a href="https://jike-leisong.github.io//tag/tool" class="post-tag">
+                  # Tool
+                </a>
+              
+            </div>
             
             <div class="post-content">
               <p>由于大部分网站图床使用的是七牛云的，近期七牛云更新，导致原测试域名已失效，之前在测试域名存储的图片无法访问、查看、下载，网站文章关联的图片无法正常查看，只有绑定自己域名才难正常使用。考虑到诸多原因，所以决定把图片从七牛迁移至Github来存储，弃用七牛云。</p>
@@ -116,7 +108,7 @@
 <blockquote>
 <p>文件内容如下图：</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224110302.png" alt=""></p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224110302.png" alt=""></figure>
 <blockquote>
 <p>mac运行 qshell_darwin_x64 脚本，若遇到 Permission Denied 的错误，请使用命令 chmod +x qshell_darwin_x64来为文件添加可执行权限.(shell_darwin_x64 可重命名，eg：qshell)</p>
 </blockquote>
@@ -143,14 +135,14 @@
 <pre><code>qshell listbucket2 bucketA cp.txt
 </code></pre>
 <p>cp.txt文件内容如下：</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224112206.png" alt=""></p>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224112206.png" alt=""></figure>
 <ul>
 <li>处理文件名（由于空间复制，只需要文件名，故需处理 cp.txt,生成只包含文件名的文件）</li>
 </ul>
 <pre><code>cat cp.txt | awk '{print $1}' &gt;cpp.txt
 </code></pre>
 <p>得到的文件cpp.txt,文件内容如下图：</p>
-<p><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224112536.png" alt=""></p>
+<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20190224112536.png" alt=""></figure>
 <ul>
 <li>复制文件</li>
 </ul>
@@ -175,53 +167,32 @@
 <p>经测试，所有图片均可正常打开，网站的图片均可正常打开及查看。</p>
 
             </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://jike-leisong.github.io//tag/tool" class="tag">
-                    Tool
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://jike-leisong.github.io//post/阶乘超大数溢出">
-                  <h3 class="post-title">
-                    n的阶乘会溢出？解决超大数字阶乘溢出问题。
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-
-          </div>
-
+          </article>
         </div>
-      </div>
-    </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://jike-leisong.github.io//post/阶乘超大数溢出">
+              <h3 class="post-title">
+                n的阶乘会溢出？解决超大数字阶乘溢出问题。
+              </h3>
+            </a>
+          </div>
+        
 
-<script type="application/javascript">
+        
 
-AOS.init();
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://jike-leisong.github.io//atom.xml" target="_blank">RSS</a>
+</div>
 
-hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
-
+<script>
+  hljs.initHighlightingOnLoad()
 </script>
 
-
-
-
+      </div>
+    </div>
   </body>
 </html>
