@@ -3,7 +3,7 @@
         <head>
         <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,initial-scale=1,user-scalable=no" />
         <meta charset="utf-8">
-        <title>Zookeeper场景 -- 分布式队列 | itme.ink</title>
+        <title>MQ 引言 | itme.ink</title>
         <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
         <link rel="stylesheet" href="https://at.alicdn.com/t/font_1423691_1fcfxbwa79n.css">
         <link href="https://cdn.bootcss.com/animate.css/3.7.2/animate.min.css" rel="stylesheet">
@@ -56,37 +56,63 @@
                 <div class="mdui-row">
                         <div class="mdui-col-md-8 mdui-col-offset-md-2 ">
                                 <article class="mdui-p-a-2 post animated fadeIn" style="animation-delay: 0.8s;animation-duration: 2s">
-                                    <div class="post-title  mdui-m-b-1">Zookeeper场景 -- 分布式队列</div>
-                                    <div class="mdui-typo-body-2 mdui-m-b-2" datetime="2017-11-21 21:05:20">2017-11-21 / 2 min read</div>
-                                    <div class="mdui-m-b-2 mdui-typo post-neirong"><h3 id="分布式队列">分布式队列</h3>
+                                    <div class="post-title  mdui-m-b-1">MQ 引言</div>
+                                    <div class="mdui-typo-body-2 mdui-m-b-2" datetime="2019-11-08 14:54:09">2019-11-08 / 2 min read</div>
+                                    <div class="mdui-m-b-2 mdui-typo post-neirong"><h3 id="问题1为什么使用消息队列">问题1：为什么使用消息队列？</h3>
 <blockquote>
-<p>队列方面，简单地讲有两种，一种是常规的先进先出队列，另一种是要等待到队列成员聚齐之后到才统一按序执行。对于第一种先进先出的队列和分布式锁服务中的控制时序场景基本原理一致，这里不再赘述。</p>
+<p>答题思路：其实就是问问你，消息队列有哪些使用场景，你在项目中用到了哪些场景，用的那个MQ，用消息队列的好处是什么。</p>
 </blockquote>
+<h3 id="答">答：</h3>
+<p><strong>MQ 常用使用场景：解耦、异步、削峰</strong></p>
+<h4 id="mq-常用应用场景">MQ 常用应用场景</h4>
 <ul>
-<li>
-<h4 id="先进先出队列">先进先出队列</h4>
-</li>
+<li>解耦</li>
+<li>异步</li>
 </ul>
 <blockquote>
-<p>和分布式锁服务中的控制时序场景基本原理一致，这里不再赘述。</p>
+<p>接口耗时性能优化</p>
 </blockquote>
 <ul>
-<li>
-<h4 id="要等待到队列成员聚齐之后到才统一按序执行">要等待到队列成员聚齐之后到才统一按序执行</h4>
-</li>
+<li>削峰</li>
 </ul>
 <blockquote>
-<p>第二种队列其实是在 FIFO 队列的基础上作为一个增强。通常可以在 /queue 这个 znode 下预先建立一个 /queue/num 节点，并且赋值为 n（或者直接给 /queue 赋值 n），表示队列大小，之后每次有队列成员加入后，就判断下是否已经达到队列大小，决定是否可以开始执行了。这种用法的典型场景是，分布式环境中，一个大任务 Task A，需要在很多子任务完成（或条件就绪）情况下才能进行。这个时候，凡是其中一个子任务完成（就绪），那么就去 /taskList 下建立自己的临时时序节点（CreateMode.EPHEMERAL_SEQUENTIAL），当 /taskList 发现自己下面的子节点满足指定个数，就可以进行下一步按序进行处理了。</p>
+<p>降低系统压力，避免数据库被打死（注：一般的 mysql，扛到每秒2000请求就差不多了）</p>
 </blockquote>
+<h4 id="消息队列优缺点">消息队列优缺点</h4>
+<p><strong>优点</strong></p>
+<ol>
+<li>解耦</li>
+<li>异步</li>
+<li>削峰</li>
+<li>。。。</li>
+</ol>
+<p><strong>缺点</strong></p>
+<ol>
+<li>系统性可用性降低
+<blockquote>
+<p>系统引入的外部依赖越多，越容易挂掉。eg：本来就是A系统调用BCD系统即可，ABCD四个系统好好的，加入MQ，假如MQ挂掉，整套系统就挂掉。</p>
+</blockquote>
+</li>
+<li>系统复杂性提高
+<blockquote>
+<p>硬生生的加入MQ，会出现一系列问题：如何保证消息是否被消费是否丢失、消息是否重复消费、消息是否顺序消费等等。</p>
+</blockquote>
+</li>
+<li>一致性问题出现
+<blockquote>
+<p>A系统处理完了，直接返回成功。但BC系统写库成功了，D失败了。咋整？这时数据就存在不一致性问题。</p>
+</blockquote>
+</li>
+</ol>
 </div>
                                     <div class="mdui-divider mdui-m-b-2"></div>
                                     <div class="mdui-row-xs-2 post-fenye">
                                        
-                                        <div class="mdui-col"> <div class="mdui-text-left"><a href="https://jike-leisong.github.io//post/Zookeeper场景 -- 分布式锁">Zookeeper场景 -- 分布式锁</a></div></div>
+                                        <div class="mdui-col"> <div class="mdui-text-left"><a href="https://jike-leisong.github.io//post/mq-qu-bie">MQ 区别</a></div></div>
                                         
 
                                         
-                                        <div class="mdui-col"><div class="mdui-text-right "><a href="https://jike-leisong.github.io//post/Zookeeper场景 -- 命名服务">Zookeeper使用场景 -- 命名服务</a></div> </div>
+                                        <div class="mdui-col"><div class="mdui-text-right "><a href="https://jike-leisong.github.io//post/mqtt-shi-jian">MQTT实践</a></div> </div>
                                        
                                       </div>
                                    
