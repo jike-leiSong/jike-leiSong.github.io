@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+        <head>
+        <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,initial-scale=1,user-scalable=no" />
+        <meta charset="utf-8">
+        <title>MQ 高可用性 | itme.ink</title>
+        <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
+        <link rel="stylesheet" href="https://at.alicdn.com/t/font_1423691_1fcfxbwa79n.css">
+        <link href="https://cdn.bootcss.com/animate.css/3.7.2/animate.min.css" rel="stylesheet">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+        <script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+         <script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+         <script >hljs.initHighlightingOnLoad();</script>
+
+    </head>
+    <body>
+              <header class="header mdui-m-b-5">      
+            <div class="container  ">
+                <div class="index-title animated fadeInDown mdui-text-center mdui-text-color-white mdui-m-b-2" style="animation-delay: 0.2s"><a href="https://jike-leisong.github.io/">itme.ink</a></div>
+                <div class="mdui-text-color-white animated fadeInDown mdui-text-center  mdui-m-b-3" style="animation-delay: 0.4s">温故而知新</div>
+           
+            <nav id="nav" class="mdui-text-center animated fadeInDown" style="animation-delay: 0.6s">
+                   
+                            <li><a href="/">首页</a>
+                                <span class="nav-style top"></span>
+                                <span class="nav-style bottom"></span>
+                                <span class="nav-style left"></span>
+                                <span class="nav-style right"></span>
+                                </li>
+                    
+                            <li><a href="/archives">归档</a>
+                                <span class="nav-style top"></span>
+                                <span class="nav-style bottom"></span>
+                                <span class="nav-style left"></span>
+                                <span class="nav-style right"></span>
+                                </li>
+                    
+                            <li><a href="/tags">标签</a>
+                                <span class="nav-style top"></span>
+                                <span class="nav-style bottom"></span>
+                                <span class="nav-style left"></span>
+                                <span class="nav-style right"></span>
+                                </li>
+                    
+                            <li><a href="/post/about">关于</a>
+                                <span class="nav-style top"></span>
+                                <span class="nav-style bottom"></span>
+                                <span class="nav-style left"></span>
+                                <span class="nav-style right"></span>
+                                </li>
+                    
+                  </nav>
+                </div>
+        </header>
+        <div class="mdui-container ">
+                <div class="mdui-row">
+                        <div class="mdui-col-md-8 mdui-col-offset-md-2 ">
+                                <article class="mdui-p-a-2 post animated fadeIn" style="animation-delay: 0.8s;animation-duration: 2s">
+                                    <div class="post-title  mdui-m-b-1">MQ 高可用性</div>
+                                    <div class="mdui-typo-body-2 mdui-m-b-2" datetime="2019-11-13 13:46:53">2019-11-13 / 5 min read</div>
+                                    <div class="mdui-m-b-2 mdui-typo post-neirong"><h3 id="面试题如何保证消息队列的高可用">面试题：如何保证消息队列的高可用？</h3>
+<h3 id="问题分析">问题分析：</h3>
+<blockquote>
+<p>问的是MQ的高可用，意思就是你用过哪个MQ，你就说你对那个MQ对理解。</p>
+</blockquote>
+<h3 id="rabbitmq-高可用">RabbitMQ 高可用</h3>
+<blockquote>
+<p>RabbitMQ是具有代表性的MQ，是基于主从做高可用的。</p>
+</blockquote>
+<p><strong>RabbitMQ 三种模式</strong>：单机模式、普通集群模式、镜像集群模式</p>
+<ol>
+<li>单机模式
+<blockquote>
+<p>就是demo级别，一般是你本地启动了玩玩，没人生产用的单机模式。</p>
+</blockquote>
+</li>
+<li>普通集群模式</li>
+</ol>
+<ul>
+<li>模式：
+<blockquote>
+<p>意思就是在多台机器上启动多个rabbitmq实例，但是你创建的queue，只会放在一个rabbitmq实例上，但是每个实例都同步queue的元数据。当你消费的时候，实际上连接的另一个实例，那么这个实例会从queue所在的实例拉取数据。</p>
+</blockquote>
+</li>
+<li>架构图：<br>
+<img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20191113143233.png" alt=""></li>
+<li>优缺点：
+<blockquote>
+<p>这种模式确实很麻烦，也不怎么好，也没做到所谓的分布式，就是个所谓的集群。因为这导致你要么消费者每次随机连接一个实例拉取数据，要么固定连接那个queue所在的实例消费数据，前者有数据拉取的开销，后者有导致单实例性能瓶颈。<br>
+而且如果那个放queue的实例宕机了，会导致其他实例无法从那个实例拉取数据，如果你开启了消息持久化，让rabbitmq落地储存消息的话，消息不一定会丢，等这个实例恢复，然后才可以继续从实例拉取。</p>
+</blockquote>
+</li>
+<li>总结：
+<blockquote>
+<p>所以这个事就比较尴尬了，就没有什么所谓高可用可言了，这个方案主要是提高吞吐量的，就是说让集群中的多个节点来服务某个queue的读写操作。</p>
+</blockquote>
+</li>
+</ul>
+<ol start="3">
+<li>镜像集群模式</li>
+</ol>
+<ul>
+<li>模式
+<blockquote>
+<p>这种模式，才是所谓的rabbitmq的高可用模式，与普通集群模式不一样的是，你创建的queue无论元数据还是queue里的消息都会存在于多个实例中，然后你每次写消息到queue的时候，都会自动把消息同步到其他实例中。</p>
+</blockquote>
+</li>
+<li>架构图：<br>
+<img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20191113150112.png" alt=""></li>
+<li>优缺点：
+<blockquote>
+<p>这样的话，好处在于，然后一个机器宕机了，没事，别的机器都可以用。坏处在于：第一，性能开销大，消息同步到所有机器，导致网络带宽压力和消耗很重。第二，这么玩，就没有扩展性可言了，如果某个queue负载很重，你加机器，新增的机器也包含了这个queue的所有数据，并没有办法线性扩展你的queue。</p>
+</blockquote>
+</li>
+<li>如何开启镜像集群模式：
+<blockquote>
+<p>rabbitmq有很好的控制台，就是在后台新增一个策略，这个策略就是镜像集群模式的策略，指定的时候可以要求数据同步到所有节点，也可以要求同步到指定数量到节点，然后你再次创建queue的时候，应用这个策略，就会自动将数据同步到其他节点上。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="kafka-高可用">Kafka 高可用</h3>
+<ul>
+<li>架构：
+<blockquote>
+<p>Kafaka 最基本的架构，多个broker组成，每个broker就是一个节点，你创建一个topic，这个topic可以划分多个 partition，每个partition 可以存在不同的 broker上，每个partition就放一部分数据。这既是天然的分布式消息队列，就是说一个topic的数据，是分散在多个机器上的，每个机器就放一部分数据。<br>
+实际上RabbitMQ之类的，并不是分布式消息队列，他们就是传统的消息队列，只不过提供了一些集群、HA机制而已，因为无论怎么玩，RabbitMQ一个queue的数据都是放在一个节点里，镜像集群下，也是每个节点存放queue的完整数据。<br>
+Kafka 8.0前，是没有HA机制的，就是任何一个broker宕机，哪个broker的partition就废了，没法写也没法读，没什么高可用可言。<br>
+Kafka8.0后，提供了HA机制，就是replica副本机制，每个partition都同步到其他机器上去，形成自己多replica副本，然后所有的replica会选举一个leader出来，那么生产者和消费者都和这个leader打交到，然后其他replica就是follower，写的是时候，leader会负责把数据同步到所有follower上，读的时候直接读取leader，<strong>只读写leader，很简单，要是可以读写follower，那么就要care数据的一致性问题，系统的复杂度太高，很容易出问题</strong>。Kafka会均匀的将一个partition的所有replica分布在不同的机器上。<br>
+这么搞就有所谓的高可用性了。因为如果某个broker宕机了，那么broker在其他机器上的副本，会重新选举一个leader。</p>
+</blockquote>
+</li>
+<li>策略：<br>
+写数据的时候，生产者就写leader，然后leader将数据落到磁盘，接着其他follower自己主动从leader来pull数据，一旦所有follower同步好数据，就会发送ack给leader，leader收到所有follower ack后，就返回成功给生产者。<br>
+消费的时候只会从leader去读，但是只有一个消息已经被所有follower都同步成功返回ack时候，这个消息才会被消费者读到。</li>
+<li>架构图：<br>
+<img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20191114141211.png" alt=""></li>
+</ul>
+</div>
+                                    <div class="mdui-divider mdui-m-b-2"></div>
+                                    <div class="mdui-row-xs-2 post-fenye">
+                                       
+                                        <div class="mdui-col"> <div class="mdui-text-left"><a href="https://jike-leisong.github.io//post/Spring bean里的scope属性">Spring bean里的scope属性</a></div></div>
+                                        
+
+                                        
+                                        <div class="mdui-col"><div class="mdui-text-right "><a href="https://jike-leisong.github.io//post/mq-qu-bie">MQ 区别</a></div> </div>
+                                       
+                                      </div>
+                                   
+                                    <div class="mdui-divider mdui-m-t-2 mdui-m-b-2"></div>
+                                    
+                                     <script src="https://jike-leisong.github.io//media/scripts/Valine.min.js"></script>
+ <div class="comment"></div>
+
+<script>
+      new Valine({
+            el: '.comment',
+
+
+
+            path: window.location.pathname,
+            pageSize: 30,
+            avatar:'mm', 
+       })
+    </script> 
+<script>
+    if(window.location.hash){
+        var checkExist = setInterval(function() {
+           if ($(window.location.hash).length) {
+              $('html, body').animate({scrollTop: $(window.location.hash).offset().top-90}, 1000);
+              clearInterval(checkExist);
+           }
+        }, 100);
+    }
+</script>
+                                </article>
+
+                                    
+                        </div>
+                      </div>
+    
+                
+
+              </div>
+                    <footer class="footer mdui-m-t-5 mdui-text-center">
+               <nav class="social-links">
+                      <ul>
+                      
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      </ul>
+                    </nav>
+                  <div class="copyright">
+                      <p>Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> <br/> Theme <a href="https://github.com/alterfang/gridea-theme-song/">宋</a> by <a href="https://shanbu.fun/">山卜方</a> </p>
+                  </div>
+                  
+              </footer>
+    </body>
+</html>
