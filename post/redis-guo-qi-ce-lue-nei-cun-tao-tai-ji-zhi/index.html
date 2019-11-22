@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+        <head>
+        <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,initial-scale=1,user-scalable=no" />
+        <meta charset="utf-8">
+        <title>Redis 过期策略、内存淘汰机制 | itme.ink</title>
+        <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
+        <link rel="stylesheet" href="https://at.alicdn.com/t/font_1423691_1fcfxbwa79n.css">
+        <link href="https://cdn.bootcss.com/animate.css/3.7.2/animate.min.css" rel="stylesheet">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+        <script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+         <script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+         <script >hljs.initHighlightingOnLoad();</script>
+
+    </head>
+    <body>
+              <header class="header mdui-m-b-5">      
+            <div class="container  ">
+                <div class="index-title animated fadeInDown mdui-text-center mdui-text-color-white mdui-m-b-2" style="animation-delay: 0.2s"><a href="https://jike-leisong.github.io/">itme.ink</a></div>
+                <div class="mdui-text-color-white animated fadeInDown mdui-text-center  mdui-m-b-3" style="animation-delay: 0.4s">温故而知新</div>
+           
+            <nav id="nav" class="mdui-text-center animated fadeInDown" style="animation-delay: 0.6s">
+                   
+                            <li><a href="/">首页</a>
+                                <span class="nav-style top"></span>
+                                <span class="nav-style bottom"></span>
+                                <span class="nav-style left"></span>
+                                <span class="nav-style right"></span>
+                                </li>
+                    
+                            <li><a href="/archives">归档</a>
+                                <span class="nav-style top"></span>
+                                <span class="nav-style bottom"></span>
+                                <span class="nav-style left"></span>
+                                <span class="nav-style right"></span>
+                                </li>
+                    
+                            <li><a href="/tags">标签</a>
+                                <span class="nav-style top"></span>
+                                <span class="nav-style bottom"></span>
+                                <span class="nav-style left"></span>
+                                <span class="nav-style right"></span>
+                                </li>
+                    
+                            <li><a href="/post/about">关于</a>
+                                <span class="nav-style top"></span>
+                                <span class="nav-style bottom"></span>
+                                <span class="nav-style left"></span>
+                                <span class="nav-style right"></span>
+                                </li>
+                    
+                  </nav>
+                </div>
+        </header>
+        <div class="mdui-container ">
+                <div class="mdui-row">
+                        <div class="mdui-col-md-8 mdui-col-offset-md-2 ">
+                                <article class="mdui-p-a-2 post animated fadeIn" style="animation-delay: 0.8s;animation-duration: 2s">
+                                    <div class="post-title  mdui-m-b-1">Redis 过期策略、内存淘汰机制</div>
+                                    <div class="mdui-typo-body-2 mdui-m-b-2" datetime="2019-11-22 09:41:05">2019-11-22 / 4 min read</div>
+                                    <div class="mdui-m-b-2 mdui-typo post-neirong"><h3 id="针对此类问题可以延伸到以下几个点">针对此类问题可以延伸到以下几个点：</h3>
+<ol>
+<li>我往redis写到数据怎么没了？</li>
+<li>我到数据明明过期了，为何还占着内存？</li>
+</ol>
+<h4 id="问题1">问题1:</h4>
+<blockquote>
+<p>针对问题1，有时我们在生产环境中，经常会遇到，为何我刚写进去的数据，为何一会就没了？首先得明白，redis是缓存，缓存是有限的。redis主要是基于内存来进行高性能、高并发的读写操作的。假如内存有10g，你写了20g的数据，会发生啥？当然会干掉10g数据，那干掉哪10g数据？保留哪些数据？那就需要相应的策略：那就是干掉不常用的数据，保留常用的数据。</p>
+</blockquote>
+<p>所以说，数据是会有过期时间的，要么自己设置一个过期时间，要么redis自己干掉。</p>
+<h4 id="问题2">问题2:</h4>
+<blockquote>
+<p>针对问题2，就有人会问，为啥我设置了过期时间，过期后，内存还占用这么高？从redis里查但还查询不到。这就设计到redis过期策略。</p>
+</blockquote>
+<h4 id="过期策略">过期策略</h4>
+<p><strong>定期删除+惰性删除</strong></p>
+<ul>
+<li>定期删除：</li>
+</ul>
+<blockquote>
+<p>所谓定期删除，指的是redis默认100ms就随机抽取一些设置了过期时间的数据，检查是否过期，如果过期就删除。假设redis有10w key，都设置了过期时间，你每隔几百毫秒，就检查10w key，那redis基本上就死了，cpu负载也会很高，消耗在检查你的过期时间key上了。<strong>注意</strong>：不是每隔100ms遍历所有设置过过期时间的key，那样就会是场灾难。实际上是，redis是每隔100ms随机的抽取一些过去的数据检查和删除。</p>
+</blockquote>
+<p>并不是key到过期时间就删除，而是你在查询的key时候，redis再惰性检查一下。</p>
+<ul>
+<li>惰性删除</li>
+</ul>
+<blockquote>
+<p>就是你过期的key，靠定期删除没有删除掉，还停留在内存里，占用这内存呢，除非你的系统去查下那个key，才会被redis删除掉。</p>
+</blockquote>
+<p><strong>但是实际上，还有很多问题，假如你定期删除了一些key，惰性删除又没删除多少key(过期的key，你也没查询)，此时，内存一直被占用。假如数据一直堆积，内存被耗尽？咋整？</strong></p>
+<p><strong>答案</strong>：内存淘汰机制</p>
+<h4 id="内存淘汰机制">内存淘汰机制</h4>
+<ul>
+<li>no-eviction：当内存不足以容纳数据时，新写入的数据就会报错。</li>
+<li>allkey-LRU：当内存不足以容纳数据时，删除不经常使用的数据。(最常使用)</li>
+<li>allkey-random：当内存不足以容纳数据时，随机删除删除。</li>
+<li>volatile-LRU：当内存不足以容纳数据时，在设置了过期时间的键空间里，删除最近很少使用的。</li>
+<li>volatile-random：当内存不足以容纳数据时，在设置了过期时间的键空间里，随机删除某个key。</li>
+<li>volatile-ttl：当内存不足以容纳数据时，在设置了过期时间的键空间里，有更早过期时间优先删除。</li>
+</ul>
+<h4 id="手写lru">手写LRU</h4>
+<pre><code class="language-java">public class LRUCache&lt;K, V&gt; extends LinkedHashMap&lt;K, V&gt; {
+    
+private final int CACHE_SIZE;
+
+    // 这里就是传递进来最多能缓存多少数据
+    public LRUCache(int cacheSize) {
+        super((int) Math.ceil(cacheSize / 0.75) + 1, 0.75f, true); // 这块就是设置一个hashmap的初始大小，同时最后一个true指的是让linkedhashmap按照访问顺序来进行排序，最近访问的放在头，最老访问的就在尾
+        CACHE_SIZE = cacheSize;
+    }
+
+    @Override
+    protected boolean removeEldestEntry(Map.Entry eldest) {
+        return size() &gt; CACHE_SIZE; // 这个意思就是说当map中的数据量大于指定的缓存个数的时候，就自动删除最老的数据
+    }
+
+}
+</code></pre>
+</div>
+                                    <div class="mdui-divider mdui-m-b-2"></div>
+                                    <div class="mdui-row-xs-2 post-fenye">
+                                       
+                                        <div class="mdui-col"> <div class="mdui-text-left"><a href="https://jike-leisong.github.io//post/Spring bean里的scope属性">Spring bean里的scope属性</a></div></div>
+                                        
+
+                                        
+                                        <div class="mdui-col"><div class="mdui-text-right "><a href="https://jike-leisong.github.io//post/mq-gao-ke-yong-xing">MQ 高可用性</a></div> </div>
+                                       
+                                      </div>
+                                   
+                                    <div class="mdui-divider mdui-m-t-2 mdui-m-b-2"></div>
+                                    
+                                     <script src="https://jike-leisong.github.io//media/scripts/Valine.min.js"></script>
+ <div class="comment"></div>
+
+<script>
+      new Valine({
+            el: '.comment',
+
+
+
+            path: window.location.pathname,
+            pageSize: 30,
+            avatar:'mm', 
+       })
+    </script> 
+<script>
+    if(window.location.hash){
+        var checkExist = setInterval(function() {
+           if ($(window.location.hash).length) {
+              $('html, body').animate({scrollTop: $(window.location.hash).offset().top-90}, 1000);
+              clearInterval(checkExist);
+           }
+        }, 100);
+    }
+</script>
+                                </article>
+
+                                    
+                        </div>
+                      </div>
+    
+                
+
+              </div>
+                    <footer class="footer mdui-m-t-5 mdui-text-center">
+               <nav class="social-links">
+                      <ul>
+                      
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      
+                           
+                      </ul>
+                    </nav>
+                  <div class="copyright">
+                      <p>Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> <br/> Theme <a href="https://github.com/alterfang/gridea-theme-song/">宋</a> by <a href="https://shanbu.fun/">山卜方</a> </p>
+                  </div>
+                  
+              </footer>
+    </body>
+</html>
