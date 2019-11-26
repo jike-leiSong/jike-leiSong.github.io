@@ -3,7 +3,7 @@
         <head>
         <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,initial-scale=1,user-scalable=no" />
         <meta charset="utf-8">
-        <title>Zookeeper使用场景 -- 命名服务 | itme.ink</title>
+        <title>Redis 集群同步机制 | itme.ink</title>
         <link rel="stylesheet" href="https://jike-leisong.github.io//styles/main.css">
         <link rel="stylesheet" href="https://at.alicdn.com/t/font_1423691_1fcfxbwa79n.css">
         <link href="https://cdn.bootcss.com/animate.css/3.7.2/animate.min.css" rel="stylesheet">
@@ -56,35 +56,75 @@
                 <div class="mdui-row">
                         <div class="mdui-col-md-8 mdui-col-offset-md-2 ">
                                 <article class="mdui-p-a-2 post animated fadeIn" style="animation-delay: 0.8s;animation-duration: 2s">
-                                    <div class="post-title  mdui-m-b-1">Zookeeper使用场景 -- 命名服务</div>
-                                    <div class="mdui-typo-body-2 mdui-m-b-2" datetime="2017-11-21 15:44:20">2017-11-21 / 2 min read</div>
-                                    <div class="mdui-m-b-2 mdui-typo post-neirong"><blockquote>
-<p>命名服务是分布式系统中比较常见的一类场景。在分布式系统中，通过使用命名服务，客户端应用能够根据指定名字来 <strong>获取资源</strong> 或 <strong>服务地址</strong> 、<strong>提供者信息</strong>等。被命名的实体通常可以是 <strong>集群中的机器</strong>、 <strong>提供的服务地址</strong>、 <strong>远程对象</strong>等等 -- 这些我们都可以统称他们为 <strong>名字（Name）</strong>。其中较为常见的就是一些分布式服务框架中的服务地址列表。通过调用 ZK 提供的创建节点的 API，能够很容易创建一个全局唯一的path，这个path就是可以作为一个名称。</p>
-</blockquote>
-<ul>
-<li>阿里开源的分布式服务框架 Dubbo 中使用 Zookeeper 来作为其 <strong>命名服务</strong>，维护全局的服务地址列表。在Dubbo实现如下：</li>
-</ul>
+                                    <div class="post-title  mdui-m-b-1">Redis 集群同步机制</div>
+                                    <div class="mdui-typo-body-2 mdui-m-b-2" datetime="2019-11-26 10:54:03">2019-11-26 / 3 min read</div>
+                                    <div class="mdui-m-b-2 mdui-typo post-neirong"><h4 id="1-复制的完整流程">1、复制的完整流程</h4>
+<ol>
+<li>slave node启动，仅仅保存master node的信息，包括master node的ip和host，但是复制流程没开始。</li>
+<li>slave node内部有个定时任务，每秒检查是否有新的master node要连接和复制，如果发现，就和master建立socket 网络连接</li>
+<li>slave node发送ping命令给master node</li>
+<li>口令认证，如果master设置了requirepass，那么slave node必须发送 master auth的口令进行认证</li>
+<li>master node第一全量复制，将所以数据发送给slave node</li>
+<li>master node后续持续写命令，同步复制给slave node</li>
+</ol>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/jike-leiSong/img/master/img/20191126111514.png" alt=""></figure>
+<h4 id="2-数据同步相关的核心机制">2、数据同步相关的核心机制</h4>
+<ol>
+<li>
+<p>master和slave都会维护一个offset</p>
 <blockquote>
-<p><strong>服务提供者：</strong><br>
-在启动的时候，向 ZK 上的指定节点 /dubbo/${serviceName}/providers 目录下写入自己的 URL 地址，这个操作就完成了服务的发布。</p>
+<p>master会自身不断累加offset，slave也会在自身不断累加offset。slave每秒都会上报自己的offset给master，同时master也会保存每个slave的offset</p>
 </blockquote>
+</li>
+<li>
+<p>backlog</p>
 <blockquote>
-<p><strong>服务消费者：</strong><br>
-启动的时候，订阅 /dubbo/<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi>s</mi><mi>e</mi><mi>r</mi><mi>v</mi><mi>i</mi><mi>c</mi><mi>e</mi><mi>N</mi><mi>a</mi><mi>m</mi><mi>e</mi></mrow><mi mathvariant="normal">/</mi><mi>p</mi><mi>r</mi><mi>o</mi><mi>v</mi><mi>i</mi><mi>d</mi><mi>e</mi><mi>r</mi><mi>s</mi><mi mathvariant="normal">目</mi><mi mathvariant="normal">录</mi><mi mathvariant="normal">下</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">提</mi><mi mathvariant="normal">供</mi><mi mathvariant="normal">者</mi><mi>U</mi><mi>R</mi><mi>L</mi><mi mathvariant="normal">地</mi><mi mathvariant="normal">址</mi><mi mathvariant="normal">，</mi><mi mathvariant="normal">并</mi><mi mathvariant="normal">向</mi><mi mathvariant="normal">/</mi><mi>d</mi><mi>u</mi><mi>b</mi><mi>b</mi><mi>o</mi><mi mathvariant="normal">/</mi></mrow><annotation encoding="application/x-tex">{serviceName}/providers 目录下的提供者 URL地址，并向 /dubbo/</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord mathdefault">i</span><span class="mord mathdefault">c</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault">a</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span></span><span class="mord">/</span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord mathdefault">i</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">s</span><span class="mord cjk_fallback">目</span><span class="mord cjk_fallback">录</span><span class="mord cjk_fallback">下</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">提</span><span class="mord cjk_fallback">供</span><span class="mord cjk_fallback">者</span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault">L</span><span class="mord cjk_fallback">地</span><span class="mord cjk_fallback">址</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">并</span><span class="mord cjk_fallback">向</span><span class="mord">/</span><span class="mord mathdefault">d</span><span class="mord mathdefault">u</span><span class="mord mathdefault">b</span><span class="mord mathdefault">b</span><span class="mord mathdefault">o</span><span class="mord">/</span></span></span></span>{serviceName}/consumers 目录下写入自己的 URL 地址，这个操作就完成了服务的发布。</p>
+<p>master node有一个backlog，默认是1M大小，master node给slave node复制数据时，也会将数据在backlog中写一份</p>
 </blockquote>
-<p><strong>注意：</strong></p>
+</li>
+<li>
+<p>master run id</p>
 <blockquote>
-<p>所有向 ZK 上注册的地址都是临时节点，这样就能够保证服务提供者和消费者能够自动感应资源的变化。另外，Dubbo 还有针对服务粒度的监控，方法是订阅/dubbo/${serviceName}目录下所有提供者和消费者信心。</p>
+<p>info server命令，可以看到master run id，如果根据host+ip定位master node，是不靠谱的；如果master node重启或数据发生了变化，那么slave node应该根据不同的run id区分，run id不同就做<strong>全量复制</strong>，如果需要不更改 run id重启redis，用命令：redis-cli debug reload</p>
 </blockquote>
+</li>
+<li>
+<p>psync</p>
+<blockquote>
+<p>从节点使用psync从master node进行复制，pysnc runid offset，master会根据自身的情况返回响应信息，可能是FULLRESYNC runid offset触发全量复制，可能是CONTINUE触发增量复制。</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="3-全量复制">3、全量复制</h4>
+<ol>
+<li>master执行bgsave，在本地生成一份rgb快照文件</li>
+<li>master node将rgb快照文件发送给slave node，如果rgb复制时间超过60s（repl-timeout），那么slave node就会认为复制失败，可以适当调节大这个参数</li>
+<li>对于千兆网卡的机器，一般每秒传输100MB，6G文件，很可能超60s</li>
+<li>master node在生成rgb文件时，会将所有新的写命令缓存在内存中，在slave node保存了rgb后，再将新的写命令复制给slave node</li>
+<li>配置文件参数：client-output-buffer-limit slave 256M 64M 60，如果在复制期间，内存缓冲区持续消耗超过64MB，或一次性超过256MB，那么停止复制，复制失败</li>
+<li>slave node收到rgb后，清空自己的旧数据，然后重新加载rgb到自己的内存中，同时基于旧的版本对外提供服务</li>
+<li>如果slave node开启了AOF，那么会立即执行BGREWRITEAOF，重写AOF</li>
+</ol>
+<h4 id="4-增量复制">4、增量复制</h4>
+<ol>
+<li>如果全量复制工程中，master-slave网络链接断掉，那么slave重新链接master时，会触发增量复制</li>
+<li>master直接从自己的backlog中获取部分丢失的数据，发送给slave node，默认backlog就是1MB</li>
+<li>master就是根据slave发送的psync中的offset来从backlog中获取数据的</li>
+</ol>
+<h4 id="5-heartbeat">5、heartbeat</h4>
+<p>主从节点互相都会发送heartbeat信息</p>
+<p>master默认每隔10s发送一次heartbeat，slave node每隔1s发送一次heartbeat</p>
+<h4 id="6-异步复制">6、异步复制</h4>
+<p>master每次接收到写命令之后，先在内部写数据，然后异步发送给slave node</p>
 </div>
                                     <div class="mdui-divider mdui-m-b-2"></div>
                                     <div class="mdui-row-xs-2 post-fenye">
                                        
-                                        <div class="mdui-col"> <div class="mdui-text-left"><a href="https://jike-leisong.github.io//post/Zookeeper场景 -- 分布式队列">Zookeeper场景 -- 分布式队列</a></div></div>
+                                        <div class="mdui-col"> <div class="mdui-text-left"><a href="https://jike-leisong.github.io//post/Spring bean里的scope属性">Spring bean里的scope属性</a></div></div>
                                         
 
                                         
-                                        <div class="mdui-col"><div class="mdui-text-right "><a href="https://jike-leisong.github.io//post/Zookeeper场景 -- 负载均衡">Zookeeper场景 -- 负载均衡</a></div> </div>
+                                        <div class="mdui-col"><div class="mdui-text-right "><a href="https://jike-leisong.github.io//post/redis-guo-qi-ce-lue-nei-cun-tao-tai-ji-zhi">Redis 过期策略、内存淘汰机制</a></div> </div>
                                        
                                       </div>
                                    
